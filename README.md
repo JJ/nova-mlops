@@ -12,3 +12,5 @@ Material for MLOps summer course in Nova
 * [Fundamentals of data visualization](https://clauswilke.com/dataviz/)
 
 * [Designing machine learning systems](https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/)
+
+* [No-code ML](https://t.co/ItxOFhwEy9)
