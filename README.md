@@ -1,6 +1,23 @@
 # nova-mlops
 Material for MLOps summer course in Nova
 
+## Learning outcomes of the curricular unit:
+
+A. Understand the fundamental principles of agile development
+B. Understand how to integrate design, model development and operations in a continuous cycle.
+C. Apply concepts of quality assurance at every step of the process.
+D. Create a complete model as well as a report in a software artifact that changes continuously.
+E. Applying fundamental machine learning and scientific principles to the above design and reports.
+
+## Syllabus
+
+1. Agile development
+2. Design thinking for solving real-life problems.
+3. Test driven development
+4. Containers for reproducible science.
+5. Continuous integration.
+6. MLOps tools.
+7. Open science: creation and deployment of machine learning projects.
 
 ## Some links
 
@@ -14,3 +31,4 @@ Material for MLOps summer course in Nova
 * [Designing machine learning systems](https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/)
 
 * [No-code ML](https://t.co/ItxOFhwEy9)
+
