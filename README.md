@@ -11,8 +11,8 @@ E. Applying fundamental machine learning and scientific principles to the above 
 
 ## Syllabus
 
-1. Agile development
-2. Design thinking for solving real-life problems.
+1. [Agile development](text/01.Agile.md)
+2. [Design thinking for solving real-life problems](text(02.Design-Thinking.md).
 3. Test driven development
 4. Containers for reproducible science.
 5. Continuous integration.
