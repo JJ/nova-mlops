@@ -1,4 +1,3 @@
-
 # MLOps tutorial for NOVA
 
 [![Lint
