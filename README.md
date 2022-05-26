@@ -36,3 +36,6 @@ design and reports.
 
 * [No-code ML](https://t.co/ItxOFhwEy9)
 
+## LICENSE
+
+All text here is released under a `cc-by-sa` license, all code under the GPL.
