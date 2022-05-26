@@ -1,4 +1,4 @@
-# nova-mlops
+# MLOps tutorial for NOVA
 
 Material for MLOps summer course in Nova.
 
