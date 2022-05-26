@@ -1,4 +1,8 @@
+
 # MLOps tutorial for NOVA
+
+[![Lint
+Markdown](https://github.com/JJ/nova-mlops/actions/workflows/lint-markdown.yml/badge.svg)](https://github.com/JJ/nova-mlops/actions/workflows/lint-markdown.yml)
 
 Material for MLOps summer course in Nova.
 

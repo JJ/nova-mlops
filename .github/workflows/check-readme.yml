@@ -1,4 +1,4 @@
-name: "Comprueba README y texto"
+name: "Check README and text"
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
       - 'words.dic'
 
 jobs:
-  OrtografiaReadme:
+  MDSpelling:
     runs-on: ubuntu-latest
 
     steps:
