@@ -2,6 +2,7 @@
 
 [![Lint
 Markdown](https://github.com/JJ/nova-mlops/actions/workflows/lint-markdown.yml/badge.svg)](https://github.com/JJ/nova-mlops/actions/workflows/lint-markdown.yml)
+[![Check README and text](https://github.com/JJ/nova-mlops/actions/workflows/check-readme.yml/badge.svg)](https://github.com/JJ/nova-mlops/actions/workflows/check-readme.yml)
 
 Material for MLOps summer course in Nova.
 
