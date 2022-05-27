@@ -21,7 +21,7 @@ design and reports.
 
 1. [Agile development](text/01.Agile.md)
 2. [Design thinking for solving real-life problems](text/02.Design-Thinking.md).
-3. Test driven development
+3. [Test driven development](text/03.TDD.md).
 4. Containers for reproducible science.
 5. Continuous integration.
 6. MLOps tools.
