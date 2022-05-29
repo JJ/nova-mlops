@@ -5,3 +5,6 @@
 
 auto/
 *.html
+
+# R Stuff
+.Rhistory
