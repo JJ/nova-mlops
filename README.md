@@ -24,7 +24,7 @@ design and reports.
 3. [Test driven development](text/03.TDD.md).
 4. Containers for reproducible science.
 5. Continuous integration.
-6. MLOps tools.
+6. [MLOps tools](text/06.MLOps-tools.md).
 7. Open science: creation and deployment of machine learning projects.
 
 ## Some links
