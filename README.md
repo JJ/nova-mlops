@@ -33,7 +33,7 @@ The course is organized as a bootcamp, with different sessions over
 which a project, and eventually a coauthored preprint, will be
 developed. Session objectives and material are like this:
 
-1. [First session](sessions/01.md), organization and setup.
+1. [First session](sessions/01.md), meet and greet, organization and setup.
 
 ## Some links
 
