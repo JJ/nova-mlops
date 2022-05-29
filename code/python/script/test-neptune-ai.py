@@ -1,6 +1,10 @@
+#!/usr/bin/env python
+
 import neptune.new as neptune
 from dotenv import load_dotenv
+import os
 
+load_dotenv()
 run = neptune.init(
     project="jjmerelo/Nova",
     api_token=os.getenv("NEPTUNE_API_TOKEN"),
