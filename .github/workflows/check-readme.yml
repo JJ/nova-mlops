@@ -3,13 +3,13 @@ name: "Check README and text"
 on:
   push:
     paths:
-      - 'README.md'
-      - 'words.dic'
+      - '**/*.md'
+      - '**/words.dic'
 
   pull_request:
     paths:
-      - 'README.md'
-      - 'words.dic'
+      - '**/*.md'
+      - '**/words.dic'
 
 jobs:
   MDSpelling:
