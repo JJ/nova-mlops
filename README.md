@@ -48,6 +48,8 @@ developed. Session objectives and material are like this:
 
 * [No-code ML](https://t.co/ItxOFhwEy9)
 
+* [MLOps zoomcamp](https://github.com/DataTalksClub/mlops-zoomcamp)
+
 ## LICENSE
 
 All text here is released under a `cc-by-sa` license, all code under the GPL.
