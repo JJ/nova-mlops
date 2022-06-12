@@ -7,12 +7,14 @@ try {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto(url);
+    await page.content();
+    const frame = await page.frames()[1];
+    console.log(frame);
+    const content = await frame.content();
 
-    const html = await page.content();
+    const $ = cheerio.load(content);
 
-    const $ = cheerio.load(html);
-
-    const pageText = $('div').text();
+    const pageText = $('table').text();
 
     console.log(pageText)
 } catch(error) {
