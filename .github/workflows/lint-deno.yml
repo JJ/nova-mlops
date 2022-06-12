@@ -1,0 +1,25 @@
+name: "Lint Deno"
+
+on:
+  push:
+    paths:
+      - '**/*.deno'
+      - '.github/workflows/lint-deno.yml'
+
+  pull_request:
+    paths:
+      - '**/*.deno'
+
+jobs:
+  LintDeno:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: "Set up Ruby"
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+      - name: Lint deno directory
+        working-directory: code/deno
+        run: deno lint
