@@ -15,6 +15,7 @@ provides:
     file: lib/Data/OSK.pm
     version: v0.0.3
 requires:
+  LWP::Simple: '0'
   Test::More: '0'
 resources:
   license: http://dev.perl.org/licenses/

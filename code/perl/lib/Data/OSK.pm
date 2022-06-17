@@ -10,14 +10,15 @@ use parent 'Exporter';
 use v5.14;
 
 # Module implementation here
+use LWP::Simple;
 
 use constant OSK_URL => 'https://www.oryxspioenkop.com/2022/02/attack-on-europe-documenting-equipment.html';
 
 our @EXPORT=qw(download_osk);
 
 sub download_osk {
-  my $cmd = "curl " . OSK_URL;
-  my $dl =`$cmd` or die "Can't download " . OSK_URL;
+#  my $cmd = "curl " . OSK_URL;
+  my $dl =get(OSK_URL) or die "Can't download " . OSK_URL;
   return $dl;
 }
 

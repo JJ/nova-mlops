@@ -9,6 +9,7 @@ my $builder = Module::Build->new(
     dist_version_from   => 'lib/Data/OSK.pm',
     requires => {
 		 'Test::More' => 0,
+		 'LWP::Simple' => 0,
     },
     add_to_cleanup      => [ 'Data-OSK-*' ],
 );
