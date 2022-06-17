@@ -1,0 +1,22 @@
+---
+abstract: 'Download data from OryxSpioenKop'
+author:
+  - 'JJ Merelo <jjmerelo@gmail.com>'
+build_requires: {}
+dynamic_config: 0
+generated_by: 'Module::Build version 0.4206, CPAN::Meta::Converter version 2.150005'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: '1.4'
+name: Data-OSK
+provides:
+  Data::OSK:
+    file: lib/Data/OSK.pm
+    version: v0.0.3
+requires:
+  Test::More: '0'
+resources:
+  license: http://dev.perl.org/licenses/
+version: v0.0.3
+x_serialization_backend: 'CPAN::Meta::YAML version 0.012'
