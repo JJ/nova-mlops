@@ -4,7 +4,7 @@
 # latex
 
 auto/
-*.html
+
 
 # R Stuff
 .Rhistory

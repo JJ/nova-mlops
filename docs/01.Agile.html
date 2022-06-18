@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="English" xml:lang="English">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="JJ Merelo" />
+  <title>MLOps-text/01.Agile.md</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="mlops.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Agile development</h1>
+<p class="author">JJ Merelo</p>
+<p class="date">27/5/2022</p>
+</header>
+<h1 id="agile-development">Agile development</h1>
+<h2 id="tldr">TL;DR</h2>
+<p>Machine learning must focus in solving specific problems, and thus should follow the best practices in software engineering. In this introduction we’ll talk about agile development and how it applies to science, and specifically data science.</p>
+<h2 id="learning-outcomes-of-this-unit">Learning outcomes of this unit</h2>
+<p>This session is mainly related to learning outcome A, “Understand the fundamental principles of agile development”. By the end of this session the student should be able to choose a problem to work in, and understand the principles of agile development as applied to machine learning.</p>
+<h2 id="agile-data-science">Agile (Data) science</h2>
+<p>In software engineering circles, <em>agile</em> is a mindset that helps solve problems putting client first, and focusing on having always minimally viable products.</p>
+<p>Science, and data science, needs not be different; we need to put the problem first, and not any kind of proxies to that problem in the way of reports or papers or participation in competitions. This is why the manifesto for agile data science was proposed <span class="citation" data-cites="agiledatascience">[@agiledatascience]</span>, which not only tries to make data science more efficient, but also close the gap between academic and industry practitioners.</p>
+<p>In order to do that, you need to use the tools that are standard in the industry, such as source control, team work, and continuous integration/delivery tools, supplemented with specific machine learning tools, such as model registries.</p>
+<h2 id="keys-to-agile-development">Keys to agile development</h2>
+<p>First thing you have to take into account that, unlike the <em>waterfall</em> methodology that preceded it, <em>agile</em> is a set of best practices, never a <em>methodology</em>, and of course not a single <em>methodology</em>. It mainly integrates many different trends in software development that happened by the end of the 20th century, and that allowed software <em>teams</em> to deliver value faster and with higher efficiency. By <em>deliver value</em> we mean to actually make something that impacts the bottom line from the organization you’re integrated it, be it a company or a research group, or a mixture of both.</p>
+<p>Essentially, a waterfall technology, called that way because when charted it looked like a waterfall, with the different steps, planning, testing, coding, deploying, being sequential and totally independent of every other, was too rigid, could not respond quickly to changing environments, but the main problem is that it did not deliver value until the very end, that is, until you arrived at wherever the waterfall created the pool. This could be OK for a certain kind of projects, and certainly a big advantage when it was created, by Margaret Hamilton, for mission-critical software projects.</p>
+<p>In reality, however, it created a series of problems.</p>
+<ul>
+<li>Silos</li>
+<li>Bad knowledge transmission</li>
+<li>Stress</li>
+</ul>
+<p>So let’s put it to work in the following steps. Please check out <span class="citation" data-cites="agiledatascience">[@agiledatascience]</span> for reference.</p>
+<h2 id="problem-goes-first">Problem goes first</h2>
+<p>Data science needs to solve a problem. Either getting some insight on a problem, or provide some easy way to reach decisions, some times both. You need to understand the nature of the problem before settling down to work on it.</p>
+<h2 id="references">References</h2>
+<p>As stated, <span class="citation" data-cites="agiledatascience">[@agiledatascience]</span> is one of the main documents that should be followed. Thoughtful Machine Learning <span class="citation" data-cites="kirk2014thoughtful">[@kirk2014thoughtful]</span> will probably help too. Thakur’s book <span class="citation" data-cites="thakur2020approaching">[@thakur2020approaching]</span> is a very general approach to machine learning, with examples in Python. It does not really tackle the problem-to-code part, but it can be helpful to get started.</p>
+<h2 id="activity">Activity</h2>
+<p>Please refer to the corresponding session for non-coding activities.</p>
+<p>Coding activities will consist on the creation of a GitHub team, with the addition of the team that was created, and a corresponding project repository with all the team.</p>
+<p>In this first MVP, the repository will contain the description of a problem that will be solved along the course, together with the methodology to obtain the dataset and the insights that need to be obtained from it.</p>
+<p>As in every other milestone, you will need to create a pull request *in your own repository" and then modify a file in this repository, with a link to that specific PR.</p>
+</body>
+</html>
