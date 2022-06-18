@@ -4,6 +4,8 @@
 pandoc README.md -f markdown -s -t html --metadata pagetitle=MLOps-NOVA-IMS --metadata lang=English  -c mlops.css  -o  docs/index.html
 for fichero in $( ls text/*.md)
 do
-    pandoc ${fichero} -f markdown -s -t html --metadata pagetitle=MLOps-$fichero --metadata lang=English  -c mlops.css  -o  "${fichero%.md}.html"
+    Rscript -e 'rmarkdown::render("${fichero}", output_format = "md_document", output_file="${fichero}.md.out")'
+    pandoc ${fichero}.out -f markdown -s -t html --metadata pagetitle=MLOps-$fichero --metadata lang=English  -c mlops.css  -o  "${fichero%.md}.html"
     mv  "${fichero%.md}.html" docs
+    rm ${fichero}.out
 done

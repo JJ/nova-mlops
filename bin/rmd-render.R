@@ -1,0 +1,10 @@
+#!/usr/bin/env Rscript
+
+library(rmarkdown)
+args = commandArgs(trailingOnly=TRUE)
+
+print(args)
+render(args[1],
+       output_format = "md_document",
+       output_dir = ".",
+       output_file=paste0(args[1],".out"))
