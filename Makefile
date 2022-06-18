@@ -3,8 +3,7 @@
 .PHONY: prespell spellcheck
 
 prespell:
-	sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y libtext-hunspell-perl
-	cpanm --installdeps .
+	bin/test-install.sh
 
 spellcheck: prespell
 	bin/spell.pl
