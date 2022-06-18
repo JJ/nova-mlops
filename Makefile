@@ -5,5 +5,5 @@
 prespell:
 	bin/test-install.sh
 
-spellcheck: prespell
+spellcheck:
 	bin/spell.pl
