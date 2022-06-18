@@ -17,7 +17,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Prerrequisites
         run:   make prespell
       - name: Spell check
         run: make spellcheck
+      - name: Install pandoc
+        run: apt-get install pandoc
+      - name: Generate pages
+        run: bin/md2html
+      - name: Check in result
+        run: git commit -am "Re-generated HTML" && git push
