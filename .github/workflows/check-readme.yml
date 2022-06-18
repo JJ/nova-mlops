@@ -24,7 +24,7 @@ jobs:
       - name: Spell check
         run: make spellcheck
       - name: Install pandoc
-        run: apt-get install pandoc
+        run: sudo apt-get -y install pandoc
       - name: Generate pages
         run: bin/md2html
       - name: Check in result

@@ -7,7 +7,7 @@ Markdown](https://github.com/JJ/nova-mlops/actions/workflows/lint-markdown.yml/b
 
 Material for [MLOps summer course in Nova](https://www.novaims.unl.pt/en/education/programs/workshops-and-short-duration-courses/summer-course-mlops/#). Also available at [this URL](https://jj.github.io/nova-mlops).
 
-## Learning outcomes of the curricular unit:
+## Learning outcomes of the curricular unit
 
 A. Understand the fundamental principles of agile development
 B. Understand how to integrate design, model development and operations in a
