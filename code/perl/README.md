@@ -6,23 +6,25 @@ A minimal example of how to download stuff using Perl
 
 To install this module, run the following commands:
 
-	perl Makefile.PL
-	make
-	make test
-	make install
+```shell
+    perl Makefile.PL
+    make
+    make test
+    make install
+```
 
 Alternatively, to install with Module::Build, you can use the following commands:
 
-	perl Build.PL
-	./Build
-	./Build test
-	./Build install
-
+```shell
+    perl Build.PL
+    ./Build
+    ./Build test
+    ./Build install
+```
 
 ## DEPENDENCIES
 
 LWP::Simple and LWP::Protocol::https
-
 
 ## COPYRIGHT AND LICENCE
 

@@ -36,7 +36,6 @@ developed. Students can use [this repository
 template](https://github.com/JJ/nova-mlops-template) to kick-start their
 projects with spell-checking workflows.
 
-
 Session objectives and material are like this:
 
 1. [First session](sessions/01.md), meet and greet, organization and setup.
