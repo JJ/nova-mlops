@@ -16,10 +16,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Prerrequisites
-        run: |
-          make prespell
       - uses: actions/checkout@v2
+      - name: Prerrequisites
+        run: make prespell
       - name: Usa install-with-cpm
         uses: perl-actions/install-with-cpm@stable
         with:
