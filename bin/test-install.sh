@@ -8,5 +8,5 @@ fi
 
 /usr/bin/perl -MTest::Text -e 1
 if [ $? -ge 1 ]; then
-    /usr/bin/cpan Test::Text TAP::Harness
+    cpanm Test::Text TAP::Harness
 fi
