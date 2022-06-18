@@ -5,22 +5,24 @@ Markdown](https://github.com/JJ/nova-mlops/actions/workflows/lint-markdown.yml/b
 [![Check README and text](https://github.com/JJ/nova-mlops/actions/workflows/check-readme.yml/badge.svg)](https://github.com/JJ/nova-mlops/actions/workflows/check-readme.yml)
 [![Lint Deno](https://github.com/JJ/nova-mlops/actions/workflows/lint-deno.yml/badge.svg)](https://github.com/JJ/nova-mlops/actions/workflows/lint-deno.yml)
 
-Material for [MLOps summer course in Nova](https://www.novaims.unl.pt/en/education/programs/workshops-and-short-duration-courses/summer-course-mlops/#). Also available at [this URL](https://jj.github.io/nova-mlops).
+Material for [MLOps summer course in
+Nova](https://www.novaims.unl.pt/en/education/programs/workshops-and-short-duration-courses/summer-course-mlops/#). Also
+available at [this URL](https://jj.github.io/nova-mlops).
 
 ## Learning outcomes of the curricular unit
 
-A. Understand the fundamental principles of agile development
-B. Understand how to integrate design, model development and operations in a
+1. Understand the fundamental principles of agile development
+2. Understand how to integrate design, model development and operations in a
 continuous cycle.
-C. Apply concepts of quality assurance at every step of the process.
-D. Create a complete model as well as a report in a software artifact that
+3. Apply concepts of quality assurance at every step of the process.
+4. Create a complete model as well as a report in a software artifact that
 changes continuously.
-E. Applying fundamental machine learning and scientific principles to the above
+5. Applying fundamental machine learning and scientific principles to the above
 design and reports.
 
 ## Syllabus
 
-1. [Agile development](text/01.Agile.md)
+1. [Agile development](text/01.Agile.md) | [Web](01.Agile.html)
 2. [Design thinking for solving real-life problems](text/02.Design-Thinking.md).
 3. [Test driven development](text/03.TDD.md).
 4. Containers for reproducible science.
