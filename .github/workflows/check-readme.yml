@@ -18,14 +18,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Prerrequisites
-        run: make prespell
-      - name: Usa install-with-cpm
-        uses: perl-actions/install-with-cpm@stable
-        with:
-          install: |
-            Test::Text
-            TAP::Harness
-          sudo: true
+        run:   make prespell
       - name: Spell check
-        run: |
-          make spellcheck
+        run: make spellcheck
