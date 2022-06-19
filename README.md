@@ -4,8 +4,9 @@
 Markdown](https://github.com/JJ/nova-mlops/actions/workflows/lint-markdown.yml/badge.svg)](https://github.com/JJ/nova-mlops/actions/workflows/lint-markdown.yml)
 [![Check README and text](https://github.com/JJ/nova-mlops/actions/workflows/check-readme.yml/badge.svg)](https://github.com/JJ/nova-mlops/actions/workflows/check-readme.yml)
 [![Lint Deno](https://github.com/JJ/nova-mlops/actions/workflows/lint-deno.yml/badge.svg)](https://github.com/JJ/nova-mlops/actions/workflows/lint-deno.yml)
+[![Tests perl with system one](https://github.com/JJ/nova-mlops/actions/workflows/perl.yml/badge.svg)](https://github.com/JJ/nova-mlops/actions/workflows/perl.yml)
 
-Material for [MLOps summer course in
+Course material for [MLOps summer course in
 Nova](https://www.novaims.unl.pt/en/education/programs/workshops-and-short-duration-courses/summer-course-mlops/#).
 Also available at [this URL](https://jj.github.io/nova-mlops).
 
