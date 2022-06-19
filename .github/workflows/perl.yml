@@ -20,5 +20,5 @@ jobs:
         working-directory: code/perl
         run: |
           perl Build.PL
-          ./Build
+          ./Build installdeps
           ./Build test
