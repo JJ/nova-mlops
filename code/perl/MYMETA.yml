@@ -4,7 +4,7 @@ author:
   - 'JJ Merelo <jjmerelo@gmail.com>'
 build_requires: {}
 dynamic_config: 0
-generated_by: 'Module::Build version 0.4206, CPAN::Meta::Converter version 2.150005'
+generated_by: 'Module::Build version 0.421, CPAN::Meta::Converter version 2.150005'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -17,6 +17,7 @@ provides:
 requires:
   LWP::Simple: '0'
   Test::More: '0'
+  Test::Perl::Critic: '0'
 resources:
   license: http://dev.perl.org/licenses/
 version: v0.0.3
