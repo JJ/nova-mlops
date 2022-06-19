@@ -1,0 +1,21 @@
+name: "Checks the github action using itself"
+on:
+  push:
+    paths:
+      - "code/perl/**"
+      - '.github/workflows/perl.yml'
+  pull_request:
+    paths:
+      - "code/perl/**"
+
+jobs:
+  self_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: |
+          perl Build.PL
+          ./Build
+          ./Build test
