@@ -57,14 +57,9 @@ This document describes Data::OSK version 0.0.3
 
 Download data from OSK.
 
+=head2 process_osk( $dl )
 
-=head1 INTERFACE 
-
-=for author to fill in:
-    Write a separate section listing the public components of the modules
-    interface. These normally consist of either subroutines that may be
-    exported, or methods that may be called on objects belonging to the
-    classes provided by the module.
+Process data once downloaded, extracting the gist of it (which is in headlines)
 
 
 =head1 DIAGNOSTICS
@@ -92,14 +87,7 @@ Download data from OSK.
 
 =head1 CONFIGURATION AND ENVIRONMENT
 
-=for author to fill in:
-    A full explanation of any configuration system(s) used by the
-    module, including the names and locations of any configuration
-    files, and the meaning of any environment variables or properties
-    that can be set. These descriptions must also include details of any
-    configuration language used.
-  
-Data::OSK requires no configuration files or environment variables.
+Data::OSK requires no configuration files or environment variables other than the usual for Perl modules.
 
 
 =head1 DEPENDENCIES
