@@ -14,12 +14,18 @@ use LWP::Simple;
 
 use constant OSK_URL => 'https://www.oryxspioenkop.com/2022/02/attack-on-europe-documenting-equipment.html';
 
-our @EXPORT=qw(download_osk);
+our @EXPORT=qw(download_osk process_osk);
 
 sub download_osk {
 #  my $cmd = "curl " . OSK_URL;
   my $dl =get(OSK_URL) or die "Can't download " . OSK_URL;
   return $dl;
+}
+
+sub process_osk {
+  my $dl = shift;
+  my @headers = ($dl =~ /<h3>\s+<span class="mw-headline" id="Pistols">(.+?)\s+<\/h3>/g);
+  return @headers;
 }
 
 "Slava Ukraini"; # Magic true value required at end of module

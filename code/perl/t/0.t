@@ -1,8 +1,11 @@
-use lib qw(lib ../lib);
+use lib qw(lib ../lib); # -*- mode:cperl -*-
 
 use Test::More tests => 1;
 
 use Data::OSK;
 
-ok( download_osk(), "Can be downloaded properly");
+my $page = download_osk();
+
+ok( $page, "Can be downloaded properly");
+
 

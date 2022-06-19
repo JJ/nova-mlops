@@ -28,6 +28,6 @@ jobs:
       - name: Install rmarkdown
         run: Rscript -e 'install.packages("rmarkdown")'
       - name: Generate pages
-        run: bin/md2html
+        run: make html
       - name: Check in result
         run: git config --global user.email 'jjmerelo@gmail.com' && git config --global user.name "MLoPS bot" && git commit -am "Re-generated HTML" && git push
