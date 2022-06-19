@@ -1,4 +1,4 @@
-name: "Checks the github action using itself"
+name: "Tests perl with system one"
 on:
   push:
     paths:
@@ -9,11 +9,13 @@ on:
       - "code/perl/**"
 
 jobs:
-  self_check:
+  check_perl_code:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
+      - name: Install Module::Build
+        run: cpan Module::Build
       - name: Build
         working-directory: code/perl
         run: |
