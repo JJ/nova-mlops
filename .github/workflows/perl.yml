@@ -15,7 +15,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: Install Module::Build
-        run: sudo cpan Module::Build
+        run: sudo cpan Module::Build Test::Perl::Critic
       - name: Build
         working-directory: code/perl
         run: |
