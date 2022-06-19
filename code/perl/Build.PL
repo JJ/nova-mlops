@@ -10,6 +10,8 @@ my $builder = Module::Build->new(
     requires => {
 		 'Test::More' => 0,
 		 'LWP::Simple' => 0,
+		 'Test::Perl::Critic' => 0,
+		 
     },
     add_to_cleanup      => [ 'Data-OSK-*' ],
 );

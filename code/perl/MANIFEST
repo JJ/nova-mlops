@@ -3,8 +3,9 @@ Changes
 lib/Data/OSK.pm
 Makefile.PL
 MANIFEST			This list of files
-README
+README.md
 t/00.load.t
+t/0.t
 t/perlcritic.t
 t/pod-coverage.t
 t/pod.t
