@@ -14,11 +14,10 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: Install Module::Build
-        run: sudo cpan Module::Build Test::Perl::Critic
+      - name: Install prerrequisites as system modules
+        run: sudo cpan Module::Build Test::Perl::Critic Test::Pod::Coverage
       - name: Build
         working-directory: code/perl
         run: |
           perl Build.PL
-          ./Build installdeps
           ./Build test
