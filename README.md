@@ -61,13 +61,13 @@ Session objectives and material are like this:
 
 ## How to run this
 
-Most tasks that are included in workflows are also in the top-level Makefile
+Most tasks that are included in workflows are also in the top-level `Makefile`
 
-> Should be all of them, although at a certain point they can be out of sync
+> Should be all of them, although at a certain point they can be out of sync.
 
 But there are a few tools that you should have installed in your system
 
-* Perl, preferably installed via `perlbrew`, includinc `cpanm
+* Perl, preferably installed via `perlbrew`, including `cpanm`
 * R
 
 ## LICENSE
