@@ -23,10 +23,10 @@ Also available at [this URL](https://jj.github.io/nova-mlops).
 
 ## Syllabus
 
-1. [Agile development](text/01.Agile.md) | [Web](01.Agile.html)
+1. [Agile development](text/01.Agile.md) | [Web](https://jj.github.io/nova-mlops/01.Agile.html)
 2. [Design thinking for solving real-life
-   problems](text/02.Design-Thinking.md) | [Web](02.Design-Thinking.html)
-3. [Test driven development](text/03.TDD.md).
+   problems](text/02.Design-Thinking.md) | [Web](https://jj.github.io/nova-mlops/02.Design-Thinking.html)
+3. [Test driven development](text/03.TDD.md) | [Web](https://jj.github.io/nova-mlops/03.TDD.html).
 4. Containers for reproducible science.
 5. Continuous integration.
 6. [MLOps tools](text/06.MLOps-tools.md).
