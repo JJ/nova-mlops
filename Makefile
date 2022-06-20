@@ -1,6 +1,7 @@
 
 
-.PHONY: prespell spellcheck
+.PHONY: prespell spellcheck prehtml html
+UNAME_S := $(shell uname -s)
 
 prespell:
 	bin/test-install.sh
@@ -13,3 +14,9 @@ prehtml:
 
 html:
 	bin/md2html
+
+pretestperl:
+	cpanm Module::Build Test::Perl::Critic Test::Pod::Coverage
+
+testperl:
+	cd code/perl/ && perl Build.PL && ./Build test

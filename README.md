@@ -59,6 +59,16 @@ Session objectives and material are like this:
 
 * [MLOps zoomcamp](https://github.com/DataTalksClub/mlops-zoomcamp)
 
+## How to run this
+
+Most tasks that are included in workflows are also in the top-level Makefile
+
+> Should be all of them, although at a certain point they can be out of sync
+
+But there are a few tools that you should have installed in your system
+* Perl, preferably installed via `perlbrew`, includinc `cpanm
+* R
+
 ## LICENSE
 
 All text here is released under a `cc-by-sa` license, all code under the GPL.
