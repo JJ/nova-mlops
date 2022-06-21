@@ -48,6 +48,8 @@ Session objectives and material are like this:
 
 * [MLOps page](https://ml-ops.org).
 
+* [MLOps stack](https://medium.com/pythoneers/mlops-tool-stack-requirement-in-machine-learning-pipeline-474b39f09dfc).
+
 * [Twitter thread on academic vs. real-life data science/machine
   learning](https://twitter.com/svpino/status/1526532997901524998?s=21&t=BZ5He6QmvOV5h58LP7tYNg)
 
