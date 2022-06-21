@@ -46,6 +46,8 @@ Session objectives and material are like this:
 
 ## Some links
 
+* [MLOps page](https://ml-ops.org).
+
 * [Twitter thread on academic vs. real-life data science/machine
   learning](https://twitter.com/svpino/status/1526532997901524998?s=21&t=BZ5He6QmvOV5h58LP7tYNg)
 
