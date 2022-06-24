@@ -63,6 +63,8 @@ Session objectives and material are like this:
 
 * [MLOps zoomcamp](https://github.com/DataTalksClub/mlops-zoomcamp)
 
+* [Data science in the real world](https://twitter.com/marktenenholtz/status/1540303742662090752)
+
 ## How to run this
 
 Most tasks that are included in workflows are also in the top-level `Makefile`
