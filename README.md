@@ -44,7 +44,7 @@ Session objectives and material are as follows:
 
 1. [First session](sessions/01.md), meet and greet, organization and setup.
 2. [Second session](sessions/02.md), first workflow stages.
-2. [Third session](sessions/03.md), extracting and storing information.
+3. [Third session](sessions/03.md), extracting and storing information.
 
 ## Some links
 
