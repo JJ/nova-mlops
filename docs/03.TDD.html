@@ -17,13 +17,19 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="test-driven-development-in-data-science">Test driven development in data science</h1>
+<h1 id="data-engineering-through-test-driven-development">Data engineering through test driven development</h1>
 <h2 id="tldr">TL;DR</h2>
 <p>Test-driven development, or simply development that uses extensive testing, is essential to ensure quality in all phases of a data science pipeline, from data extraction and munging to results. This chapter is an introduction to testing and how to profitably use it to save time and enhance adaptability. Before testing, we’ll need to interiorize best practices in project and model design.</p>
+<p>At the same time, we will examine the first phases of machine learning workflows: data extraction, filtering, testing, versioning and storage.</p>
 <h2 id="testing-in-etl-workflows">Testing in ETL workflows</h2>
-<p>Machine learning starts with the ETL phase: Extract, Transform and Load where you need to grab the data that’s going to be used to train and test your model. In this phase, we are going to need already a test-driven approach to ascertain that all phases (extraction, transformation) occur according to our preconceptions.</p>
+<p>Machine learning starts with the ETL phase: Extract, Transform and Load where you need to grab the data that’s going to be used to train and test your model.</p>
+<blockquote>
+<p>If your pipeline does not include training, you will still need to extract data that will be visualized.</p>
+</blockquote>
+<p>In this phase, we are going to need already a test-driven approach to ascertain that all phases (extraction, transformation) occur according to our preconceptions.</p>
 <p>In general, this is a part of the process that benchmark-based ML tutorials do not pay much attention to. ETL is reduced to loading your data in a Python data frame. However, in real-world ML ETL is the most important part, and also a part of the process that needs to be heavily automated so that it works as intended and as long as possible.</p>
 <p>What we will do is to explain test-driven development along with ETL techniques, so that you start to familiarize yourself with them and put them to work later in the rest of the phases of ML.</p>
+<p>There are four phases in this part of the pipeline: extracting, updating, data munging and cleaning, and storage and versioning.</p>
 <h2 id="extracting-information-for-machine-learning">Extracting information for machine learning</h2>
 <p>Data is Out There. Generally, in a way that’s not too easy to obtain. It might be in one of these forms.</p>
 <ul>
@@ -65,6 +71,10 @@ try {
 <p>It follows some specific pattern that includes the month and the day of the month, in one of the instances padded with zeros (<code>day:02</code>). This may be part of the URL, or part of the queries. In any case, if there is a systematic way of obtaining the URL, that is what should be tried first.</p>
 <p>However, that is the case only some times. That data above, for instance, does not contain combat losses for every day. If you want that kind of data, you need to go to the <a href="https://www.mil.gov.ua/">original in Ukrainian</a>. And in this case it is impossible to know, from the shape of the URLs, which ones contain the data we want.</p>
 <p>But scraping is 90% technology, and the remaining 90%, ingenuity. It so happens that all URLs with Russian losses contains the word <code>vtrati</code>, which means <code>losses</code>.</p>
+<h2 id="storing-data">Storing data</h2>
+<p>CSV (comma separated values) is the go-to format for storing data; it is easily editable, modifiable and readable from a number of tools, including desktop tools. It is a format you can use to produce reports, or to hand it to your PhD advisor or marketing department. Any language contains tools to work with it so it is the one you will find most often.</p>
+<p>JSON is also a popular format; JavaScript Object notation obviously comes from Javascript, where it’s simply the syntax used for objects; unlike CSV, you need to read the whole file before understanding it; updating it is not so easy as in CSV, where you can just add a line; it is also not usable by desktop programs, but since it has got a rich internal structure, being in fact a serialization format, it is a good choice for static data that need not change too often.</p>
+<p>These two have the advantage of simply being text, which means they can be easily storable in a repository, which is good for data versioning. However, they’re not efficient either in storage or when reading it, which is why there are alternatives for them: <code>parquet</code>and <code>feather</code> are formats that are also readable from a multitude of libraries, but are binary in nature and thus more compact than the text based JSON and CSV.</p>
 <h2 id="see-also">See also</h2>
 <p>Despite its title, Thoughtful Machine Learning is a great test-driven approach to data science (Kirk 2014)</p>
 <h2 id="references">References</h2>
