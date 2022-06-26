@@ -47,6 +47,10 @@ Session objectives and material are as follows:
 
 ## Some links
 
+* [MLOps page](https://ml-ops.org).
+
+* [MLOps stack](https://medium.com/pythoneers/mlops-tool-stack-requirement-in-machine-learning-pipeline-474b39f09dfc).
+
 * [Twitter thread on academic vs. real-life data science/machine
   learning](https://twitter.com/svpino/status/1526532997901524998?s=21&t=BZ5He6QmvOV5h58LP7tYNg)
 
@@ -59,6 +63,8 @@ Session objectives and material are as follows:
 * [No-code ML](https://t.co/ItxOFhwEy9)
 
 * [MLOps zoomcamp](https://github.com/DataTalksClub/mlops-zoomcamp)
+
+* [Data science in the real world](https://twitter.com/marktenenholtz/status/1540303742662090752)
 
 ## How to run this
 
