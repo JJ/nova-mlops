@@ -43,7 +43,8 @@ projects with spell-checking workflows.
 Session objectives and material are as follows:
 
 1. [First session](sessions/01.md), meet and greet, organization and setup.
-1. [Second session](sessions/01.md), first workflow stages.
+2. [Second session](sessions/02.md), first workflow stages.
+2. [Third session](sessions/03.md), extracting and storing information.
 
 ## Some links
 
