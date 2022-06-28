@@ -23,6 +23,12 @@ Also available at [this URL](https://jj.github.io/nova-mlops).
 
 ## Syllabus
 
+Before the syllabus, we need to understand the
+[principles](text/00.A-Few-Principles.md) |
+[Web](https://jj.github.io/nova-mlops/00.A-Few-Principles.html) and [read the
+introduction to the course](text/00.Intro.md) |
+[Web](https://jj.github.io/nova-mlops/00.Intro.html).
+
 1. [Agile development](text/01.Agile.md) | [Web](https://jj.github.io/nova-mlops/01.Agile.html)
 2. [Design thinking for solving real-life
    problems](text/02.Design-Thinking.md) | [Web](https://jj.github.io/nova-mlops/02.Design-Thinking.html)
