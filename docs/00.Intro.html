@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="English" xml:lang="English">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>MLOps-text/00.Intro.md</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="mlops.css" />
+</head>
+<body>
+<h1 id="introduction">Introduction</h1>
+<p>MLOps (Kreuzberger, Kühl, and Hirschl 2022, <span class="citation" data-cites="tamburri2020sustainable">@tamburri2020sustainable</span>, <span class="citation" data-cites="battina2019intelligent">@battina2019intelligent</span>) is the combination of the terms and practices of machine learning and DevOps.</p>
+<blockquote>
+<p>And DevOps is the combination of all phases and roles in a development team into each and every member of the team, who will in turn act as code writers, QA leaders and system programmers.</p>
+</blockquote>
+<p>The objective of machine learning (ML) is to create models from data that can be used for prediction, classification or visualization, solving specific problems for specific customers. If you combine that with DevOps, what we have is the reproducible and seamless creation of ML workflows that can be continuously deployed to production.</p>
+<p>Scientific computing and development, which includes data <em>science</em>, has been generally separated from mainstream best practices in companies; this is in part due to the fact that science works through public funding and not with a customer or new product, and also to the traditional division of science in silos.</p>
+<p>DevOps was an attempt to break silos (Development, QA, Ops) in software engineering; MLOps tries to break silos in machine learning, and possibly, in time, in data science.</p>
+<blockquote>
+<p>By data science I mean the academic part of it.</p>
+</blockquote>
+<p>This course, or this material, depending on how you arrive at it, is mainly addressed at students that have been living in <em>traditional</em> scientific computing environments, and will try to endow them with an <em>agile</em> mindset that will be an useful skill if they want to jump from academia to the industry; if they are already in the industry, it will try to help them get acquainted with data science concepts and techniques that will help them jump-start a career in the coveted <em>data engineering</em> wage bracket.</p>
+<p>Hope this is useful for anyone arriving here from anywhere, before, during or after the in-person summer course.</p>
+<h2 id="the-keys-to-data-science">The keys to data science</h2>
+<p>As revealed in many articles such as <a href="https://www.geeksforgeeks.org/4-key-pillars-of-data-science/">this one</a>, being a successful data scientist of engineer requires a wide range of different skills.</p>
+<ol type="1">
+<li>First, domain knowledge is necessary. Since software engineers always solve someone’s problem, the engineer has to become an expert in this domain in order to provide meaningful and useful solutions. This means that a machine learning problem, the same as a workshop, must start with choosing a domain and the intention and drive to solve a problem in that domain. <em>Not</em> in an already created and static dataset.</li>
+<li>Math skills are also needed to understand, if nothing else, what validation results mean, and how you need to select a model based on comparison with other models or the baseline. If you are in academia, you will probably need to go a bit further tweaking hyperparameters, and combining algorithms (or your paper will be rejected), but even basic industrial data scientists need to have some knowledge about statistics.</li>
+<li>The data scientist needs to know and follow best practices in software development, but also be acquainted with the tools, services and languages currently used by modern developments. This includes DevOps and QA, which will be incorporated in the ML/DS domain as MLOps.</li>
+<li>Communication and visualization skills: unlike software engineers, data engineers need to eventually deliver not only a product, but also the solution to the problem that has been reached through that product. In some cases, visualization is all that’s going to be needed; in others, visualization will be the last phase in a data pipeline.</li>
+</ol>
+<p>These different parts will be studied, with different intensity, in this course; we will not devote a lot of time to math and visualization (just enough to tell you that you need to use it); obviously, MLOps is the focus of the third pillar, but we will also be spending some time in understanding why domain knowledge is absolutely necessary for the design of successful MLOps systems.</p>
+<h2 id="steps-in-mlops">Steps in MLOps</h2>
+<p>MLOps consists in the automation, within the framework of an agile team, of the following steps:</p>
+<ol type="1">
+<li>Data extraction and engineering.</li>
+<li>Model development and engineering.</li>
+<li>Continuous training.</li>
+<li>Storage in model registries.</li>
+<li>Continuous deployment.</li>
+</ol>
+<p>During the duration of this course, we’ll try to go through these steps, starting with the very important step 0: create valuable products and develop using an agile mindset.</p>
+<h2 id="read-also">Read also</h2>
+<p>The site <a href="https://ml-ops.org/">Machine Learning Operations</a> is a collection of concepts and tutorials about MLOps.</p>
+<h2 id="references">References</h2>
+<p>Battina, Dhaya Sindhu. 2019. “AN Intelligent Devops Platform Research and Design Based on Machine Learning.” <em>Training</em> 6 (3).</p>
+<p>Kreuzberger, Dominik, Niklas Kühl, and Sebastian Hirschl. 2022. “Machine Learning Operations (MLOps): Overview, Definition, and Architecture.” <em>arXiv Preprint arXiv:2205.02302</em>.</p>
+<p>Tamburri, Damian A. 2020. “Sustainable MLOps: Trends and Challenges.” In <em>2020 22nd International Symposium on Symbolic and Numeric Algorithms for Scientific Computing (Synasc)</em>, 17–23. IEEE.</p>
+</body>
+</html>
