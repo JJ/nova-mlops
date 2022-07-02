@@ -4,7 +4,10 @@ pandoc README.md -f markdown -s -t html --metadata pagetitle=MLOps-NOVA-IMS --me
 for fichero in $( ls text/*.md)
 do
     bin/rmd-render.R ${fichero}
-    pandoc ${fichero}.out -f markdown -s -t html --reference-links --metadata pagetitle=MLOps-$fichero --metadata lang=English  -c mlops.css  -o  "${fichero%.md}.html"
+    pagetitle=$(cat $fichero | egrep '^#\s+(.*)' | tr '#' ' ')
+    pandoc ${fichero}.out -f markdown -s -t html \
+	   --metadata pagetitle="$pagetitle" \
+	   --metadata lang=English  -c mlops.css  -o  "${fichero%.md}.html"
     mv  "${fichero%.md}.html" docs
     rm ${fichero}.out
 done
