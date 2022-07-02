@@ -33,10 +33,11 @@ introduction to the course](text/00.Intro.md) |
    problems](text/01.Design-Thinking.md) | [Web](https://jj.github.io/nova-mlops/01.Design-Thinking.html)
 2. [Agile development](text/02.Agile.md) | [Web](https://jj.github.io/nova-mlops/02.Agile.html)
 3. [Test driven development for scraping workflows](text/03.TDD.md) | [Web](https://jj.github.io/nova-mlops/03.TDD.html).
-4. Containers for reproducible science.
-5. Continuous integration.
-6. [MLOps tools](text/06.MLOps-tools.md).
-7. Open science: creation and deployment of machine learning projects.
+4. Automation infrastructure using GitHub actions.
+5. Containers for reproducible science.
+7. Continuous integration.
+8. [MLOps tools](text/06.MLOps-tools.md).
+9. Open science: creation and deployment of machine learning projects.
 
 ## Sessions
 
