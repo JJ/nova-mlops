@@ -15,7 +15,7 @@ Also available at [this URL](https://jj.github.io/nova-mlops).
 1. Understand the fundamental principles of agile development
 2. Understand how to integrate design, model development and
    operations in a continuous cycle.
-3. Apply concepts of quality assurance at every step of the process.
+3. Apply quality assurance concepts at every step of the process.
 4. Create a complete model as well as a report in a software artifact
    that changes continuously.
 5. Applying fundamental machine learning and scientific principles to
