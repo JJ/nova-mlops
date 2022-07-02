@@ -1,0 +1,17 @@
+Package: novamlopsexample
+Title: "Active" version of the Nova MLOps tutorial
+Version: 0.0.1
+Authors@R:
+    person("JJ", "Merelo", email="jmerelo@ugrles", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-1385-9741 "))
+Description: Necessary packages to generate the text.
+BugReports: https://github.com/JJ/nova-mlops
+License: GPL3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.0
+Imports:
+	arrow
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
