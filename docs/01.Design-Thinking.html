@@ -4,14 +4,20 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Design thinking</title>
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  <title>MlOps for Nova: Design thinking</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="mlops.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
 <h1 id="design-thinking">Design thinking</h1>
@@ -46,7 +52,7 @@
 <blockquote>
 <p>That problem was not totally avoided, however; companies go bust anyway.</p>
 </blockquote>
-<p>What we needed then was to come up with a way to explain what was going on, besides actually making a black box prediction. We needed some sort of clustering or visualization. This clustering revealed what kind of features led to the company going belly-up; for instance, one of them included old companies that were part of a conglomerate and that had low churn of assets (or suchlike, I don’t really remember). In that case, apparently, the parent company just shuttered them and employees were distributed among other companies in the conglomerate. By <em>actually</em> defining the problem, which in this case was not only to classify (healthy, broke) but also to explain the reasons why this was happening, we got our customer satisfied (and also a bunch of papers (Mora et al. 2010, <span class="citation" data-cites="alfaro2009finding">@alfaro2009finding</span>).</p>
+<p>What we needed then was to come up with a way to explain what was going on, besides actually making a black box prediction. We needed some sort of clustering or visualization. This clustering revealed what kind of features led to the company going belly-up; for instance, one of them included old companies that were part of a conglomerate and that had low churn of assets (or suchlike, I don’t really remember). In that case, apparently, the parent company just shuttered them and employees were distributed among other companies in the conglomerate. By <em>actually</em> defining the problem, which in this case was not only to classify (healthy, broke) but also to explain the reasons why this was happening, we got our customer satisfied (and also a bunch of papers Alfaro-Cid et al. (2009).</p>
 <p>In the case of the Ukraine MoD data, it is not entirely clear what we would want to obtain from it. The general idea is to find something about the course of the war, and how much it will last, or simply how bad or good is the situation for Ukraine. Defining the problem will have to start with a general visualization of data, general correlations between the different columns. In general, anyway, we will have to obtain or transform data so that we obtain daily changes in them. Once we have these <em>deltas</em>, the actual result of the ML pipeline will have to be defined in the next phase.</p>
 <h3 id="ideate">Ideate</h3>
 <p>You obviously need to think the kind of product you are going to create to solve the problem. It can be a library, a set of charts, an app, or simply a periodically updated report that visualizes a specific aspect of what you are going to do. This rough idea will need to possibly to through a series of iterations, and will also depend on the time and resources you and your team have to do it. It will have, anyway, to consistently deliver value to the customer by solving their problem.</p>
@@ -59,7 +65,7 @@
 <p>The rest is more or less obvious; all five principles will act as constraints in this design thinking process. Which also has 5 phases:</p>
 <p>In the cases mentioned above, several options were possible. For instance, a periodically updated visualization of the evolution of the number of cases.</p>
 <figure>
-<img src="https://github.com/JJ/covid-reports/raw/master/gifs/totales-point.gif" alt="Number of COVID cases in Spain" /><figcaption>Number of COVID cases in Spain</figcaption>
+<img src="https://github.com/JJ/covid-reports/raw/master/gifs/totales-point.gif" alt="Number of COVID cases in Spain" /><figcaption aria-hidden="true">Number of COVID cases in Spain</figcaption>
 </figure>
 <p>Several other publications in RPubs were updated manually, check out <a href="https://jj.github.io/covid-reports">the page that lists them all</a>.</p>
 <p>In the case of the invasion of Ukraine, however, creating a library that allowed anyone to extract data seemed like a better idea, so that’s what we will be developing here. The concrete machine learning problem that we will try to solve will be related to predicting the course of the war.</p>
@@ -77,9 +83,9 @@
 </ul>
 <h2 id="references">References</h2>
 <p>Alfaro-Cid, E, AM Mora, JJ Merelo, AI Esparcia-Alcázar, and K Sharman. 2009. “Finding Relevant Variables in a Financial Distress Prediction Problem Using Genetic Programming and Self-Organizing Maps.” In <em>Natural Computing in Computational Finance</em>, 31–49. Springer.</p>
-<p>Castillo, Pedro A., Antonio M. Mora, Hossam Faris, J.J. Merelo, Pablo García-Sánchez, Antonio J. Fernández-Ares, Paloma De las Cuevas, and María I. García-Arenas. 2017. “Applying Computational Intelligence Methods for Predicting the Sales of Newly Published Books in a Real Editorial Business Management Environment.” <em>Knowledge-Based Systems</em> 115: 133–51. <a href="https://doi.org/http://dx.doi.org/10.1016/j.knosys.2016.10.019" class="uri">https://doi.org/http://dx.doi.org/10.1016/j.knosys.2016.10.019</a>.</p>
+<p>Castillo, Pedro A., Antonio M. Mora, Hossam Faris, J. J. Merelo, Pablo García-Sánchez, Antonio J. Fernández-Ares, Paloma De las Cuevas, and María I. García-Arenas. 2017. “Applying Computational Intelligence Methods for Predicting the Sales of Newly Published Books in a Real Editorial Business Management Environment.” <em>Knowledge-Based Systems</em> 115: 133–51. https://doi.org/<a href="http://dx.doi.org/10.1016/j.knosys.2016.10.019" class="uri">http://dx.doi.org/10.1016/j.knosys.2016.10.019</a>.</p>
 <p><em>Ikea Democratic Design</em>. 2018. Ikea.</p>
 <p>Lewrick, Michael, Patrick Link, and Larry Leifer. 2018. <em>The Design Thinking Playbook: Mindful Digital Transformation of Teams, Products, Services, Businesses and Ecosystems</em>. Wiley.</p>
-<p>Mora, Antonio Miguel, Luis Javier Herrera, J Urquiza, Ignacio Rojas, and JJ Merelo. 2010. “Applying Support Vector Machines and Mutual Information to Book Losses Prediction.” In <em>The 2010 International Joint Conference on Neural Networks (Ijcnn)</em>, 1–7. IEEE.</p>
+<p>Mora, Antonio Miguel, Luis Javier Herrera, J Urquiza, Ignacio Rojas, and JJ Merelo. 2010. “Applying Support Vector Machines and Mutual Information to Book Losses Prediction.” In <em>The 2010 International Joint Conference on Neural Networks (IJCNN)</em>, 1–7. IEEE.</p>
 </body>
 </html>
