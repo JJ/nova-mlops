@@ -73,6 +73,8 @@ Session objectives and material are as follows:
 
 * [Data science in the real world](https://twitter.com/marktenenholtz/status/1540303742662090752)
 
+* [Splitting your data properly](https://twitter.com/svpino/status/1542840465455607809).
+
 ## How to run this
 
 Most tasks that are included in workflows are also in the top-level `Makefile`
