@@ -13,7 +13,7 @@ Also available at [this URL](https://jj.github.io/nova-mlops).
 ## Learning outcomes of the curricular unit
 
 1. Understand the fundamental principles of agile development
-2. Understand how to integrate design, model development and
+2. Understand how to integrate design, model development, training and
    operations in a continuous cycle.
 3. Apply quality assurance concepts at every step of the process.
 4. Create a complete model as well as a report in a software artifact
