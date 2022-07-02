@@ -78,6 +78,10 @@ try {
 <p>CSV (comma separated values) is the go-to format for storing data; it is easily editable, modifiable and readable from a number of tools, including desktop tools. It is a format you can use to produce reports, or to hand it to your PhD advisor or marketing department. Any language contains tools to work with it so it is the one you will find most often.</p>
 <p>JSON is also a popular format; JavaScript Object notation obviously comes from Javascript, where it’s simply the syntax used for objects; unlike CSV, you need to read the whole file before understanding it; updating it is not so easy as in CSV, where you can just add a line; it is also not usable by desktop programs, but since it has got a rich internal structure, being in fact a serialization format, it is a good choice for static data that need not change too often.</p>
 <p>These two have the advantage of simply being text, which means they can be easily storable in a repository, which is good for data versioning. However, they’re not efficient either in storage or when reading it, which is why there are alternatives for them: <code>parquet</code>and <code>feather</code> are formats that are also readable from a multitude of libraries, but are binary in nature and thus more compact than the text based JSON and CSV.</p>
+<p>We can use any kind of program to do so, as long as it is able to read CSV and write any data structure to the <code>parquet</code> format, , but there is a very efficient converter from CSV written in Go that we can use for this, this way:</p>
+<pre><code>go install github.com/fraugster/parquet-go/cmd/csv2parquet@latest
+csv2parquet -input ukr-mod-data.csv -output ukr-mod-data.parquet</code></pre>
+<h2 id="data-versioning">Data versioning</h2>
 <h2 id="see-also">See also</h2>
 <p>Despite its title, Thoughtful Machine Learning is a great test-driven approach to data science (Kirk 2014)</p>
 <h2 id="references">References</h2>
