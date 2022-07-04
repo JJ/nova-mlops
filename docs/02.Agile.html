@@ -26,6 +26,8 @@
 <p>Machine learning must focus in solving specific problems, and thus should follow the best practices in software engineering. In this introduction we’ll talk about agile development and how it applies to science, and specifically data science.</p>
 <h2 id="learning-outcomes-of-this-unit">Learning outcomes of this unit</h2>
 <p>This session is mainly related to learning outcome A, “Understand the fundamental principles of agile development”. By the end of this session the student should be able to choose a problem to work in, and understand the principles of agile development as applied to machine learning.</p>
+<h2 id="acceptance-criteria">Acceptance criteria</h2>
+<p>The teams will have created their repository and laid out a series of milestones with minimal viable products to be carried out during the course.</p>
 <h2 id="agile-data-science">Agile (Data) science</h2>
 <p>In software engineering circles, <em>agile</em> is a mindset that helps solve problems putting client first, and focusing on having always minimally viable products.</p>
 <p>Science, and data science, needs not be different; we need to put the problem first, and not any kind of proxies to that problem in the way of reports or papers or participation in competitions. This is why the manifesto for agile data science was proposed (Merelo-Guervós and García-Valdez 2021), which not only tries to make data science more efficient, but also close the gap between academic and industry practitioners.</p>
@@ -45,9 +47,26 @@
 <h2 id="problem-and-customer-go-first">Problem and customer go first</h2>
 <p>Data science needs to solve a problem. Either getting some insight on a problem, or provide some easy way to reach decisions, some times both. You need to understand the nature of the problem before settling down to work on it. And a problem begs for a customer; as we have seen in the <a href="01.Design-Thinking.md">design thinking</a> chapter, it’s essential to understand that problem to come up with a solution.</p>
 <p>What needs to be understood here is that to create reproducible workflows that can go into production, MLOps needs to go beyond using already existing datasets to create and curate those datasets eliminating the need to manually perform any of the steps. And, you obviously need to understand the problem very well to code those steps so that they can be performed automatically.</p>
+<p>There are a series of best practices related to including the user wish in the development process; an <em>user journey</em> for instance, will express how the client will use the specific product or how it will be included in their decision making process.</p>
+<p>However, <em>user stories</em> are a much simpler mechanism: they describe, in client’s or problem’s space, what are their wishes and what kind of profit they will obtain from having this problem solved.</p>
+<p>For instance, <a href="https://github.com/JJ/raku-ukr-mod-data/issues/24">this user story</a> reflects what an OSINT researcher would want when downloading data from Ukraine MoD:</p>
+<blockquote>
+<p>As an OSINT research, I need to obtain data reported by the Ukrainian MoD in a processable format: Data is hosted at <a href="https://www.mil.gov.ua/en/">the MoD site</a> but in a text format. Obtaining it in a processable format (such as CSV or Parquet) will enable further analysis on it.</p>
+</blockquote>
 <h2 id="deliver-working-software-frequently">Deliver working software frequently</h2>
-<p>This is precisely what MLOps is all about, in the same way as DevOps is about delivering regular software frequently.</p>
+<p>This is precisely what MLOps is all about, in the same way as DevOps is about delivering regular software frequently. There is no single “waterfall” process that finishes with the paper; it is a rather a continuous improvement and development process that finishes when the customer is no longer interested.</p>
+<p>In practice, this means that common software tools should be employed for developing the data science pipeline, <em>including</em> any reports or papers that result from it. That means using integrated source control and team management software such as GitHub or GitLab; in this course we have opted for GitHub.</p>
+<blockquote>
+<p>GitLab is an excellent product that, being free software, you can self-host on premises. However, from the point of view of accessibility and also ease of use in this context, GitHub is probably a better option (also one with which the professor is more familiar with).</p>
+</blockquote>
+<p>Software delivery must be included in a process, and that is the organization of the project in milestones; every milestone is an advance over the previous one, and it includes the delivery of a minimally viable product that solves all the problems (issues) that have been accepted for this specific release.</p>
+<p>It also implies the continuous integration of improvements to the main branch in software, via automatically performed tests. This will be the focus of the next two sections, for the time being let us focus on the planning part of it.</p>
 <h2 id="working-ml-pipelines-is-the-primary-measure-of-progress">Working ML pipelines is the primary measure of progress</h2>
+<p>Satisfying the client is the objective of any agile process, and in order to reach that state it needs to be provided with working software. To prove that they are working, automated tests and other checks need to ensure that that happens every time something is merged into main, and thus put into production.</p>
+<p>What this mantra indicates is that finishing a run in our own computer is never the end of the process. Until that experiment is put into a MLOps pipeline that automates the whole process, we cannot affirm any progress has taken place.</p>
+<blockquote>
+<p>Yes, even if the paper has been accepted. That is nice, but not what agile and MLOps is about.</p>
+</blockquote>
 <h2 id="attention-to-technical-excellence-and-good-design">Attention to technical excellence and good design</h2>
 <h2 id="simplicity-is-essential">Simplicity is essential</h2>
 <h2 id="read-also">Read also</h2>
@@ -55,8 +74,11 @@
 <h2 id="activity">Activity</h2>
 <p>Please refer to the corresponding session for non-coding activities.</p>
 <p>Coding activities will consist on the creation of a GitHub team, with the addition of the team that was created, and a corresponding project repository with all the team.</p>
-<p>In this first MVP, the repository will contain the description of a problem that will be solved along the course, together with the methodology to obtain the dataset and the insights that need to be obtained from it.</p>
-<p>As in every other milestone, you will need to create a pull request *in your own repository” and then modify a file in this repository, with a link to that specific PR.</p>
+<p>In this first MVP, the repository will contain the description of a problem that will be solved along the course, together with the methodology to obtain the dataset and the insights that need to be obtained from it. This methodology will include</p>
+<ul>
+<li><em>User stories</em> with the wishes of every customer that is targeted with the machine learning problem.</li>
+</ul>
+<p>As in every other milestone, you will need to create a pull request *in your own repository”. This PR will include links to the different issues that are targeted, including user stories. It will be reviewed by the tutor before being accepted.</p>
 <h2 id="references">References</h2>
 <p>Fowler, Martin, Jim Highsmith, et al. 2001. “The Agile Manifesto.” <em>Software Development</em> 9 (8): 28–35.</p>
 <p>Kirk, Matthew. 2014. <em>Thoughtful Machine Learning: A Test-Driven Approach</em>. O’Reilly Media, Inc.</p>
