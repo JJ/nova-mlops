@@ -76,6 +76,9 @@ Session objectives and material are as follows:
 
 * [Splitting your data properly](https://twitter.com/svpino/status/1542840465455607809).
 
+* [Never process before splitting your data by
+  `@svpino`](https://twitter.com/svpino/status/1544290020378288130)
+  
 ## How to run this
 
 Most tasks that are included in workflows are also in the top-level `Makefile`
