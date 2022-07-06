@@ -47,4 +47,4 @@ jobs:
         run: make html
       - name: Check in result
         if: ${{ github.event_name == 'push' }}
-        run: bin/commit-push "Re-generated HTML" && git push
+        run: bin/commit-push.sh "Re-generated HTML" && git push
