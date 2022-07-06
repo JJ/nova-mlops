@@ -1,4 +1,4 @@
-name: "Downloads periodically"
+name: "Downloads processed files"
 on:
   push:
     paths:
