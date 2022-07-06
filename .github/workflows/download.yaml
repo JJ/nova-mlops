@@ -1,4 +1,4 @@
-name: "Downloads processed files"
+name: "Downloads processed files from ukr-mod-data repo"
 on:
   push:
     paths:
