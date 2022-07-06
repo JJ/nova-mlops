@@ -1,0 +1,27 @@
+name: "Downloads periodically"
+on:
+  push:
+    paths:
+      - ".github/workflows/download.yaml"
+
+  schedule:
+    - cron: '30 23 * * *'
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Download files
+        run: wget https://github.com/JJ/raku-ukr-mod-data/raw/master/resources/ukr-mod-data.parquet -P data/
+      - name: Check in if there's some change in data
+        run: |
+          if [ -n "$(git status -s)" ]; then
+              git add data/*.parquet
+              bin/commit-push.sh "Download parquet file for $(date)"
+              git push
+          else
+              echo "ℹ No new files"
+          fi
+
