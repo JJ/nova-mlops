@@ -4,13 +4,17 @@ on:
   push:
     paths:
       - '**/*.md'
+      - '*.md'
       - '**/words.dic'
+      - 'words.dic'
       - '**/*.R'
 
   pull_request:
     paths:
       - '**/*.md'
+      - '*.md'
       - '**/words.dic'
+      - 'words.dic'
 
 jobs:
   MDSpelling:
