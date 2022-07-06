@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="English" xml:lang="English">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>MlOps for Nova: Deploy-to-paper</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="mlops.css" />
+</head>
+<body>
+<h2>MLOps course for Nova-Lisbon. <a href='index.html'>Index</a> | <a href='https://github.com/JJ/nova-mlops'>Github Repository</a></h2>
+<h1 id="deploy-to-paper">Deploy-to-paper</h1>
+<h2 id="tldr">TL;DR</h2>
+<p>Data science and MLOps is very amenable to the creation of workflows that end with a continuously updated paper, poster or presentation. We will see in this last chapter how to do it.</p>
+<h2 id="learning-outcomes-of-this-unit">Learning outcomes of this unit</h2>
+<p>Integrate ML workflow results in a report or paper that will be continuously updated when data changes. At least an example of such type of languages and tools will be learned.</p>
+<h2 id="acceptance-criteria">Acceptance criteria</h2>
+<p>The updatable paper needs to be created, with workflows that trigger their change.</p>
+<h2 id="active-publishing-artifacts">“Active” publishing artifacts</h2>
+<p>One of the possible ways of deploying a workflow is creating a continuosly-updated paper that is uploaded to GitHub or somewhere else. There are several technologies that can be employed for that, but one of the simplest is R Markdown, which is the one that is being used for this material.</p>
+<p>In general, weaving text with code is called <em>literary programming</em>; in general also, how it works is by using tools called <em>weave</em> or <em>unweave</em> that pre-process the source, run the code and capture output to integrate it in the paper, and the final compilation of all source, original and generated, into a single <em>artefact</em> that can be a paper or can include <em>active</em> elements like interactive charts or even running programs.</p>
+<p>The use case for this kind of artefact is, within the realm of open science, create non-static papers that present, visualize or even run whole workflows under request.</p>
+<h3 id="example-plot-ukr-invasion-apv-losses">Example: plot UKR invasion APV losses</h3>
+<p><code>{r tanks} library("arrow") df &lt;- read_parquet("../data/ukr-mod-data.parquet") summary(df)</code></p>
+</body>
+</html>

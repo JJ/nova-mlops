@@ -5,19 +5,13 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>MlOps for Nova: Agile development</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
   <link rel="stylesheet" href="mlops.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <h2>MLOps course for Nova-Lisbon. <a href='index.html'>Index</a> | <a href='https://github.com/JJ/nova-mlops'>Github Repository</a></h2>
@@ -41,7 +35,7 @@
 <li>Bad knowledge transmission</li>
 <li>Developer stress when they needed to perform some tasks with clear deadlines but without a clear objective.</li>
 </ul>
-<p>In the late 90s, some trends like Extreme Programming and open source development, as well as tools like source control and static checks, came together in the Agile Manifesto (Fowler, Highsmith, et al. 2001). This manifesto has 12 principles that are used as mantras to create a series of best practices in development. It is not a methodology, but it creates a mindset for developing; this why you talk about agile <em>mindset</em> or agile <em>teams</em>; never agile <em>methodology</em>.</p>
+<p>In the late 90s, some trends like Extreme Programming and open source development, as well as tools like source control and static checks, came together in the Agile Manifesto (Fowler, Highsmith, and others 2001). This manifesto has 12 principles that are used as mantras to create a series of best practices in development. It is not a methodology, but it creates a mindset for developing; this why you talk about agile <em>mindset</em> or agile <em>teams</em>; never agile <em>methodology</em>.</p>
 <p>In (Merelo-Guervós and García-Valdez 2021) we tried to expand this manifesto to include also any scientific development that could be attached to a data science problem; it will mainly expand the agile manifesto to include academic stakeholders such as tutors or funding agencies, and also clarify who is the <em>customer</em> in the case of a scientific paper. We will weave those into the narrative below when we describe the principles that are more interesting for us.</p>
 <p>So let’s put it to work in the following steps.</p>
 <h2 id="problem-and-customer-go-first">Problem and customer go first</h2>
@@ -62,14 +56,24 @@
 </blockquote>
 <p>Software delivery must be included in a process, and that is the organization of the project in milestones; every milestone is an advance over the previous one, and it includes the delivery of a minimally viable product that solves all the problems (issues) that have been accepted for this specific release.</p>
 <p>It also implies the continuous integration of improvements to the main branch in software, via automatically performed tests. This will be the focus of the next two sections, for the time being let us focus on the planning part of it.</p>
+<p>While all software that goes to the main branch needs to be tested, you will use milestones to organize development so that there’s a clear advancement in the functionality of what you’re creating, and you can deliver something tangible that is proved to work, a minimally viable product.</p>
+<p>Most pipelines will need to scrape and download data; in our Ukr MoD data, this is grouped in <a href="https://github.com/JJ/raku-ukr-mod-data/milestone/1">this milestone, the first one</a>. The <a href="https://github.com/JJ/raku-ukr-mod-data/milestone/2">second milestone</a> is focused on performing data tests and making some first approximation to the analysis of data. These milestones include workflows that automate their working; that is the minimally viable product. However, for the time being we need to focus on setting different parts of the MLOps development into different milestones, that will be developed apace.</p>
 <h2 id="working-ml-pipelines-is-the-primary-measure-of-progress">Working ML pipelines is the primary measure of progress</h2>
 <p>Satisfying the client is the objective of any agile process, and in order to reach that state it needs to be provided with working software. To prove that they are working, automated tests and other checks need to ensure that that happens every time something is merged into main, and thus put into production.</p>
 <p>What this mantra indicates is that finishing a run in our own computer is never the end of the process. Until that experiment is put into a MLOps pipeline that automates the whole process, we cannot affirm any progress has taken place.</p>
 <blockquote>
 <p>Yes, even if the paper has been accepted. That is nice, but not what agile and MLOps is about.</p>
 </blockquote>
+<p>A pipeline indicates that there is some automated procedure working, and a product being delivered in time. A working and <em>complete</em> pipeline is a complete product, which is the objective of the development procedure. But, meanwhile, every milestone must finish with this kind of pipeline.</p>
+<p>For instance, the <a href="https://github.com/JJ/raku-ukr-mod-data/milestone/1">milestone indicated above</a> should finish with a pipeline that should be able to download automatically the web page from the Ukrainian MoD with the adequated frequency. <a href="https://github.com/JJ/raku-ukr-mod-data/actions/workflows/download.yaml">This is the result of using that pipeline</a>, which should be green to indicate it, effectively, is working. The rest of the pipelines are shown, and should be green, <a href="https://jj.github.io/raku-ukr-mod-data/">in the module I’m using to illustrate this course</a></p>
 <h2 id="attention-to-technical-excellence-and-good-design">Attention to technical excellence and good design</h2>
+<p>Good design is, in part, guaranteed by the different phases of the design thinking stage we have mentioned before; additionally, best practices in sofware design should be used.</p>
+<p>Software design is a complicated affair and involves multiple layers: architectural design, modularization of the different components, as well as, eventually, API and maybe UI design. It’s essential to pay attention to all of these phases by first, formulating these design problem as issues, and reaching consensus on solutions every step of the way.</p>
+<p>There are many principles that can be followed during the design phase: <a href="https://www.digitalocean.com/community/conceptual_articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design">SOLID design is popular mainly in object oriented design</a>, but other methodologies like 12 steps, hexagonal design or <a href="https://dannorth.net/2022/02/10/cupid-for-joyful-coding/">CUPID</a> are all methdologies you can follow. Whatever you do, you need to be informed of these and convince yourself that the objective of your work is to create a solid (no acronym here) and expandable product, not a single-shot script, paper or Jupyter notebook.</p>
+<p>In general, different modularization have been followed when designing the UKR MoD data module; for instance, the single responsability principles has been applied through it; this leads to low coupling, and functions do a single function and are called for a single reason.</p>
 <h2 id="simplicity-is-essential">Simplicity is essential</h2>
+<p>This should be obvious, but even more so in the case of machine learning, when you have to justify the result of pipelines and often explain how you reach that conclusion. Simplicity is obtained through low coupling, and through simple, readable modules and functions that are well understood and realize a function that is delivering value to a customer.</p>
+<p>In the UKR MoD data above, different functions are performed by different modules, written in different languages; this simplifies the code, since some languages are shorter and more expressive when doing a specific function. For instance, Python is very convenient for scraping, but R is much more convenient for data shaping and creating charts. <a href="https://github.com/JJ/raku-ukr-mod-data/blob/master/bin/plot-pairs.R">This function in R</a> takes a few lines for reshaping the data frame; using some scripting language, even Python, would have probably needed much more stuff.</p>
 <h2 id="read-also">Read also</h2>
 <p>As stated, (Merelo-Guervós and García-Valdez 2021) is one of the main documents that should be followed. Thoughtful Machine Learning (Kirk 2014) will probably help too. Thakur’s book (Thakur 2020) is a very general approach to machine learning, with examples in Python. It does not really tackle the problem-to-code part, but it can be helpful to get started.</p>
 <h2 id="activity">Activity</h2>
@@ -79,9 +83,9 @@
 <ul>
 <li><em>User stories</em> with the wishes of every customer that is targeted with the machine learning problem.</li>
 </ul>
-<p>As in every other milestone, you will need to create a pull request *in your own repository”. This PR will include links to the different issues that are targeted, including user stories. It will be reviewed by the tutor before being accepted.</p>
+<p>As in every other milestone, you will need to create a pull request *in your own repository". This PR will include links to the different issues that are targeted, including user stories. It will be reviewed by the tutor before being accepted.</p>
 <h2 id="references">References</h2>
-<p>Fowler, Martin, Jim Highsmith, et al. 2001. “The Agile Manifesto.” <em>Software Development</em> 9 (8): 28–35.</p>
+<p>Fowler, Martin, Jim Highsmith, and others. 2001. “The Agile Manifesto.” <em>Software Development</em> 9 (8): 28–35.</p>
 <p>Kirk, Matthew. 2014. <em>Thoughtful Machine Learning: A Test-Driven Approach</em>. O’Reilly Media, Inc.</p>
 <p>Merelo-Guervós, Juan Julián, and Mario García-Valdez. 2021. “Agile (Data) Science: A (Draft) Manifesto.” arXiv. <a href="https://doi.org/10.48550/ARXIV.2104.12545" class="uri">https://doi.org/10.48550/ARXIV.2104.12545</a>.</p>
 <p>Thakur, Abhishek. 2020. <em>Approaching (Almost) Any Machine Learning Problem</em>. Abhishek Thakur.</p>

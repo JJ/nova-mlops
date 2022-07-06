@@ -5,30 +5,27 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>MlOps for Nova: A few guiding principles</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
   <link rel="stylesheet" href="mlops.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <h2>MLOps course for Nova-Lisbon. <a href='index.html'>Index</a> | <a href='https://github.com/JJ/nova-mlops'>Github Repository</a></h2>
 <h1 id="a-few-guiding-principles">A few guiding principles</h1>
-<p>These are a few principles behind this course, and how it is taught. They are written here explicitly for a bit of background on the rest of the material.</p>
+<p>In general, most machine learning course tend to focus on a single example, single technique, single language. This leads to low engagement by the student, low adaptability of written code, and also a steep learning curve if the student needs to move to industry. My main intention here is to try and bridge the gap between industry and academic ML by gathering best practices in a MLOps (Kreuzberger, Kühl, and Hirschl 2022) course that will include the main concepts related with it.</p>
+<p>These are a few principles behind this course, my vision on data science/machine learning (and scientific software development in general) and how it is taught. They are written here explicitly for a bit of background on the rest of the material.</p>
 <ol type="1">
-<li>No single language can span all necessary techniques needed to become a developer (in data science or anywhere else).</li>
+<li>No single language can span all necessary techniques needed to become a developer (in data science or anywhere else). Same applies to any tool; you need to have the skill to choose the right tool for the job, not a single tool.</li>
 <li>Reproducibility implies following best practices in DevOps, like configuration in the environment</li>
 <li>Always add value to the customer by never losing track of the problem that is being solved.</li>
 <li>Reproducibility begs free software; if a MLOps workflow is tied to specific companies and tools reproducibility will suffer (or simply be impossible).</li>
+<li>MLOps is DevOps, which is about acquiring knowledge to define infrastructure and tests for deployed applications.</li>
 <li>When in doubt, be agile.</li>
 </ol>
+<p>Kreuzberger, Dominik, Niklas Kühl, and Sebastian Hirschl. 2022. “Machine Learning Operations (MLOps): Overview, Definition, and Architecture.” <em>arXiv Preprint arXiv:2205.02302</em>.</p>
 </body>
 </html>
