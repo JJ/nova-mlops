@@ -10,3 +10,6 @@ auto/
 .Rhistory
 .RData
 check/
+
+# Generated files
+*.pdf
