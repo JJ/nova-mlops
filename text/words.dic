@@ -63,3 +63,5 @@ metadata
 rstudio
 IDE
 RStudio
+backticks
+linting
