@@ -1,7 +1,7 @@
 #!/bin/bash
 
 pandoc README.md -f markdown -s -t html --metadata pagetitle=MLOps-NOVA-IMS --metadata lang=English  -c mlops.css  -o  docs/index.html
-for fichero in $( ls text/*.md)
+for fichero in $( ls text/*.*md)
 do
     bin/rmd-render.R ${fichero}
     pagetitle=$(cat $fichero | egrep '^#\s+(.*)' | tr '#' ' ')
