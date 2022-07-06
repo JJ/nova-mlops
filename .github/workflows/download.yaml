@@ -5,7 +5,7 @@ on:
       - ".github/workflows/download.yaml"
 
   schedule:
-    - cron: '30 23 * * *'
+    - cron: '31 23 * * *'
 
 jobs:
   download:

@@ -407,7 +407,7 @@ science, create non-static papers that present, visualize or even run
 whole workflows under request.</p>
 <div id="example-plot-ukr-invasion-apv-losses" class="section level3">
 <h3>Example: plot UKR invasion APV losses</h3>
-<p><code>{r tanks} library(&quot;arrow&quot;) df &lt;- read_parquet(&quot;../data/ukr-mod-data.parquet&quot;) summary(df)</code></p>
+<p><code>{r tanks} library(arrow) df &lt;- read_parquet(&quot;data/ukr-mod-data.parquet&quot;) tanks.data &lt;-as.integer(df[ df$` Item` == &quot; tanks&quot;,]$` Total` ) summary(tanks.data)</code></p>
 </div>
 </div>
 </div>
