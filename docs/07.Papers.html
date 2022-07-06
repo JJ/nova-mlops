@@ -5,28 +5,77 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>MlOps for Nova: Deploy-to-paper</title>
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="mlops.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
 <h2>MLOps course for Nova-Lisbon. <a href='index.html'>Index</a> | <a href='https://github.com/JJ/nova-mlops'>Github Repository</a></h2>
 <h1 id="deploy-to-paper">Deploy-to-paper</h1>
+<p><code>{r setup, include=FALSE} knitr::opts_chunk$set(echo = TRUE) library(arrow) df &lt;- read_parquet("../data/ukr-mod-data.parquet") tanks.data &lt;-as.integer(df[ df$` Item` == " tanks",]$` Total` )</code></p>
 <h2 id="tldr">TL;DR</h2>
 <p>Data science and MLOps is very amenable to the creation of workflows that end with a continuously updated paper, poster or presentation. We will see in this last chapter how to do it.</p>
 <h2 id="learning-outcomes-of-this-unit">Learning outcomes of this unit</h2>
 <p>Integrate ML workflow results in a report or paper that will be continuously updated when data changes. At least an example of such type of languages and tools will be learned.</p>
 <h2 id="acceptance-criteria">Acceptance criteria</h2>
-<p>The updatable paper needs to be created, with workflows that trigger their change.</p>
+<p>The updateable paper needs to be created, with workflows that trigger their change.</p>
 <h2 id="active-publishing-artifacts">“Active” publishing artifacts</h2>
-<p>One of the possible ways of deploying a workflow is creating a continuosly-updated paper that is uploaded to GitHub or somewhere else. There are several technologies that can be employed for that, but one of the simplest is R Markdown, which is the one that is being used for this material.</p>
-<p>In general, weaving text with code is called <em>literary programming</em>; in general also, how it works is by using tools called <em>weave</em> or <em>unweave</em> that pre-process the source, run the code and capture output to integrate it in the paper, and the final compilation of all source, original and generated, into a single <em>artefact</em> that can be a paper or can include <em>active</em> elements like interactive charts or even running programs.</p>
-<p>The use case for this kind of artefact is, within the realm of open science, create non-static papers that present, visualize or even run whole workflows under request.</p>
-<h3 id="example-plot-ukr-invasion-apv-losses">Example: plot UKR invasion APV losses</h3>
-<p><code>{r tanks} library("arrow") df &lt;- read_parquet("../data/ukr-mod-data.parquet") summary(df)</code></p>
+<p>The last stage of a MLOps workflow is continuous deployment; eventually, your workflow will need to <em>work</em>. We need then to tool our way into doing so. Continuous deployment tools are already known, although we will probably need to show examples; however, <em>what</em> to deploy is a different issue.</p>
+<p>There are obviously many options to perform deployment. Programs and APIs can be created around the trained data, and we can deploy to an endpoint.</p>
+<p>One of the possible ways of deploying a workflow is creating a continuously-updated paper that is uploaded to GitHub or somewhere else. There are several technologies that can be employed for that, but one of the simplest is R Markdown, which is the one that is being used for this material.</p>
+<p>In general, weaving text with code is called <em>literary programming</em>; in general also, how it works is by using tools called <em>weave</em> or <em>unweave</em> that pre-process the source, run the code and capture output to integrate it in the paper, and the final compilation of all source, original and generated, into a single <em>artifact</em> that can be a paper or can include <em>active</em> elements like interactive charts or even running programs.</p>
+<p>The use case for this kind of artifact is, within the realm of open science, create non-static papers that present, visualize or even run whole workflows under request.</p>
+<p>There are many different ways of doing this, as many as possible scripting languages and document description languages. As the latter, you have LaTeX and Markdown, basically; as the latter, R and Python are the two most popular ones (but we can include Julia recently too).</p>
+<blockquote>
+<p>In our research group we use Knitr (similar to RMarkdown, for LaTeX) routinely. For instance, in (Merelo, Valdez, and Galeano 2020) we used it to include all experimental data and create charts on the fly. “Deployment to papers” is excellent to obtain immediate reports when data in a ML workflow is updated, but even if it a small pipeline that goes from experimental data to paper, it saves a lot of work and ties data to the paper that uses it to create charts, allowing re-generation very easily.</p>
+</blockquote>
+<p>You are probably already familiar with Markdown, and we will have used examples with R along this course. At any rate, we will work with R since we can run the whole way from simple scripts to whole ML workflows, through simple data manipulation and visualization scripts which will be all we will be doing here.</p>
+<p>We will be using <a href="https://rstudio.com">RStudio</a> for this part, at least the initial development; eventually it will be generated from a workflow, but the development part is quite conveniently done here.</p>
+<h2 id="anatomy-of-rmarkdown-files">Anatomy of RMarkdown files</h2>
+<p>These files have two different parts: the YAML front matter, and the weaved text and R code. YAML is a data serialization format that is used extensively throughout DevOps workflows. By now we will have already seen examples in the GitHub Actions, for instance. This is the metadata included in this very file:</p>
+<pre><code>---
+title: &quot;Agile development&quot;
+author: &quot;JJ Merelo&quot;
+date: &quot;27/5/2022&quot;
+output:
+  pdf_document: default
+  html_document: default
+bibliography: ../mlops.bib
+---</code></pre>
+<p>Besides including metadata like title or author, as well as instructions for RStudio, which is the IDE used for this task, it includes also a pointer to a bibliography file, placed in the upper directory. This is placed among the three dashed lines that mark the beginning and end of a YAML “document”. Right below, we will start the text+code itself.</p>
+<p>You do not need to make any kind of change to Markdown in order to insert code. What will be executed will also follow the regular <em>fenced</em> syntax you use for code in Markdown; the only difference is that it will have some arguments that will help interpret it. For instance, this code is at the top of this file, invisible:</p>
+<pre><code>{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(arrow)
+df &lt;- read_parquet(&quot;../data/ukr-mod-data.parquet&quot;)
+tanks.data &lt;-as.integer(df[ df$` Item` == &quot; tanks&quot;,]$` Total` )</code></pre>
+<blockquote>
+<p>These will be surrounded by code fencing marks, the three backticks. Not included here to avoid linting errors. Check <a href="https://github.com/JJ/nova-mlops/blob/3dc7c1e374ea51d61037f87ac24c8f6c0d4c7f5f/text/07.Papers.md?plain=1#L12-L17">the original</a> at the repository.</p>
+</blockquote>
+<p>The braced statement says that it is written in R, gives it a name, <code>setup</code>, and also says that the result is not going to be included in the document (<code>include=FALSE</code>); this is why it is silent.</p>
+<p>The rest is simply the first part of the script. It loads a library, <code>arrow</code>, that interprets the Parquet format, and creates a new data structure we will use later on in the text. For instance, right below:</p>
+<p><code>{r tanks} summary(tanks.data)</code></p>
+<p>In this case, we tell the chunk to simply be visible. It is a summary of an ever increasing quantity, which means that averages and so on are not going to be terribly interesting. But it serves to illustrate the concept.</p>
+<p>We can create charts using <code>ggplot2</code>, for instance, and they will be automatically saved in place, like we will do below.</p>
+<p>RMarkdown files also include other goodies; for instance, they can include bibliography that is extracted from <code>.bib</code> files, such as the one indicated in the front matter above and actually used in this paper.</p>
+<h2 id="processing-these-files-automatically">Processing these files automatically</h2>
+<p>This would not be MLOps if these files were not processed automatically. They can be triggered, for instance, every time data file changes.</p>
+<blockquote>
+<p>As we have indicated several times, development hosting sites such as GitHub do have the complete set of tools that allow you to create MLOps workflows. You can opt for a monolithic solution, but looking at every step piecewise and looking for good solutions is all good, as long as they allow to automatically work from end to end.</p>
+</blockquote>
+<h2 id="activity">Activity</h2>
+<p>As indicated in the acceptance criteria, the team will have to elaborate a short report, poster or presentation that will be continuously updated when data changes. It can include (or not) training, as well as model registry.</p>
+<h2 id="references">References</h2>
+<p>Merelo, Juan Julián, Mario Garcı́a Valdez, and Sergio Rojas Galeano. 2020. “Testing the Intermediate Disturbance Hypothesis in Concurrent Evolutionary Algorithms.” In <em>Applied Computer Sciences in Engineering - 7th Workshop on Engineering Applications, WEA 2020, Bogota, Colombia, October 7-9, 2020, Proceedings</em>, edited by Juan Carlos Figueroa-Garcı́a, Fabian Steven Garay Rairan, Germán Jairo Hernández-Pérez, and Yesid Dı́az Gutiérrez, 1274:3–15. Communications in Computer and Information Science. Springer. <a href="https://doi.org/10.1007/978-3-030-61834-6_1">https://doi.org/10.1007/978-3-030-61834-6\_1</a>.</p>
 </body>
 </html>
