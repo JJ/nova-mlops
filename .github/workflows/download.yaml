@@ -17,6 +17,7 @@ jobs:
         run: wget https://github.com/JJ/raku-ukr-mod-data/raw/master/resources/ukr-mod-data.parquet -P data/
       - name: Check in if there's some change in data
         run: |
+          git status -s
           if [ -n "$(git status -s)" ]; then
               git add data/*.parquet
               bin/commit-push.sh "Download parquet file for $(date)"
