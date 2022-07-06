@@ -30,7 +30,7 @@ tools will be learned.
 
 ## Acceptance criteria
 
-The updatable paper needs to be created, with workflows that trigger their
+The updateable paper needs to be created, with workflows that trigger their
 change.
 
 ## "Active" publishing artifacts
