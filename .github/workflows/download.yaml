@@ -14,7 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Download files
-        run: wget https://github.com/JJ/raku-ukr-mod-data/raw/master/resources/ukr-mod-data.parquet -P data/
+        run: wget https://github.com/JJ/raku-ukr-mod-data/raw/master/resources/ukr-mod-data.parquet -O data/ukr-mod-data.parquet
       - name: Check in if there's some change in data
         run: |
           git status -s
