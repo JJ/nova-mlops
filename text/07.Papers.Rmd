@@ -12,7 +12,7 @@ bibliography: ../mlops.bib
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(arrow)
-df <- read_parquet("data/ukr-mod-data.parquet")
+df <- read_parquet("../data/ukr-mod-data.parquet")
 tanks.data <-as.integer(df[ df$` Item` == " tanks",]$` Total` )
 ```
 
