@@ -47,4 +47,4 @@ jobs:
         run: make html
       - name: Check in result
         if: ${{ github.event_name == 'push' }}
-        run: git config --global user.email 'jjmerelo@gmail.com' && git config --global user.name "MLoPS bot" && git commit -am "Re-generated HTML" && git push
+        run: bin/commit-push "Re-generated HTML" && git push
