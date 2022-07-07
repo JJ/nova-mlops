@@ -82,3 +82,6 @@ jl
 JunoLab
 yaml
 pandoc
+setupinclude
+FALSEarrow
+bibpandocPweaveWeave
