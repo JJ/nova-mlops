@@ -47,4 +47,9 @@ jobs:
         run: make html
       - name: Check in result
         if: ${{ github.event_name == 'push' }}
-        run: bin/commit-push.sh "Re-generated HTML" && git push
+        run: |
+          if [ -n "$(git status -s)" ]; then
+              bin/commit-push.sh "Re-generated HTML" && git push
+          else
+              echo "ℹ No new files"
+          fi
