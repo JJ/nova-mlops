@@ -3,18 +3,18 @@ name: "Check README, text and R code"
 on:
   push:
     paths:
-      - '**/*.md'
-      - '*.md'
-      - '**/words.dic'
-      - 'words.dic'
-      - '**/*.R'
+      - "**/*.*md"
+      - "*.md"
+      - "**/words.dic"
+      - "words.dic"
+      - "**/*.R"
 
   pull_request:
     paths:
-      - '**/*.md'
-      - '*.md'
-      - '**/words.dic'
-      - 'words.dic'
+      - "**/*.*md"
+      - "*.md"
+      - "**/words.dic"
+      - "words.dic"
 
 jobs:
   MDSpelling:
@@ -25,7 +25,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Prerrequisites
-        run:   make prespell
+        run: make prespell
       - name: Spell check
         run: make spellcheck
       - uses: r-lib/actions/setup-r@v2
