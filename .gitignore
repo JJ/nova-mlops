@@ -13,3 +13,5 @@ check/
 
 # Generated files
 *.pdf
+
+.vscode
