@@ -160,6 +160,16 @@ can be triggered, for instance, every time data file changes.
 > piecewise and looking for good solutions is all good, as long as they allow to
 > automatically work from end to end.
 
+We have already learned how to include Github workflows for processing our
+stuff. This is more of the same, except that in this case we will have to work
+with R and the rest of the tools (including `pandoc`) that are needed to
+generate these files.
+
+> Incidentally, workflows that are very similar to these ones can be used to
+> automatically test and generate a LaTeX file from source, as well as upload it
+> to the repository or somewhere else. Basically everything that can, should be
+> automated.
+
 ## Activity
 
 As indicated in the acceptance criteria, the team will have to elaborate a
