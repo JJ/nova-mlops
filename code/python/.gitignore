@@ -1,3 +1,6 @@
 *.env
 .neptune/
 neptune
+**/__pychache__/
+mlruns/
+*.log
