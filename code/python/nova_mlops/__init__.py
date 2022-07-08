@@ -12,10 +12,11 @@ def train(training_data):
     evaluate_model(best)
     save_model(best, "test")
     plot_model(best, plot='residuals_interactive')
+    plot_model(best, plot='error')
 
 
 def process(ipd):
-    return ipd.drop(columns="Date")
+    return ipd.drop(columns="Date").iloc[1:, :]
 
 
 def go():
