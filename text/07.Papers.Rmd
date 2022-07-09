@@ -309,13 +309,22 @@ output, the HTML files are committed through the indicated script
 (omitted for brevity), and finally integrated in the repository.
 
 With this, you will have achieved a fully automated workflow, that
-will need no intervention other than editing the reports if you need to.
+will need no intervention other than editing the reports if you need
+to.
+
+## Publication
+
+"Publish or perish" is the academic motto, and it is at the same time
+sad and true.
 
 ## Activity
 
 As indicated in the acceptance criteria, the team will have to elaborate a
 short report, poster or presentation that will be continuously updated when data
-changes. It can include (or not) training, as well as model registry.
+changes. It can include (or not) training, as well as model
+registry. The report will have to be published in an open access
+repository by the end of the evaluation period (can be a few days
+later, but preferably during the course; most sites allow updating).
 
 ## See also
 
