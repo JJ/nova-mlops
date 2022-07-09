@@ -117,7 +117,7 @@ invisible:
 knitr::opts_chunk$set(echo = TRUE)
 library(arrow)
 df <- read_parquet("../data/ukr-mod-data.parquet")
-tanks.data <-as.integer(df[ df$` Item` == " tanks",]$` Total` )
+tanks.data <-data.frame( value =as.integer(df[ df$` Item` == " tanks",]$` Total` )
 ```
 
 > These will be surrounded by code fencing marks, the three backticks. Not
@@ -148,6 +148,11 @@ automatically saved in place, like we will do below.
 RMarkdown files also include other goodies; for instance, they can include
 bibliography that is extracted from `.bib` files, such as the one indicated in
 the front matter above and actually used in this paper.
+
+```{r plot}
+tanks.data$idu <- as.numeric(row.names(tanks.data))
+ggplot(tanks.data, aes(x=idu, y=))
+```
 
 ## Processing these files automatically
 
