@@ -231,9 +231,8 @@ procedures depending on the extension of the file: Markdown files will
 integrate the bibliography only, RMarkdown files will do that *and*
 render active chunks.
 
-so that we
-do not include big chunks of scripting code into the GitHub action. In
-this repository, the bin/md2html does that task:
+But this deals with a single file; we need to apply it to every text
+file in the repository. The `bin/md2html` script does that task:
 
 > We leave out some parts to highlight the gist of it
 
@@ -254,9 +253,16 @@ done
 
 ```
 
+As you can see, the first part of the loop over all files is the one
+that actually renders to the intermediate Markdown representation;
+pandoc, a universal text formar converter, will take that and render
+it to HTML including generated images (that will be integrated in the
+HTML file through the `--self-contained` flag, together with the CSS
+files.
 
-
-These GitHub actions will need to look something like this:
+You can run that by hand, but we were talking about automation. This
+will be done in a GitHub action, in the `.github/workflows` directory,
+that  will need to look something like this:
 
 ```yaml
 name: "Check README, text and R code"
@@ -271,13 +277,6 @@ on:
       - "**/*.R"
       - "**/*.parquet"
 
-  pull_request:
-    paths:
-      - "**/*.*md"
-      - "*.md"
-      - "**/words.dic"
-      - "words.dic"
-
 jobs:
   text_actions:
     runs-on: ubuntu-latest
@@ -286,17 +285,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Prerrequisites
-        run: make prespell
-      - name: Spell check
-        run: make spellcheck
       - uses: r-lib/actions/setup-r@v2
       - uses: r-lib/actions/setup-pandoc@v2
       - name: Generate pages
-        if: ${{ github.event_name == 'push' }}
         run: make html
       - name: Check in result
-        if: ${{ github.event_name == 'push' }}
         run: |
           if [ -n "$(git status -s)" ]; then
               bin/commit-push.sh "Re-generated HTML" && git push
@@ -304,6 +297,19 @@ jobs:
               echo "ℹ No new files"
           fi
 ```
+
+The `on → push → paths` part established what files need to change for
+this action to be triggered; all Markdown, RMarkdown as well ar
+scripts and Parquet files are included. A bunch of  `r-lib` actions
+will take care of the rendering, which simply calls `make html`; the
+script for generating that will be included in the `Makefile`, that
+will have all needed tasks and will be the single source of truth for
+tasks needed for re-generation. If there's some actual change in the
+output, the HTML files are committed through the indicated script
+(omitted for brevity), and finally integrated in the repository.
+
+With this, you will have achieved a fully automated workflow, that
+will need no intervention other than editing the reports if you need to.
 
 ## Activity
 
