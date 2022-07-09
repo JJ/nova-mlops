@@ -7,7 +7,6 @@ do
     pagetitle=$(cat $fichero | egrep '^#\s+(.*)' | tr '#' ' ')
     if [[ $fichero == "*.md" ]]; then
 	pandoc ${fichero}.out -f markdown -s -t html \
-	   --self-contained \
 	   -B docs/header.html \
 	   --metadata pagetitle="MlOps for Nova: $pagetitle" \
 	   --metadata lang=English  -c mlops.css  -o  "${fichero%.md}.html"
