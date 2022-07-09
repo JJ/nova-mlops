@@ -13,7 +13,7 @@ bibliography: ../mlops.bib
 knitr::opts_chunk$set(echo = TRUE)
 library(arrow)
 df <- read_parquet("../data/ukr-mod-data.parquet")
-tanks.data <-as.integer(df[ df$` Item` == " tanks",]$` Total` )
+tanks.data <- df[ df$` Item` == " tanks",]
 ```
 
 ## TL;DR
@@ -135,7 +135,12 @@ that interprets the Parquet format, and creates a new data structure we will use
 later on in the text. For instance, right below:
 
 ```{r tanks}
-summary(tanks.data)
+tanks.data$Total <- as.integer(tanks.data$` Total`)
+tanks.data$` Total` <- NULL
+tanks.data$Delta <- as.integer(tanks.data$` Delta`)
+tanks.data$` Delta` <- NULL
+tanks.data$` Item` <- NULL
+summary(tanks.data$Delta)
 ```
 
 In this case, we tell the chunk to simply be visible. It is a summary of an ever
@@ -149,9 +154,10 @@ RMarkdown files also include other goodies; for instance, they can include
 bibliography that is extracted from `.bib` files, such as the one indicated in
 the front matter above and actually used in this paper.
 
-```{r plot}
-tanks.data$idu <- as.numeric(row.names(tanks.data))
-ggplot(tanks.data, aes(x=idu, y=))
+```{r plot, warning=FALSE}
+library(ggplot2)
+tanks.data$Date <- as.Date( paste0("2022.",tanks.data$Date), format="%Y.%d.%m")
+ggplot(tanks.data, aes(x=Date, y=Total))+geom_point()
 ```
 
 ## Processing these files automatically

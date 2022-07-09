@@ -5,24 +5,17 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>MlOps for Nova: Deploy-to-paper</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
   <link rel="stylesheet" href="mlops.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <h2>MLOps course for Nova-Lisbon. <a href='index.html'>Index</a> | <a href='https://github.com/JJ/nova-mlops'>Github Repository</a></h2>
 <h1 id="deploy-to-paper">Deploy-to-paper</h1>
-<p><code>{r setup, include=FALSE} knitr::opts_chunk$set(echo = TRUE) library(arrow) df &lt;- read_parquet("../data/ukr-mod-data.parquet") tanks.data &lt;-as.integer(df[ df$` Item` == " tanks",]$` Total` )</code></p>
 <h2 id="tldr">TL;DR</h2>
 <p>Data science and MLOps is very amenable to the creation of workflows that end with a continuously updated paper, poster or presentation. We will see in this last chapter how to do it.</p>
 <h2 id="learning-outcomes-of-this-unit">Learning outcomes of this unit</h2>
@@ -58,20 +51,36 @@ bibliography: ../mlops.bib
 knitr::opts_chunk$set(echo = TRUE)
 library(arrow)
 df &lt;- read_parquet(&quot;../data/ukr-mod-data.parquet&quot;)
-tanks.data &lt;-as.integer(df[ df$` Item` == &quot; tanks&quot;,]$` Total` )</code></pre>
+tanks.data &lt;-data.frame( value =as.integer(df[ df$` Item` == &quot; tanks&quot;,]$` Total` )</code></pre>
 <blockquote>
 <p>These will be surrounded by code fencing marks, the three backticks. Not included here to avoid linting errors. Check <a href="https://github.com/JJ/nova-mlops/blob/3dc7c1e374ea51d61037f87ac24c8f6c0d4c7f5f/text/07.Papers.md?plain=1#L12-L17">the original</a> at the repository.</p>
 </blockquote>
 <p>The braced statement says that it is written in R, gives it a name, <code>setup</code>, and also says that the result is not going to be included in the document (<code>include=FALSE</code>); this is why it is silent.</p>
 <p>The rest is simply the first part of the script. It loads a library, <code>arrow</code>, that interprets the Parquet format, and creates a new data structure we will use later on in the text. For instance, right below:</p>
-<p><code>{r tanks} summary(tanks.data)</code></p>
+<pre><code>tanks.data$Total &lt;- as.integer(tanks.data$` Total`)
+tanks.data$` Total` &lt;- NULL
+tanks.data$Delta &lt;- as.integer(tanks.data$` Delta`)
+tanks.data$` Delta` &lt;- NULL
+tanks.data$` Item` &lt;- NULL
+summary(tanks.data$Delta)
+
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   0.000   4.500   8.000   9.634  13.500  34.000</code></pre>
 <p>In this case, we tell the chunk to simply be visible. It is a summary of an ever increasing quantity, which means that averages and so on are not going to be terribly interesting. But it serves to illustrate the concept.</p>
 <p>We can create charts using <code>ggplot2</code>, for instance, and they will be automatically saved in place, like we will do below.</p>
 <p>RMarkdown files also include other goodies; for instance, they can include bibliography that is extracted from <code>.bib</code> files, such as the one indicated in the front matter above and actually used in this paper.</p>
+<pre><code>library(ggplot2)
+tanks.data$Date &lt;- as.Date( paste0(&quot;2022.&quot;,tanks.data$Date), format=&quot;%Y.%d.%m&quot;)
+ggplot(tanks.data, aes(x=Date, y=Total))+geom_point()</code></pre>
+<p><img src="/home/jmerelo/txt/tutoriales/nova-mlops/text/07.Papers.Rmd_files/figure-markdown_strict/plot-1.png" /></p>
 <h2 id="processing-these-files-automatically">Processing these files automatically</h2>
 <p>This would not be MLOps if these files were not processed automatically. They can be triggered, for instance, every time data file changes.</p>
 <blockquote>
 <p>As we have indicated several times, development hosting sites such as GitHub do have the complete set of tools that allow you to create MLOps workflows. You can opt for a monolithic solution, but looking at every step piecewise and looking for good solutions is all good, as long as they allow to automatically work from end to end.</p>
+</blockquote>
+<p>We have already learned how to include Github workflows for processing our stuff. This is more of the same, except that in this case we will have to work with R and the rest of the tools (including <code>pandoc</code>) that are needed to generate these files.</p>
+<blockquote>
+<p>Incidentally, workflows that are very similar to these ones can be used to automatically test and generate a LaTeX file from source, as well as upload it to the repository or somewhere else. Basically everything that can, should be automated.</p>
 </blockquote>
 <h2 id="activity">Activity</h2>
 <p>As indicated in the acceptance criteria, the team will have to elaborate a short report, poster or presentation that will be continuously updated when data changes. It can include (or not) training, as well as model registry.</p>

@@ -6,9 +6,10 @@ do
     bin/rmd-render.R ${fichero}
     pagetitle=$(cat $fichero | egrep '^#\s+(.*)' | tr '#' ' ')
     pandoc ${fichero}.out -f markdown -s -t html \
+	   --standalone \
 	   -B docs/header.html \
 	   --metadata pagetitle="MlOps for Nova: $pagetitle" \
-	   --metadata lang=English  -c mlops.css  -o  "${fichero%.md}.html"
-    mv  "${fichero%.md}.html" docs
+	   --metadata lang=English  -c mlops.css  -o  "${fichero%.?md}.html"
+    mv  "${fichero%.?md}.html" docs
     rm ${fichero}.out
 done
