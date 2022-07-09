@@ -47,11 +47,17 @@ developed. Students can use [this repository
 template](https://github.com/JJ/nova-mlops-template) to kick-start their
 projects with spell-checking workflows.
 
+Updated data will be available in [this repo](https://github.com/JJ/nova-mlops);
+you can also explore data at [this
+notebook](http://localhost:8888/notebooks/explore-data.ipynb).
+
 Session objectives and material are as follows:
 
 1. [First session](sessions/01.md), meet and greet, organization and setup.
 2. [Second session](sessions/02.md), first workflow stages.
-3. [Third session](sessions/03.md), extracting and storing information.
+3. [Third session](sessions/03.md), extracting and storing data.
+4. [Fourth session](sessions/04.md), working with MLOps.
+5. [Fifth session](sessions/05.md), presenting information.
 
 ## Some links
 
