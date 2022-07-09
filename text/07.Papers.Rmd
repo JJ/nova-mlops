@@ -144,9 +144,9 @@ summary(tanks.data$Delta)
 ```
 
 In this case, we tell the chunk to simply be visible. Besides doing a
-few renamings and elimination of no-longer-needed columns,
+few changes of name and elimination of no-longer-needed columns,
 it is a summary of the changes in the number of invading tanks
-destroyec every day, showing how it changes, average and extremes.
+destroyed every day, showing how it changes, average and extremes.
 
 We can create charts using `ggplot2`, for instance, and they will be
 automatically saved in place, like we will do below.
