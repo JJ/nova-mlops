@@ -321,7 +321,52 @@ to.
 ## Publication
 
 "Publish or perish" is the academic motto, and it is at the same time
-sad and true.
+sad and true. From the point of view of open science, publishing a
+paper has the objective of fulfilling the desires of a customer, which
+in this case might be interested in the predictions or decisions that
+the machine learning model can help them make.
+
+In order to achieve that, using Jupyter notebooks that people can copy
+in Google Colab is as good as any open/free initiative can be. It can
+be accessed by anyone. However, it is not going to be easy to
+reference in other works, and specifying a license is not a naturla
+thing for these formats.
+
+Publishing them in GitHub, as you have already done, is also a good
+idea; people can fork it, and it is easily reproductible.
+
+However, having a published, rendered paper that is easy to reference
+is still a great bridge to the world of static, rendered-once
+papers. There are a number of places you can use to publish.
+
+*[RPubs](https://Rpubs.com) is associated with RMarkdown, and you can
+publish directly from RStudio or your Rprogram. For instance, I
+published [@covidrpubs] and other reports during the pandemic, with a
+very straightforward path from creation to publication. It can be
+updated as many times as you want, but it does not generate a DOI or a
+BibTeX entry easily.
+* [Figshare](https://figshare.com) can be used to upload any kind of
+  artefacts, from papers through simple figures to datasets. Papers
+  can be updated, bundles with papers + data + anything else (posters,
+  presentations) can also be presented, and it generates nice BiBTex
+  files; this is what I used in [@Merelo2020]. It's got an additional
+  nice feature: AltMetrics, which measure the impact of a paper in
+  social networks. Next best to h-index. Papers also get a DOI.
+* [ArXiV](https://arxiv.org) is also an option, at least if you have
+  been vetted for publication in a certain section; this comes
+  automatically if you have been coauthor of an already published
+  paper. It is as close as "full service" as you will get. Papers are
+  examined for relevance to the section they are published, they have
+  a host of bibliographic tools, and they can be updated
+  frequently. Lately they include demos, and links to code and source
+  in GitHub. In this case, your paper can be outright rejected if it
+  is an early report, so probably not suitable for this course; it is
+  going to be published 3 days later anyway.
+
+ Other sites like Academia.edu or ResearchGate also offer the
+ possibility of uploading papers; some of them include tools similar
+ to these ones. For the purposes of this course, however, these three
+ above are the ones that I consider the most interesting.
 
 ## Activity
 
