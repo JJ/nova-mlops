@@ -5,13 +5,19 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>MlOps for Nova: Data engineering through test driven development</title>
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="mlops.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
 <h2>MLOps course for Nova-Lisbon. <a href='index.html'>Index</a> | <a href='https://github.com/JJ/nova-mlops'>Github Repository</a></h2>
@@ -72,7 +78,9 @@ try {
     url = f&#39;https://www.mil.gov.ua/en/news/2022/{month}/{day}/the-total-combat-losses-of-the-enemy-from-24-02-to-{day:02}-{month}/&#39;</code></pre>
 <p>It follows some specific pattern that includes the month and the day of the month, in one of the instances padded with zeros (<code>day:02</code>). This may be part of the URL, or part of the queries. In any case, if there is a systematic way of obtaining the URL, that is what should be tried first.</p>
 <p>However, that is the case only some times. That data above, for instance, does not contain combat losses for every day. If you want that kind of data, you need to go to the <a href="https://www.mil.gov.ua/">original in Ukrainian</a>. And in this case it is impossible to know, from the shape of the URLs, which ones contain the data we want.</p>
-<p>But scraping is 90% technology, and the remaining 90%, ingenuity. It so happens that all URLs with Russian losses contains the word <code>vtrati</code>, which means <code>losses</code>.</p>
+<blockquote>
+<p>But scraping is 90% technology, and the remaining 90%, ingenuity. It so happens that all URLs with Russian losses contains the word <code>vtrati</code>, which means <code>losses</code>. This is something that can be left for later, however. If some URL is easily available, and contains all information, go for it.</p>
+</blockquote>
 <h2 id="storing-data">Storing data</h2>
 <p>CSV (comma separated values) is the go-to format for storing data; it is easily editable, modifiable and readable from a number of tools, including desktop tools. It is a format you can use to produce reports, or to hand it to your PhD advisor or marketing department. Any language contains tools to work with it so it is the one you will find most often.</p>
 <p>JSON is also a popular format; JavaScript Object notation obviously comes from Javascript, where it’s simply the syntax used for objects; unlike CSV, you need to read the whole file before understanding it; updating it is not so easy as in CSV, where you can just add a line; it is also not usable by desktop programs, but since it has got a rich internal structure, being in fact a serialization format, it is a good choice for static data that need not change too often.</p>

@@ -5,13 +5,19 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>MlOps for Nova: Agile development</title>
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="mlops.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
 <h2>MLOps course for Nova-Lisbon. <a href='index.html'>Index</a> | <a href='https://github.com/JJ/nova-mlops'>Github Repository</a></h2>
@@ -35,7 +41,7 @@
 <li>Bad knowledge transmission</li>
 <li>Developer stress when they needed to perform some tasks with clear deadlines but without a clear objective.</li>
 </ul>
-<p>In the late 90s, some trends like Extreme Programming and open source development, as well as tools like source control and static checks, came together in the Agile Manifesto (Fowler, Highsmith, and others 2001). This manifesto has 12 principles that are used as mantras to create a series of best practices in development. It is not a methodology, but it creates a mindset for developing; this why you talk about agile <em>mindset</em> or agile <em>teams</em>; never agile <em>methodology</em>.</p>
+<p>In the late 90s, some trends like Extreme Programming and open source development, as well as tools like source control and static checks, came together in the Agile Manifesto (Fowler, Highsmith, et al. 2001). This manifesto has 12 principles that are used as mantras to create a series of best practices in development. It is not a methodology, but it creates a mindset for developing; this why you talk about agile <em>mindset</em> or agile <em>teams</em>; never agile <em>methodology</em>.</p>
 <p>In (Merelo-Guervós and García-Valdez 2021) we tried to expand this manifesto to include also any scientific development that could be attached to a data science problem; it will mainly expand the agile manifesto to include academic stakeholders such as tutors or funding agencies, and also clarify who is the <em>customer</em> in the case of a scientific paper. We will weave those into the narrative below when we describe the principles that are more interesting for us.</p>
 <p>So let’s put it to work in the following steps.</p>
 <h2 id="problem-and-customer-go-first">Problem and customer go first</h2>
@@ -83,9 +89,9 @@
 <ul>
 <li><em>User stories</em> with the wishes of every customer that is targeted with the machine learning problem.</li>
 </ul>
-<p>As in every other milestone, you will need to create a pull request *in your own repository". This PR will include links to the different issues that are targeted, including user stories. It will be reviewed by the tutor, as well as several members of your own team before being accepted.</p>
+<p>As in every other milestone, you will need to create a pull request *in your own repository”. This PR will include links to the different issues that are targeted, including user stories. It will be reviewed by the tutor, as well as several members of your own team before being accepted.</p>
 <h2 id="references">References</h2>
-<p>Fowler, Martin, Jim Highsmith, and others. 2001. “The Agile Manifesto.” <em>Software Development</em> 9 (8): 28–35.</p>
+<p>Fowler, Martin, Jim Highsmith, et al. 2001. “The Agile Manifesto.” <em>Software Development</em> 9 (8): 28–35.</p>
 <p>Kirk, Matthew. 2014. <em>Thoughtful Machine Learning: A Test-Driven Approach</em>. O’Reilly Media, Inc.</p>
 <p>Merelo-Guervós, Juan Julián, and Mario García-Valdez. 2021. “Agile (Data) Science: A (Draft) Manifesto.” arXiv. <a href="https://doi.org/10.48550/ARXIV.2104.12545" class="uri">https://doi.org/10.48550/ARXIV.2104.12545</a>.</p>
 <p>Thakur, Abhishek. 2020. <em>Approaching (Almost) Any Machine Learning Problem</em>. Abhishek Thakur.</p>
