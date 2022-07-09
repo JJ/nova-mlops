@@ -96,6 +96,82 @@ ggplot(tanks.data, aes(x=Date, y=Total))+geom_point()</code></pre>
 <li>… is triggered by changes in data, and</li>
 <li>includes all libraries, in this case R libraries, needed to process and generate the file.</li>
 </ul>
+<p>It’s convenient to have a script that does the generation. A R script will be the most useful in this case; generation is done in two phases: one renders the scripted part to the intermediate format (Markdown, LaTeX, whatever), the other does the final rendering to the published format (PDF or HTML). Interesting thing is that the report, itself, is more similar to a program (something that is run and produces a result) than to a static document. Anyway, this short R script does the rendering:</p>
+<pre><code>#!/usr/bin/env Rscript
+
+library(rmarkdown)
+library(knitr)
+args = commandArgs(trailingOnly=TRUE)
+
+print(args)
+
+render(args[1],
+       output_format = &quot;md_document&quot;,
+       output_dir = &quot;text&quot;,
+       output_file=paste0(args[1],&quot;.out&quot;))</code></pre>
+<p>The <code>render</code> function applies needed logic to generate the file in the required output format: <code>md_document</code> indicates we will use Markdown as this intermediate format. <code>render</code> smartly will apply different procedures depending on the extension of the file: Markdown files will integrate the bibliography only, RMarkdown files will do that <em>and</em> render active chunks.</p>
+<p>so that we do not include big chunks of scripting code into the GitHub action. In this repository, the bin/md2html does that task:</p>
+<blockquote>
+<p>We leave out some parts to highlight the gist of it</p>
+</blockquote>
+<pre><code>#!/bin/bash
+
+for fichero in $( ls text/*.*md)
+do
+    bin/rmd-render.R ${fichero}
+    pagetitle=$(cat $fichero | egrep &#39;^#\s+(.*)&#39; | tr &#39;#&#39; &#39; &#39;)
+    pandoc ${fichero}.out -f markdown -s -t html \
+       --self-contained \
+       -B docs/header.html \
+       --metadata pagetitle=&quot;MlOps for Nova: $pagetitle&quot; \
+       --metadata lang=English  -c docs/mlops.css  -o  &quot;${fichero%.Rmd}.html&quot;
+    mv  &quot;${fichero%.Rmd}.html&quot; docs
+done</code></pre>
+<p>These GitHub actions will need to look something like this:</p>
+<pre><code>name: &quot;Check README, text and R code&quot;
+
+on:
+  push:
+    paths:
+      - &quot;**/*.*md&quot;
+      - &quot;*.md&quot;
+      - &quot;**/words.dic&quot;
+      - &quot;words.dic&quot;
+      - &quot;**/*.R&quot;
+      - &quot;**/*.parquet&quot;
+
+  pull_request:
+    paths:
+      - &quot;**/*.*md&quot;
+      - &quot;*.md&quot;
+      - &quot;**/words.dic&quot;
+      - &quot;words.dic&quot;
+
+jobs:
+  text_actions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Prerrequisites
+        run: make prespell
+      - name: Spell check
+        run: make spellcheck
+      - uses: r-lib/actions/setup-r@v2
+      - uses: r-lib/actions/setup-pandoc@v2
+      - name: Generate pages
+        if: ${{ github.event_name == &#39;push&#39; }}
+        run: make html
+      - name: Check in result
+        if: ${{ github.event_name == &#39;push&#39; }}
+        run: |
+          if [ -n &quot;$(git status -s)&quot; ]; then
+              bin/commit-push.sh &quot;Re-generated HTML&quot; &amp;&amp; git push
+          else
+              echo &quot;ℹ No new files&quot;
+          fi</code></pre>
 <h2 id="activity">Activity</h2>
 <p>As indicated in the acceptance criteria, the team will have to elaborate a short report, poster or presentation that will be continuously updated when data changes. It can include (or not) training, as well as model registry.</p>
 <h2 id="see-also">See also</h2>
