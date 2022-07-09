@@ -143,9 +143,10 @@ tanks.data$` Item` <- NULL
 summary(tanks.data$Delta)
 ```
 
-In this case, we tell the chunk to simply be visible. It is a summary of an ever
-increasing quantity, which means that averages and so on are not going to be
-terribly interesting. But it serves to illustrate the concept.
+In this case, we tell the chunk to simply be visible. Besides doing a
+few renamings and elimination of no-longer-needed columns,
+it is a summary of the changes in the number of invading tanks
+destroyec every day, showing how it changes, average and extremes.
 
 We can create charts using `ggplot2`, for instance, and they will be
 automatically saved in place, like we will do below.
@@ -154,11 +155,22 @@ RMarkdown files also include other goodies; for instance, they can include
 bibliography that is extracted from `.bib` files, such as the one indicated in
 the front matter above and actually used in this paper.
 
+It can also include charts, that are generated on the fly
+
 ```{r plot, warning=FALSE}
 library(ggplot2)
 tanks.data$Date <- as.Date( paste0("2022.",tanks.data$Date), format="%Y.%d.%m")
 ggplot(tanks.data, aes(x=Date, y=Total))+geom_point()
 ```
+
+This chart uses `ggplot2`, which is the best known (and possibly best)
+package for graphical representation. Please bear in mind that this
+file will be generated automatically, so every time there is any
+change in this markdown file it will be generated anew.
+
+However, there is going to be no change if data does change; we would
+have to change the text itself to trigger re-generation. This can
+change, however.
 
 ## Processing these files automatically
 
