@@ -255,7 +255,7 @@ done
 
 As you can see, the first part of the loop over all files is the one
 that actually renders to the intermediate Markdown representation;
-pandoc, a universal text formar converter, will take that and render
+pandoc, a universal text format converter, will take that and render
 it to HTML including generated images (that will be integrated in the
 HTML file through the `--self-contained` flag, together with the CSS
 files.
@@ -299,7 +299,7 @@ jobs:
 ```
 
 The `on → push → paths` part established what files need to change for
-this action to be triggered; all Markdown, RMarkdown as well ar
+this action to be triggered; all Markdown, RMarkdown as well as
 scripts and Parquet files are included. A bunch of  `r-lib` actions
 will take care of the rendering, which simply calls `make html`; the
 script for generating that will be included in the `Makefile`, that
