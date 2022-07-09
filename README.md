@@ -95,6 +95,7 @@ But there are a few tools that you should have installed in your system
 
 * Perl, preferably installed via `perlbrew`, including `cpanm`
 * R
+* Python
 
 ## LICENSE
 
