@@ -162,8 +162,10 @@ jobs:
           fi</code></pre>
 <p>The <code>on → push → paths</code> part established what files need to change for this action to be triggered; all Markdown, RMarkdown as well as scripts and Parquet files are included. A bunch of <code>r-lib</code> actions will take care of the rendering, which simply calls <code>make html</code>; the script for generating that will be included in the <code>Makefile</code>, that will have all needed tasks and will be the single source of truth for tasks needed for re-generation. If there’s some actual change in the output, the HTML files are committed through the indicated script (omitted for brevity), and finally integrated in the repository.</p>
 <p>With this, you will have achieved a fully automated workflow, that will need no intervention other than editing the reports if you need to.</p>
+<h2 id="publication">Publication</h2>
+<p>“Publish or perish” is the academic motto, and it is at the same time sad and true.</p>
 <h2 id="activity">Activity</h2>
-<p>As indicated in the acceptance criteria, the team will have to elaborate a short report, poster or presentation that will be continuously updated when data changes. It can include (or not) training, as well as model registry.</p>
+<p>As indicated in the acceptance criteria, the team will have to elaborate a short report, poster or presentation that will be continuously updated when data changes. It can include (or not) training, as well as model registry. The report will have to be published in an open access repository by the end of the evaluation period (can be a few days later, but preferably during the course; most sites allow updating).</p>
 <h2 id="see-also">See also</h2>
 <p>With <a href="https://mpastell.com/pweave/"><code>Pweave</code></a> you can create reports using Python, instead of R. It can be handled from the Atom IDE, for instance. Unfortunately, it does not seem to very active lately. <a href="https://github.com/JunoLab/Weave.jl"><code>Weave.jl</code></a> seems slightly more active, but not much. At the end of the day, RMarkdown is actively developed and seems to be the best option for this kind of artifact.</p>
 <h2 id="references">References</h2>
