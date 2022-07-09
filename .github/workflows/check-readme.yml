@@ -18,7 +18,7 @@ on:
       - "words.dic"
 
 jobs:
-  MDSpelling:
+  text_actions:
     runs-on: ubuntu-latest
 
     steps:
