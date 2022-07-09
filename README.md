@@ -37,7 +37,9 @@ introduction to the course](text/00.Intro.md) |
    [Web](https://jj.github.io/nova-mlops/04.Infra.html).
 5. Containers for reproducible science.
 6. [MLOps tools](text/06.MLOps-tools.md).
-7. [Open science: creation and deployment of machine learning projects](text/07.Papers.Rmd) | [Web](https://jj.github.io/nova-mlops/07.Papers.html)
+7. [Open science: creation and deployment of machine learning
+   projects](text/07.Papers.Rmd) |
+   [Web](https://jj.github.io/nova-mlops/07.Papers.html).
 
 ## Sessions
 

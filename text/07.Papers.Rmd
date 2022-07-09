@@ -329,7 +329,7 @@ the machine learning model can help them make.
 In order to achieve that, using Jupyter notebooks that people can copy
 in Google Colab is as good as any open/free initiative can be. It can
 be accessed by anyone. However, it is not going to be easy to
-reference in other works, and specifying a license is not a naturla
+reference in other works, and specifying a license is not a natural
 thing for these formats.
 
 Publishing them in GitHub, as you have already done, is also a good
@@ -340,13 +340,13 @@ is still a great bridge to the world of static, rendered-once
 papers. There are a number of places you can use to publish.
 
 *[RPubs](https://Rpubs.com) is associated with RMarkdown, and you can
-publish directly from RStudio or your Rprogram. For instance, I
+publish directly from RStudio or your R program. For instance, I
 published [@covidrpubs] and other reports during the pandemic, with a
 very straightforward path from creation to publication. It can be
 updated as many times as you want, but it does not generate a DOI or a
 BibTeX entry easily.
 * [Figshare](https://figshare.com) can be used to upload any kind of
-  artefacts, from papers through simple figures to datasets. Papers
+  artifacts, from papers through simple figures to datasets. Papers
   can be updated, bundles with papers + data + anything else (posters,
   presentations) can also be presented, and it generates nice BiBTex
   files; this is what I used in [@Merelo2020]. It's got an additional
@@ -376,6 +376,9 @@ changes. It can include (or not) training, as well as model
 registry. The report will have to be published in an open access
 repository by the end of the evaluation period (can be a few days
 later, but preferably during the course; most sites allow updating).
+
+As usual, the URL of the report will be submitted as a PR to this
+site, in the page that will be indicated.
 
 ## See also
 
