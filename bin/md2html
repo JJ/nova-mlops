@@ -19,7 +19,7 @@ do
 	   -B docs/header.html \
 	   --metadata pagetitle="MlOps for Nova: $pagetitle" \
 	   --metadata lang=English  -c docs/mlops.css  -o  "${fichero%.Rmd}.html"
-	rm -rf $fichero_files/
+	rm -rf text/*_files/
 	mv  "${fichero%.Rmd}.html" docs
     fi
     rm ${fichero}.out
