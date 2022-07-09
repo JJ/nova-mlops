@@ -8,6 +8,7 @@ on:
       - "**/words.dic"
       - "words.dic"
       - "**/*.R"
+      - "**/*.parquet"
 
   pull_request:
     paths:
