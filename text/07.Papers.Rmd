@@ -28,6 +28,12 @@ Integrate ML workflow results in a report or paper that will be continuously
 updated when data changes. At least an example of such type of languages and
 tools will be learned.
 
+This chapter corresponds to the fifth learning outcomes for this
+course,
+
+>  Applying fundamental machine learning and scientific principles to
+   the above design and reports.
+
 ## Acceptance criteria
 
 The updateable paper needs to be created, with workflows that trigger their
