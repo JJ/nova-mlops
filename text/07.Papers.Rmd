@@ -193,6 +193,13 @@ generate these files.
 > to the repository or somewhere else. Basically everything that can, should be
 > automated.
 
+In general, generating any kind of paper *artifact* will need a
+workflow that
+
+- ... is triggered by changes in data, and
+- includes all libraries, in this case R libraries, needed to process
+  and generate the file.
+
 ## Activity
 
 As indicated in the acceptance criteria, the team will have to elaborate a
