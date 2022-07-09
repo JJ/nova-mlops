@@ -348,7 +348,7 @@ BibTeX entry easily.
 * [Figshare](https://figshare.com) can be used to upload any kind of
   artifacts, from papers through simple figures to datasets. Papers
   can be updated, bundles with papers + data + anything else (posters,
-  presentations) can also be presented, and it generates nice BiBTex
+  presentations) can also be presented, and it generates nice BibTex
   files; this is what I used in [@Merelo2020]. It's got an additional
   nice feature: AltMetrics, which measure the impact of a paper in
   social networks. Next best to h-index. Papers also get a DOI.
