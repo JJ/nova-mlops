@@ -118,8 +118,12 @@
 		  </section>
 
 		  <section><h1>Good design, technical excelence</h1>
-		    <h2 class='fragment'>Review everything!</h2>
-		    <h2 class='fragment'>Test everything!</h2>
+		    <h2 class='fragment'>Domain driven design for good
+		      problem space modeling</h2>
+		  </section>
+		  <section>
+		    <h1>Review everything!</h1>
+		    <h1>Test everything!</h1>
 		    <aside class='notes'>Create pull requests for internal review, and tests so that the cognitive burden of reviewing is shared; tests guarantee that nothing is going to break</aside>
 		  </section>
 
@@ -142,30 +146,50 @@
 
 		    <section>
 		      <h1>Scraping will be needed</h1>
+		      <h2 class='fragment'>Use the API or open data if
+			(easily) available</h2>
 		      <aside class='notes'>Scraping extracts
 		      information from web sites, using different
 		      techniques. But the essential part is almost
 		      never passing from content to data, but getting
-			the content.</aside>
+			the content. API and open data are great, but
+		      sometimes they have restrictions.
+		      </aside>
 		    </section>
 
-		    <section><h1>Identify URL</h1>
+		    <sections><h1>This is a different module</h1>
+		      <h2 class='fragment'>Use any language you
+			want</h2>
+		      <aside class='notes'>Remember one of the
+		      principles: you will need many languages for a
+			great ML workflow</aside>
+		    </sections>
+
+		    <section><h2>Two phases</h2>
+		      <h1 class='fragment'>Download content</h1>
+		      <h1 class='fragment'>Extract content</h1>
+		    </section>
+
+		    <section><h1>Before downloading, identify URL</h1>
 		      <h2 class='fragment'>Scrape for links, or find regularities</h2>
 		    </section>
 
 		    <section><h1>Portuguese INE is hard</h1>
 
-		      <pre><code data-line-numbers='1,3,4|2,6,8'>    const browser = await puppeteer.launch();
+		      <pre><code data-line-numbers='1,3,4|2,5,6'>    const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto(url);
     await page.content();
     const frame = await page.frames()[1];
-    console.log(frame);
     const content = await frame.content();
 		      </code></pre>
 		      <aside class='notes'>First code... URL is not available in the
 		      page source, you need to click to get it, and it
-			loads a frame. However, it can be done</aside>
+			loads a frame. However, it can be done. We're
+		      using here a Deno module called puppeteer,
+		      which  handles a browser, behaving more or less
+		      like one. This is often called a "headless"
+		      browser, and it's incredibly useful.</aside>
 		    </section>
 
 		    <section><h1>Download content</h1>
@@ -173,11 +197,22 @@
 		      <h3 class='fragment'>Data does not want to be scraped</h3>
 		    </section>
 
-		    <section><h1>Extract data</h1>
-		      <h2 class='fragment'>DOM or regular expression</h2>
-		      <h3 class='fragment'>Often, a combination of both</h3>
+		    <section><h1>Sometimes it's easier...</h1>
+		      <pre><code data-line-numbers='1,5|2,5'>use LWP::Simple;
+use constant OSK_URL => 'https://www.oryxspioenkop.com/2022/02/attack-on-europe-documenting-equipment.html';
+sub download_osk {
+  my $dl =get(OSK_URL) or die "Can't download " . OSK_URL;
+  return $dl;
+}
+		      </code></pre>
+		      <aside class='notes'>Written in Perl, it simply
+			downloads the page</aside>
 		    </section>
 
+		    <section><h1>Use source control also!</h1>
+		      <h2 class='aside'>Date and cache</h2>
+		      <h3 class='aside'>Download only once!</h3>
+		    </section>
 		    <section><h1>Have a plan B</h1>
 		      <h2 class='fragment'>Nothing is guaranteed to work</h2>
 		      <h3 class='fragment'>And nothing is guaranteed to work <em>for ever</em></h3>
@@ -192,7 +227,10 @@
 		    </section>
 
 		    <section><h1>💼 Activity</h1>
-		      <h2>Identify feasible data sources, and create a milestone for downloading and extracting it</h2>
+		      <h2>Identify feasible data sources, and create a
+			milestone for downloading and extracting it</h2>
+		      <h3 class='fragment'>Use your own data, open
+			data portals, official web pages.</h3>
 		      <h3>Start organizing the task of working with that source of data, and schedule updates</h3>
 		  </section>
 

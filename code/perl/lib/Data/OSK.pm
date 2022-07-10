@@ -17,7 +17,6 @@ use constant OSK_URL => 'https://www.oryxspioenkop.com/2022/02/attack-on-europe-
 our @EXPORT=qw(download_osk process_osk);
 
 sub download_osk {
-#  my $cmd = "curl " . OSK_URL;
   my $dl =get(OSK_URL) or die "Can't download " . OSK_URL;
   return $dl;
 }
