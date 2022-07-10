@@ -36,7 +36,7 @@
 </blockquote>
 <p>In this phase, we are going to need already a test-driven approach to ascertain that all phases (extraction, transformation) occur according to our preconceptions.</p>
 <p>In general, this is a part of the process that benchmark-based ML tutorials do not pay much attention to. ETL is reduced to loading your data in a Python data frame. However, in real-world ML ETL is the most important part, and also a part of the process that needs to be heavily automated so that it works as intended and as long as possible.</p>
-<p>What we will do is to explain test-driven development along with ETL techniques, so that you start to familiarize yourself with them and put them to work later in the rest of the phases of ML.</p>
+<p>What we will do is to explain test-driven development along with ETL techniques, so that you start to familiarize yourself with them and put them to work later in the rest of the phases of ML. Testing is essential in agile development; since it puts client first, you need, at every level, to check that their requirements and desires are satisfied; user histories will be distilled to issues, and these grouped in milestones; issues will create features that you will need to test one by one (in unit tests), and these will be grouped in minimally viable products that will be released when a milestone is finished; the viability of these products will need to be checked too. In the case of data science, unit test will check for data issues or the correctness of transformations; viability tests might include a certain quality of the solutions. This will be examined later on in the course.</p>
 <p>There are four phases in this part of the pipeline: extracting, updating, data munging and cleaning, and storage and versioning.</p>
 <h2 id="extracting-information-for-machine-learning">Extracting information for machine learning</h2>
 <p>Data is Out There. Generally, in a way that’s not too easy to obtain. It might be in one of these forms.</p>
@@ -106,6 +106,8 @@ def test_driver():
 
 def test_download(page):
     assert page</code></pre>
+<p>We are checking here two things; first that the driver works; it could or could not, since it is a complicated one; second, we check via assert that we have been able to download something. Remember, we are not checking that the information that is in there is correct; just that we have been able to download something, we have not been banned or the setup continues working. These kind of checks will be left for later.</p>
+<p>Check the code and test <a href="https://github.com/JJ/raku-ukr-mod-data">in the UKR-MoD-Data repository</a>.</p>
 <h2 id="processing-data">Processing data</h2>
 <p>Let’s assume you’ve managed to download data, and have it available somewhere, as a single one or different pages. First thing you have to take into account is that metadata for downloaded pages will probably be important. At least two different things</p>
 <ol type="1">
@@ -125,6 +127,10 @@ def test_download(page):
         }
         %prev = $war-data.data{$date};
     }</code></pre>
+<p>In this case, what we do is to examine every row in turn and check on the absolute number (<code>total</code>) for two of the features that we will work on later, the personnel and tank losses, is effectively increasing.</p>
+<blockquote>
+<p>A different issue altogether is what to do when you effectively find an error. You can communicate it to the data source, of course; however, some errors cannot be obviously fixed and it can easily invalidate the source of data, which is something you may always find: fake or made up data. In other cases, they are simply corrections, but they will probably imply that the whole series needs to be thrown away and started from the very beginning. At any rate, an error in this case is not something you can fix at the project level.</p>
+</blockquote>
 <h2 id="storing-data">Storing data</h2>
 <p>CSV (comma separated values) is the go-to format for storing data; it is easily editable, modifiable and readable from a number of tools, including desktop tools. It is a format you can use to produce reports, or to hand it to your PhD advisor or marketing department. Any language contains tools to work with it so it is the one you will find most often.</p>
 <p>JSON is also a popular format; JavaScript Object notation obviously comes from Javascript, where it’s simply the syntax used for objects; unlike CSV, you need to read the whole file before understanding it; updating it is not so easy as in CSV, where you can just add a line; it is also not usable by desktop programs, but since it has got a rich internal structure, being in fact a serialization format, it is a good choice for static data that need not change too often.</p>
