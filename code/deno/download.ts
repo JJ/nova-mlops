@@ -9,7 +9,6 @@ try {
     await page.goto(url);
     await page.content();
     const frame = await page.frames()[1];
-    console.log(frame);
     const content = await frame.content();
 
     const $ = cheerio.load(content);
