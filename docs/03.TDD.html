@@ -41,10 +41,10 @@
 <h2 id="extracting-information-for-machine-learning">Extracting information for machine learning</h2>
 <p>Data is Out There. Generally, in a way that’s not too easy to obtain. It might be in one of these forms.</p>
 <ul>
-<li>Non-processable formats, like PDF. Yes, it’s non-processable. Don’t even try. You might get lucky and get some numbers, but that’s that. Tabular data is going to be hard, tabular data in fancy tables even harder. Just forget it.</li>
+<li>Non-processable formats, like PDF. Yes, it’s non-processable. Don’t even try. You might get lucky and get some numbers, but that’s that. As soon as the PDF contains tabular data is going to be hard, tabular data in fancy tables even harder. Not to mention some PDFs are just scanned from printed pages. Just forget it.</li>
 <li>Websites in semi-structured form. This is going to be found generally in press releases, or even mandatory information. This can be obtained via scraping, that is, extracting information according to the web structure or the kind of words or symbols that surround it. Scraping, however, is an arcane art and you’d better allot it quite an amount of time, because it involves many tricks, even more so if the site does not like to be scraped (happens a lot in administration/government sites). We’ll devote a bit of time to this one, later on.</li>
 <li>Processable formats: CSV and others. Sometimes you get lucky and find the precise data in open data portals. You will still need to transform it, but if you’re lucky it will always have the same URL and it will be easy to extract by simply downloading.</li>
-<li>APIs: application interfaces are the best; in some cases open data portals will offer them, in others, like social networks or GitHub, they will offer you loads of data in easily accessible way. You will need to obtain a token, and there will be some limitations when downloading, but other than that, offers a semantic interface. The main issue here will be to respect terms of service regarding storing/republishing, as well as controlling the request or other (like download size) limits.</li>
+<li>APIs: application interfaces are the best; in some cases open data portals will offer them, in others, like social networks or GitHub, they will offer you loads of data in easily accessible way. You will need to obtain a token, and there will be some limitations when downloading, but other than that, offers a semantic interface. The main issue here will be to respect terms of service regarding storing/republishing, as well as controlling the request or other (like download size) limits. You will need some caching/storage strategy, so that you don’t keep downloading the same stuff over and over.</li>
 </ul>
 <p>In all cases, you will need testing; in the case of scraping, you <em>need</em> testing. Let’s devote some time to that one.</p>
 <h2 id="scraping-for-fun-and-data-science">Scraping for fun and data science</h2>
@@ -81,6 +81,50 @@ try {
 <blockquote>
 <p>But scraping is 90% technology, and the remaining 90%, ingenuity. It so happens that all URLs with Russian losses contains the word <code>vtrati</code>, which means <code>losses</code>. This is something that can be left for later, however. If some URL is easily available, and contains all information, go for it.</p>
 </blockquote>
+<h2 id="installing-and-running-tools">Installing and running tools</h2>
+<!-- Let's talk about dependency and task management -->
+<h2 id="initial-tests">Initial tests</h2>
+<p>This chapter is about testing, so we will need to start doing so. Since in most cases the URL will be a computed value, and there is no guarantee that what you download will always show the same information, tests will need to be created <em>already</em>.</p>
+<p>Choosing testing tools and strategies will never be straightforward. First, you need to understand, from the get go of your project, that what you are going to create is effectively a <em>project</em>, not a script that will be edited for different runs.</p>
+<p>This implies that you will need to use a directory for the module, following the language best practices (for instance, <code>src</code> or <code>lib</code> in ones, the name of the module in others like Python) and a separate directory for tests (<code>t</code> in Raku and Perl, <code>tests</code> in others, <code>module_name/tests</code> in Python).</p>
+<p>Then, you need to choose two different tools: a testing library and a test runner. A testing library, or assertion library, will include a series of functions that compare desired and obtained output in different ways (according to type, output, error produced). A <em>test runner</em> will find and run the different test files, collect the output, and report on successes and failures.</p>
+<p>Many languages include a default assertion library; Python is one of those, with unittest. Many others include a test runner, some of them as part of the basic tooling: Deno, Go and Julia are one of these. Just write <code>deno test</code> will find and run the existing tests. Other languages, like Python or Raku, will need a separate test runner; Python uses <code>pytest</code>, which includes, besides a command-line tool, façades for creating <em>fixtures</em> (untested variables created at setup) and some assertions (basically, those that are not included in UnitTest).</p>
+<p>On the other hand, some languages have test runners and assertions together in what is usually called a testing framework: <code>jest</code> for Javascript is one of these; it includes a test runner CLI, as well as an assertion library (which can be used separately if you want).</p>
+<blockquote>
+<p>Boils down to: there are two separate tools, in many cases the choice will be obvious, in others, like Javascript, you will need to hunt the market for the correct tools.</p>
+</blockquote>
+<p>This example, for instance, from <a href="https://github.com/JJ/raku-ukr-mod-data">UKR-Mod-Data</a>, will test downloads for sanity:</p>
+<pre><code>import pytest
+from .. import download, driver
+
+@pytest.fixture
+def page():
+    return download(14,4)
+
+def test_driver():
+    assert driver
+
+def test_download(page):
+    assert page</code></pre>
+<h2 id="processing-data">Processing data</h2>
+<p>Let’s assume you’ve managed to download data, and have it available somewhere, as a single one or different pages. First thing you have to take into account is that metadata for downloaded pages will probably be important. At least two different things</p>
+<ol type="1">
+<li>File paths contain information such as dates; some times additional information like tags or other. You will need to include it in your scraping strategy.</li>
+<li>Headers such as <code>last-modified</code> need to be used to avoid downloading the same thing several times; also respected to avoid slamming a web site with many requests.</li>
+</ol>
+<p>That means that you need to use some downloading strategy that gives that information, which might be important for understanding the data in the page; for instance, data might be included in an element that uses date in its ID.</p>
+<p>Please do <em>always</em> download and store the raw web pages. First, to avoid downloading them twice; second, the single responsibility principle says that functions and classes should do only one thing: you will need one function for downloading (and storing), and a different one that uses stored raw information to extract that information.</p>
+<p>This step needs to be tested too, ad different levels; you need to check for internal coherence in the data. For instance, the number of tanks lost in the illegal invasion of Ukraine will always increase, so after scraping and extracting it, we need to do this test (in Raku):</p>
+<pre><code>subtest &quot;Data is OK&quot;, {
+    my @dates = $war-data.dates();
+    my %prev = $war-data.data{@dates.shift};
+    for @dates -&gt; $date {
+        for &lt;tanks personnel&gt; -&gt; $k {
+            cmp-ok $war-data.data{$date}{$k}&lt;total&gt;, &quot;&gt;=&quot;, %prev{$k}&lt;total&gt;,
+                    &quot;$k for $date: {$war-data.data{$date}{$k}&lt;total&gt;} ≥ {%prev{$k}&lt;total&gt;}&quot;;
+        }
+        %prev = $war-data.data{$date};
+    }</code></pre>
 <h2 id="storing-data">Storing data</h2>
 <p>CSV (comma separated values) is the go-to format for storing data; it is easily editable, modifiable and readable from a number of tools, including desktop tools. It is a format you can use to produce reports, or to hand it to your PhD advisor or marketing department. Any language contains tools to work with it so it is the one you will find most often.</p>
 <p>JSON is also a popular format; JavaScript Object notation obviously comes from Javascript, where it’s simply the syntax used for objects; unlike CSV, you need to read the whole file before understanding it; updating it is not so easy as in CSV, where you can just add a line; it is also not usable by desktop programs, but since it has got a rich internal structure, being in fact a serialization format, it is a good choice for static data that need not change too often.</p>
@@ -89,8 +133,16 @@ try {
 <pre><code>go install github.com/fraugster/parquet-go/cmd/csv2parquet@latest
 csv2parquet -input ukr-mod-data.csv -output ukr-mod-data.parquet</code></pre>
 <h2 id="data-versioning">Data versioning</h2>
+<h2 id="activity">Activity</h2>
+<p>The main objective of this activity is to understand how tests are essential to ensure the quality of the resulting workflow. Modules to download and update whatever data is the objective of our project will have been created and tested at all levels:</p>
+<ul>
+<li>Availability (Is the URL still there?)</li>
+<li>Downloading (Can you download it correctly, and contains the information we’re looking for?)</li>
+<li>Extracting (Is the information structured in the same way?)</li>
+<li>Cleaning: Is there some error in data? Does it behave in a correct way?</li>
+</ul>
 <h2 id="see-also">See also</h2>
-<p>Despite its title, Thoughtful Machine Learning is a great test-driven approach to data science (Kirk 2014)</p>
+<p>Despite its title, Thoughtful Machine Learning is a great test-driven approach to data science (Kirk 2014).</p>
 <h2 id="references">References</h2>
 <p>Kirk, Matthew. 2014. <em>Thoughtful Machine Learning: A Test-Driven Approach</em>. O’Reilly Media, Inc.</p>
 </body>
