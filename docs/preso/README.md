@@ -7,6 +7,7 @@ Presentations for the [NOVA MLOps course](https://jj.github.io/nova-mlops).
 Presentations for the different sessions
 
 * [Session 1](01.html)
+* [Session 5](05.html)
 
 ## License
 
