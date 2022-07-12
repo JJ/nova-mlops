@@ -185,53 +185,7 @@ train = 'nova_mlops.__init__:go'
 	    <aside class='notes'>Working witht the previous downloader</aside>
 	  </section>
 	</section>
-
 	
-	<section>
-	  <section><h1>And now... the tests</h1>
-	    <h2 class='fragment'>Tests are essential in DevOps/MLOps</h2>
-	  </section>
-
-	  <section><h1>Unit tests ensure that every pipeline step works</h1>
-	    <h2 class='fragment'>Thus delivering value to client</h2>
-	  </section>
-
-	  <section><h1>Choose wisely your test tools</h1>
-	    <aside class='notes'>One of the principles of the course:
-	    learn to decide. Agile is about focusing on the client,
-	    which is the result, but also focusing on adaptability,
-	    meaning that tools should allow you to adapt to new
-	    circumstances and should not detract value (by being
-	    insecure, or deprecated, or simply not delivering as much
-	    value as others)</aside>
-	  </section>
-
-	  <section><h1>Testing behaviors</h1>
-	    <h2 class='fragment'>Does download work?</h2>
-	    <pre><code data-line-numbers='1,2|4-6|11-12'>import pytest
-from .. import download, driver
-
-@pytest.fixture
-def page():
-    return download(14,4)
-
-def test_driver():
-    assert driver
-
-def test_download(page):
-    assert page
-	    </code></pre>
-	  </section>
-
-	  <section><h1>💼 Activity</h1>
-	    <h2>Add your tests</h2>
-	    <h3 class='fragment'>Add a target to the task manager that
-	      runs tests</h3>
-	    <aside class='notes'>In many cases, it will be totally
-	      automatic, in others you will need to add it yourself.</aside>
-	  </section>
-
-	</section>
 
       </div>
     </div>
