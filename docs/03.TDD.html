@@ -181,7 +181,19 @@ def test_download(page):
 </ol>
 <p>That means that you need to use some downloading strategy that gives that information, which might be important for understanding the data in the page; for instance, data might be included in an element that uses date in its ID.</p>
 <p>Please do <em>always</em> download and store the raw web pages. First, to avoid downloading them twice; second, the single responsibility principle says that functions and classes should do only one thing: you will need one function for downloading (and storing), and a different one that uses stored raw information to extract that information.</p>
-<!-- actual scraping should go here -->
+<p>Scraping will then retrieve a file from the hard disk (or wherever), and start to work on it. If the data is inside a structure, let’s say a HTML file or XML file and it’s nicely labeled, just go for it. Modules such as <code>beautifulsoup</code> look at the structure and can extract the information, as long as you have the path that leads to it or can identify it by ID or class, or any other thing really (for instance, being the first sibling after a certain element like <code>h1</code>), tools like <code>XPath</code> are able to perform queries on the structure of a XML document (such as KMZ or SVG) and extract any information from there.</p>
+<p>In most cases, however, you will have to resort to using regular expressions, which are also useful even if the structure of the document is involved, since they are able to process any kind of text that has some regularities.</p>
+<p>For instance, this will be the Raku code that extracts information on losses from the MoD web pages:</p>
+<pre><code>        my $match = $l ~~ /&#39;p&gt;&#39;
+            $&lt;concept&gt; = [ .+ ] \s+ [&#39;‒&#39;|&#39;–&#39;|&#39;-&#39;] \s* &quot;about&quot;? \s*
+            $&lt;total&gt; = [\d+]
+            \s* [\( &quot;+&quot;]?
+            $&lt;delta&gt; = [[\d+]]? /;</code></pre>
+<p>Looks a bit complicated, and it’s because it’s got to take into account all possible variations, possibly done by hand, to the web page itself. It shows the line will start with a paragraph mark <code>&lt;p&gt;</code> (we are only interested in the last part, that anchors. Then it group of characters, separated by a dash (different types), the word “about” which might appear or not (only in <code>personnel</code> actually), and then the total. The rest is optional: if there’s a <em>delta</em>, an increment from the last day, it will show always in parenthesis.</p>
+<p>The <code>$</code> preceded variables are actually the three quantities we’re extracting here: concept, total, and increment from the last day. Eventually, we obtain a data structure that we can further process to obtain whatever feature vector we will feed our system.</p>
+<blockquote>
+<p>Most programming languages have simple “find string” or “split string” commands. Except if you want to do something extremely simple, like, let’s say, a comma-separated text, I <em>strongly discourage</em> using them. It’s worth the while to spend some time learning regular expressions; it will save you a lot of time later.</p>
+</blockquote>
 <p>This step needs to be tested too, ad different levels; you need to check for internal coherence in the data. For instance, the number of tanks lost in the illegal invasion of Ukraine will always increase, so after scraping and extracting it, we need to do this test (in Raku):</p>
 <pre><code>subtest &quot;Data is OK&quot;, {
     my @dates = $war-data.dates();
@@ -205,7 +217,6 @@ def test_download(page):
 <pre><code>go install github.com/fraugster/parquet-go/cmd/csv2parquet@latest
 csv2parquet -input ukr-mod-data.csv -output ukr-mod-data.parquet</code></pre>
 <h2 id="data-versioning">Data versioning</h2>
-<!-- low-cost strategies for data versioning -->
 <p>In a data science pipeline, it is essential to have a traceability that takes from results to the training and testing data that have produced it. This is not only for reproducibility reasons, it might also be essential to compare results with datasets in different dates to find possible bias, or even systematic errors.</p>
 <p>This is why all data downloaded must have a version; it does not do to simply say “I used whatever data was in my disk drive when I started training”.</p>
 <p>Of course, if your data is open (and if you are doing science it should be), or if you work in a private repository for data (and you should <em>always</em> work with a repository), you have data versioning for free. Data can be versioned by the hash of the last commit that modified it.</p>
@@ -216,6 +227,8 @@ csv2parquet -input ukr-mod-data.csv -output ukr-mod-data.parquet</code></pre>
 <li>Date versioning: using date of creation, for instance 2022.07.01.</li>
 </ul>
 <p>You can add <code>data</code> as a prefix, to differentiate it from code-only releases, which would use non-prefixed strings (or prefixed with <code>v</code>).</p>
+<p><code>git</code> has a plugin called <code>lfs</code>, as in large file system, that allows you to store efficiently large files (as is sometimes the case with training and testing files). It can be used more or less seamlessly from the command line, although if you use GitHub there will be a limit on the size of the files that you are able to store.</p>
+<p>Beyond that, there are many <em>data lake</em> solutions that you can use. Talking about specific examples, however, goes beyond the scope of this course.</p>
 <h2 id="activity">Activity</h2>
 <p>The main objective of this activity is to understand how tests are essential to ensure the quality of the resulting workflow. Modules to download and update whatever data is the objective of our project will have been created and tested at all levels:</p>
 <ul>
@@ -226,6 +239,7 @@ csv2parquet -input ukr-mod-data.csv -output ukr-mod-data.parquet</code></pre>
 </ul>
 <h2 id="see-also">See also</h2>
 <p>Despite its title, Thoughtful Machine Learning is a great test-driven approach to data science (Kirk 2014).</p>
+<p>On scraping exclusively for data science, there’s this book: [vanden2018practical].</p>
 <h2 id="references">References</h2>
 <p>Kirk, Matthew. 2014. <em>Thoughtful Machine Learning: A Test-Driven Approach</em>. O’Reilly Media, Inc.</p>
 </body>
