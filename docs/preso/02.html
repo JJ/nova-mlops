@@ -1,35 +1,133 @@
 <!doctype html>
 <html>
-    <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>MlOps@Nova by JJ Merelo: Session 1</title>
+    
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/mlops-preso.css">
+    <link rel="stylesheet" href="dist/extra.css">
+    <link rel="stylesheet" href="dist/mlops.css">
+    
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+	<section>
+          <h2>Second session: git for the masses, Scraping and testing</h2>
+          <h1>MLOps at Nova</h1>
+          <h3>JJ Merelo, <a href="https://twitter.com/jjmerelo"><code>@jjmerelo</code></a></h3>
+        </section>
 
-	<title>MlOps@Nova by JJ Merelo: Session 1</title>
+	<section><h1>What did you learn yesterday</h1>
+	  <h2 class='fragment'>Is there some left over work
+	    from yesterday's sprint</h2>
+	  <h3 class='fragment'>Ready to start next
+	    MVP/milestone?</h3>
+	</section>
+	
+	<section><!-- ETL -->
 
-	<link rel="stylesheet" href="dist/reset.css">
-	<link rel="stylesheet" href="dist/reveal.css">
-	<link rel="stylesheet" href="dist/mlops-preso.css">
-        <link rel="stylesheet" href="dist/extra.css">
-        <link rel="stylesheet" href="dist/mlops.css">
+	  <section><h1>The truth is out there</h1>
+	    <h2 class='fragment'>It's hard to bring it in here</h2>
+	  </section>
 
-	<!-- Theme used for syntax highlighted code -->
-	<link rel="stylesheet" href="plugin/highlight/monokai.css">
-    </head>
-    <body>
-	<div class="reveal">
-	    <div class="slides">
-		<section>
-                    <h2>Second session: Scraping and testing</h2>
-                    <h1>MLOps at Nova</h1>
-                    <h3>JJ Merelo, <a href="https://twitter.com/jjmerelo"><code>@jjmerelo</code></a></h3>
-                </section>
+	  <section>
+	    <h1>Scraping will be needed</h1>
+	    <h2 class='fragment'>Use the API or open data if
+	      (easily) available</h2>
+	    <aside class='notes'>Scraping extracts
+	      information from web sites, using different
+	      techniques. But the essential part is almost
+	      never passing from content to data, but getting
+	      the content. API and open data are great, but
+	      sometimes they have restrictions.
+	    </aside>
+	  </section>
 
-		<section><h1>What did you learn yesterday</h1>
-		  <h2 class='fragment'>Is there some left over work
-		    from yesterday's sprint</h2>
-		  <h3 class='fragment'>Ready to start next
-		    MVP/milestone?</h3>
-		</section>
+	  <sections><h1>This is a different module</h1>
+	    <h2 class='fragment'>Use any language you
+	      want</h2>
+	    <aside class='notes'>Remember one of the
+	      principles: you will need many languages for a
+	      great ML workflow</aside>
+	  </sections>
+	  
+	  <section><h2>Two phases</h2>
+	    <h1 class='fragment'>Download content</h1>
+	    <h1 class='fragment'>Extract content</h1>
+
+	    <aside class='notes'>And, obviously, eventually process content.</aside>
+	  </section>
+	  
+	  <section><h1>Before downloading, identify URL</h1>
+	    <h2 class='fragment'>Scrape for links, or find regularities</h2>
+	  </section>
+	  
+	  <section><h1>Portuguese INE is hard</h1>
+	    
+	    <pre><code data-line-numbers='1,3,4|2,5,6'>    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(url);
+    await page.content();
+    const frame = await page.frames()[1];
+    const content = await frame.content();
+		      </code></pre>
+		      <aside class='notes'>First code... URL is not available in the
+		      page source, you need to click to get it, and it
+			loads a frame. However, it can be done. We're
+		      using here a Deno module called puppeteer,
+		      which  handles a browser, behaving more or less
+		      like one. This is often called a "headless"
+		      browser, and it's incredibly useful.</aside>
+		    </section>
+
+		    <section><h1>Download content</h1>
+		      <h2 class='fragment'>From <code>curl</code> to mocking browsers</h2>
+		      <h3 class='fragment'>Data does not want to be scraped</h3>
+		    </section>
+
+		    <section><h1>Sometimes it's easier...</h1>
+		      <pre><code data-line-numbers='1,5|2,5'>use LWP::Simple;
+use constant OSK_URL => 'https://www.oryxspioenkop.com/2022/02/attack-on-europe-documenting-equipment.html';
+sub download_osk {
+  my $dl =get(OSK_URL) or die "Can't download " . OSK_URL;
+  return $dl;
+}
+		      </code></pre>
+		      <aside class='notes'>Written in Perl, it simply
+			downloads the page</aside>
+		    </section>
+
+		    <section><h1>Use source control also!</h1>
+		      <h2 class='aside'>Date and cache</h2>
+		      <h3 class='aside'>Download only once!</h3>
+		    </section>
+		    <section><h1>Have a plan B</h1>
+		      <h2 class='fragment'>Nothing is guaranteed to work</h2>
+		      <h3 class='fragment'>And nothing is guaranteed to work <em>for ever</em></h3>
+		      <aside class='fragment'>After working for a
+		      month or more, the Ukr MoD site started to
+		      request a captcha, which is impossible to
+		      overcome. At the end of the day, it's a fight
+		      human vs technology and human vs. human; you
+		      need to invest yourself in the fight... or be
+			defeated.
+		      </aside>
+		    </section>
+
+		    <section><h1>💼 Activity</h1>
+		      <h2>Identify feasible data sources, and create a
+			milestone for downloading and extracting it</h2>
+		      <h3 class='fragment'>Use your own data, open
+			data portals, official web pages.</h3>
+		      <h3>Start organizing the task of working with that source of data, and schedule updates</h3>
+		  </section>
 
 		<section>
 		    <section><h1>Extract data</h1>
