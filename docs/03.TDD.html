@@ -82,7 +82,72 @@ try {
 <p>But scraping is 90% technology, and the remaining 90%, ingenuity. It so happens that all URLs with Russian losses contains the word <code>vtrati</code>, which means <code>losses</code>. This is something that can be left for later, however. If some URL is easily available, and contains all information, go for it.</p>
 </blockquote>
 <h2 id="installing-and-running-tools">Installing and running tools</h2>
-<!-- Let's talk about dependency and task management -->
+<p>DevOps, and thus MLOps, is about including the description of the infrastructure in the code repository itself, developing it at the same time. This implies that whatever is needed to run the application needs to be described in a meaningful, but also usable way.</p>
+<p>There are two kind of dependencies for any application: external dependencies, any prerequisite that the program will need, such as the compiler or any external library that is needed, and then the internal dependencies, written in the same language as the application, or at any rate one of them.</p>
+<p>Modern languages all include one, or several, dependency managers. These have two functions</p>
+<ol type="1">
+<li>Read the file that declares those dependencies, and install them along with any second or any degree dependencies these need.</li>
+<li>Create what is usually called a <em>lockfile</em>, which essentially speeds up deployment by recording all versions and modules that have been resolved by the previous installation.</li>
+</ol>
+<p>In many cases, these dependence managers are integrated in the language, or even in the compiler; Deno, for instance, just downloads whatever is listed as an import in the source files; in some other cases, there’s a single dependency manager that is installed with the language itself, or is a commonly accepted standard.</p>
+<p>Yet in other cases, like Javascript, there are several you can choose from: <code>npm</code> and <code>yarn</code> being the most popular.</p>
+<p>Python, as usual, is an outlier in this area. Despite having an accepted way of declaring dependencies through <code>pyproject.toml</code>, <code>pip</code> is still installed by default, and most people do not use, or even know, dependency managers such as <code>poetry</code> that are the single, accepted standard.</p>
+<p>This is such a file for examples here:</p>
+<pre><code>[tool.poetry]
+name = &quot;nova_mlops&quot;
+version = &quot;0.1.0&quot;
+description = &quot;Example for NOVA MLOps course&quot;
+authors = [&quot;JJ Merelo &lt;jjmerelo@gmail.com&gt;&quot;]
+license = &quot;GPL 3.0&quot;
+
+[tool.poetry.dependencies]
+python = &quot;^3.9&quot;
+neptune-client = &quot;^0.16.2&quot;
+python-dotenv = &quot;^0.20.0&quot;
+mlflow = &quot;^1.27.0&quot;
+numpy = &quot;^1.23.0&quot;
+pycaret = &quot;^2.3.10&quot;
+pandas = &quot;^1.4.3&quot;
+pyarrow = &quot;^8.0.0&quot;
+fastparquet = &quot;^0.8.1&quot;
+jupyter = &quot;^1.0.0&quot;
+
+[build-system]
+requires = [&quot;poetry-core&gt;=1.0.0&quot;]
+build-backend = &quot;poetry.core.masonry.api&quot;
+
+[tool.poetry.scripts]
+train = &#39;nova_mlops.__init__:go&#39;</code></pre>
+<p>As you can see, it includes a number of dependencies that will need to be installed later on in the course in a section that is specifically called that way. Besides, this section pins the Python version so that we use the one that makes <code>numpy</code> work (at the time of writing this, it is not compatible with Python 3.10 and newer). It adds at the top some metadata.</p>
+<p>Boils down to: if you use Python and want to work with MLOps, please download and install <code>poetry</code>.</p>
+<blockquote>
+<p>This tool avoids the need to set up virtual environments by taking care of it itself; it will set up one for you, including all the dependencies and Python versions declared in the project file.</p>
+</blockquote>
+<p>Besides, at the bottom of the file, there is a section called <code>scripts</code>. This is also a common feature of dependency managers, which are able to perform some additional tasks in a limited way. <code>poetry</code> is quite limited in that sense: it can invoke only Python functions (although, of course, that function might call shell scripts if needed).</p>
+<p>This does not turn it into a task manager: task management needs additional features, like for instance being able to express dependencies between tasks or when to trigger one task. <code>make</code> is the quintessential task manager, but some other languages have a wide variety of them; once again, certain languages like Julia or Go include some limited task running within their base toolchain.</p>
+<p>For instance, we can use this tool called <code>Ake</code> to run different Raku tasks</p>
+<pre><code>use lib &quot;lib&quot;;
+use Data::UkraineWar::MoD::Scrape;
+
+my $data = Data::UkraineWar::MoD::Scrape.new( &quot;raw-pages&quot; );
+$data.expand;
+
+task &#39;download&#39;, {
+    shell &quot;tools/scrape.py&quot;;
+}
+
+task &#39;prescrape&#39;, {
+    if $data.invalid-files() {
+        die &quot; ❌ → Invalid files ⇒\n&quot;, $data.invalid-files();
+    };
+}
+
+task &#39;CSV&#39; =&gt; &lt;prescrape&gt;, {
+    &quot;resources/ukr-mod-data.csv&quot;.IO.spurt($data.CSV);
+} ;</code></pre>
+<p>Besides being able to express dependencies (the <code>CSV</code> task depends on <code>prescrape</code>), it is written in Raku itself, so that we can actually do some processing in the file (called <code>Akefile</code>) itself. We can achieve similar capabilities using Python tools such as <code>invoke</code>.</p>
+<p>Agile development demands that all these tasks should be in a single place; using a task manager is essential to avoid having to read instructions, and also, through dependencies, to establish a clear pipeline for data processing and machine learning.</p>
+<p>These task managers, later, simplify the task of testing and deploying the application. By including tasks such as <code>test</code>, <code>start</code> or <code>deploy</code>, it is quite easy, to a certain point standard, and intuitive, to understand what different parts of the pipeline are about.</p>
 <h2 id="initial-tests">Initial tests</h2>
 <p>This chapter is about testing, so we will need to start doing so. Since in most cases the URL will be a computed value, and there is no guarantee that what you download will always show the same information, tests will need to be created <em>already</em>.</p>
 <p>Choosing testing tools and strategies will never be straightforward. First, you need to understand, from the get go of your project, that what you are going to create is effectively a <em>project</em>, not a script that will be edited for different runs.</p>
@@ -109,13 +174,14 @@ def test_download(page):
 <p>We are checking here two things; first that the driver works; it could or could not, since it is a complicated one; second, we check via assert that we have been able to download something. Remember, we are not checking that the information that is in there is correct; just that we have been able to download something, we have not been banned or the setup continues working. These kind of checks will be left for later.</p>
 <p>Check the code and test <a href="https://github.com/JJ/raku-ukr-mod-data">in the UKR-MoD-Data repository</a>.</p>
 <h2 id="processing-data">Processing data</h2>
-<p>Let’s assume you’ve managed to download data, and have it available somewhere, as a single one or different pages. First thing you have to take into account is that metadata for downloaded pages will probably be important. At least two different things</p>
+<p>Let’s assume you’ve managed to download the content that contains the data, and have it available somewhere, as a single one or different pages. First thing you have to take into account is that metadata for downloaded pages will probably be important. At least two different things</p>
 <ol type="1">
 <li>File paths contain information such as dates; some times additional information like tags or other. You will need to include it in your scraping strategy.</li>
 <li>Headers such as <code>last-modified</code> need to be used to avoid downloading the same thing several times; also respected to avoid slamming a web site with many requests.</li>
 </ol>
 <p>That means that you need to use some downloading strategy that gives that information, which might be important for understanding the data in the page; for instance, data might be included in an element that uses date in its ID.</p>
 <p>Please do <em>always</em> download and store the raw web pages. First, to avoid downloading them twice; second, the single responsibility principle says that functions and classes should do only one thing: you will need one function for downloading (and storing), and a different one that uses stored raw information to extract that information.</p>
+<!-- actual scraping should go here -->
 <p>This step needs to be tested too, ad different levels; you need to check for internal coherence in the data. For instance, the number of tanks lost in the illegal invasion of Ukraine will always increase, so after scraping and extracting it, we need to do this test (in Raku):</p>
 <pre><code>subtest &quot;Data is OK&quot;, {
     my @dates = $war-data.dates();
@@ -139,6 +205,17 @@ def test_download(page):
 <pre><code>go install github.com/fraugster/parquet-go/cmd/csv2parquet@latest
 csv2parquet -input ukr-mod-data.csv -output ukr-mod-data.parquet</code></pre>
 <h2 id="data-versioning">Data versioning</h2>
+<!-- low-cost strategies for data versioning -->
+<p>In a data science pipeline, it is essential to have a traceability that takes from results to the training and testing data that have produced it. This is not only for reproducibility reasons, it might also be essential to compare results with datasets in different dates to find possible bias, or even systematic errors.</p>
+<p>This is why all data downloaded must have a version; it does not do to simply say “I used whatever data was in my disk drive when I started training”.</p>
+<p>Of course, if your data is open (and if you are doing science it should be), or if you work in a private repository for data (and you should <em>always</em> work with a repository), you have data versioning for free. Data can be versioned by the hash of the last commit that modified it.</p>
+<p>however, that’s a longish hexadecimal string that does not convey any kind of information on what’s in there. You can then use <em>tags</em>, which are aliases for specific commits that can be used to quickly retrieve the state of the repository at a certain point in time (not only data, anything that’s in the repository). By checking out a tag, you can be totally sure that the data will be in the state it was when you slapped that tag on it.</p>
+<p>In principle, tags can be arbitrary strings too, so it will help to follow a strategy for tagging.</p>
+<ul>
+<li>Semantic versioning is very common: this uses the format major.minor.patchlevel, with major indicating changes in functionality or API, minor simple small additions that are still compatible, and patchlevel bugfixes or simple refactorings. Translated this to data, format will change major, anything else minor, if there’s some fixing you can change the patchlevel.</li>
+<li>Date versioning: using date of creation, for instance 2022.07.01.</li>
+</ul>
+<p>You can add <code>data</code> as a prefix, to differentiate it from code-only releases, which would use non-prefixed strings (or prefixed with <code>v</code>).</p>
 <h2 id="activity">Activity</h2>
 <p>The main objective of this activity is to understand how tests are essential to ensure the quality of the resulting workflow. Modules to download and update whatever data is the objective of our project will have been created and tested at all levels:</p>
 <ul>
