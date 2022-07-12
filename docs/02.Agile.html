@@ -72,7 +72,14 @@
 </blockquote>
 <p>A pipeline indicates that there is some automated procedure working, and a product being delivered in time. A working and <em>complete</em> pipeline is a complete product, which is the objective of the development procedure. But, meanwhile, every milestone must finish with this kind of pipeline.</p>
 <p>For instance, the <a href="https://github.com/JJ/raku-ukr-mod-data/milestone/1">milestone indicated above</a> should finish with a pipeline that should be able to download automatically the web page from the Ukrainian MoD with the proper frequency. <a href="https://github.com/JJ/raku-ukr-mod-data/actions/workflows/download.yaml">This is the result of using that pipeline</a>, which should be green to indicate it, effectively, is working. The rest of the pipelines are shown, and should be green, <a href="https://jj.github.io/raku-ukr-mod-data/">in the module I’m using to illustrate this course</a>.</p>
-<p>To actually certify they are <em>working</em> you need to do at least two things: at one level</p>
+<p>To actually certify they are <em>working</em> you need to do at least two things: at one level tests must be automatically run so that the code is clean and according to common practices, and also respects the unitary specifications laid out in advance; at a different level, several eyes must be cast on the code.</p>
+<p>This is achieved using pull requests; never, or almost never (typos are one exception that comes to mind), code must be incorporated into the main branch directly. With pull requests, there are several objectives:</p>
+<ul>
+<li>Achieving collective authorship of the code; this dilutes responsibility, but at the same time the whole team acquires it on the code.</li>
+<li>Knowledge transfer between different members of the team: Some people might work in some areas that are more in their turf, and some in others, but eventually the code is produced by the team, not by any individual.</li>
+<li>Effectively checking the code against team standards (such as identifier names), oversights, or simply offer alternatives to the technical solutions proposed by one member of the team.</li>
+</ul>
+<p>Remember, pull requests reviews are not grades in an exam, they are not obstacles for <em>your</em> code to be merged, they are simply a way to ensure quality of the result, and make it a collective endeavor, as opposed to a single person’s work.</p>
 <h2 id="attention-to-technical-excellence-and-good-design">Attention to technical excellence and good design</h2>
 <p>Good design is, in part, guaranteed by the different phases of the design thinking stage we have mentioned before; additionally, best practices in software design should be used.</p>
 <p>Software design is a complicated affair and involves multiple layers: architectural design, modularization of the different components, as well as, eventually, API and maybe UI design. It’s essential to pay attention to all of these phases by first, formulating these design problem as issues, and reaching consensus on solutions every step of the way.</p>
