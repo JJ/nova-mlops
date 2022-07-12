@@ -129,25 +129,69 @@ sub download_osk {
 		      <h3>Start organizing the task of working with that source of data, and schedule updates</h3>
 		  </section>
 
-		<section>
-		    <section><h1>Extract data</h1>
-		        <h2 class='fragment'>DOM or regular expression</h2>
-		      <h3 class='fragment'>Often, a combination of both</h3>
-		    </section>
+	</section>
 
-		    <section><h1>Also... have a plan B</h1>
-		      <h2 class='fragment'>Nothing is guaranteed to work</h2>
-		      <h3 class='fragment'>And nothing is guaranteed to work <em>for ever</em></h3>
-		      <aside class='fragment'>After working for a
-		      month or more, the Ukr MoD site started to
-		      request a captcha, which is impossible to
-		      overcome. At the end of the day, it's a fight
-		      human vs technology and human vs. human; you
-		      need to invest yourself in the fight... or be
-			defeated.
-		      </aside>
-		    </section>
-                </section>
+	<section> <!-- Learn about dependency managers -->
+
+	  <section><h1>MLOps is about <em>repeatable</em> worlflows</h1>
+	    <h2 class='fragment'>There should be a single way of describing dependencies</h2>
+	  </section>
+
+	  <section><h1>Use best practices dependency management</h1>
+	    <h2 class='fragment'>Use <code>poetry</code></h2>
+	  </section>
+
+	  <section><h1>Poetry for my data</h1>
+	    <pre><code data-line-numbers='1,8|1,6|8,14|9'>[tool.poetry]
+name = "nova_mlops"
+version = "0.1.0"
+description = "Example for NOVA MLOps course"
+authors = ["JJ Merelo &lt;jjmerelo@gmail.com>"]
+license = "GPL 3.0"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+neptune-client = "^0.16.2"
+python-dotenv = "^0.20.0"
+mlflow = "^1.27.0"
+numpy = "^1.23.0"</code></pre>
+	  </section>
+
+	  <section><h1>Dependency managers become task managers</h1>
+	    <h2 class='fragment'>Tasks managed for you</h2>
+	  </section>
+
+	  <section><h1>Tasks managers manage your workflows</h1>
+	    <h2 class='fragment'>So that you need not do it</h2>
+	  </section>
+
+	  <section><h1>Poetry in motion</h1>
+	    <pre><code>[tool.poetry.scripts]
+train = 'nova_mlops.__init__:go'
+	    </code></pre>
+
+	    <pre class='fragment'><code>poetry run train</code></pre>
+	  </section>
+	
+	<section>
+	  <section><h1>Extract data</h1>
+	    <h2 class='fragment'>DOM or regular expression</h2>
+	    <h3 class='fragment'>Often, a combination of both</h3>
+	  </section>
+	  
+	  <section><h1>Also... have a plan B</h1>
+	    <h2 class='fragment'>Nothing is guaranteed to work</h2>
+	    <h3 class='fragment'>And nothing is guaranteed to work <em>for ever</em></h3>
+	    <aside class='fragment'>After working for a
+	      month or more, the Ukr MoD site started to
+	      request a captcha, which is impossible to
+	      overcome. At the end of the day, it's a fight
+	      human vs technology and human vs. human; you
+	      need to invest yourself in the fight... or be
+	      defeated.
+	    </aside>
+	  </section>
+        </section>
 
 		<section><h1>Activity</h1>
 		    <h2></h2>
