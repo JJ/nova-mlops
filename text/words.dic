@@ -102,3 +102,10 @@ UnitTest
 CLI
 ve
 façades
+lockfile
+outlier
+toolchain
+versioned
+patchlevel
+bugfixes
+refactorings
