@@ -225,6 +225,15 @@ delta.clean$Losses &lt;- c((delta.clean %>% slice(2:n()))$` personnel`,0)
 	    (compressed)</h2>
 	</section>
 
+	<section><h1>Parquetize/featherize</h1>
+	  <pre><code>library(arrow)
+
+write.csv(delta.clean, "resources/ukr-mod-deltas.csv")
+write_parquet(delta.clean, "resources/ukr-mod-deltas.parquet")
+write_feather(delta.clean, "resources/ukr-mod-deltas.feather")
+	  </code></pre>
+	</section>
+
 	<section><h1>Data needs to be versioned</h1>
 	  <h2 class='fragment'>Traceability from (training) data to
 	    results</h2>
