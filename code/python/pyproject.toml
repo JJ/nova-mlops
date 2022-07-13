@@ -6,7 +6,7 @@ authors = ["JJ Merelo <jjmerelo@gmail.com>"]
 license = "GPL 3.0"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "3.9"
 neptune-client = "^0.16.2"
 python-dotenv = "^0.20.0"
 mlflow = "^1.27.0"
