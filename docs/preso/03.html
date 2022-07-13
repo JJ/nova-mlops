@@ -196,21 +196,50 @@ def test_download(page):
 	  </section>
 
 	</section>
-	    </div>
-	</div>
 
-	<script src="dist/reveal.js"></script>
-	<script src="plugin/notes/notes.js"></script>
-	<script src="plugin/markdown/markdown.js"></script>
-	<script src="plugin/highlight/highlight.js"></script>
-	<script>Reveal.initialize({
+	<section>
+	<section><h1>Data can be stored in many different formats</h1>
+	  <h2 class='fragment'>Feather, Parquet, much more lightweight
+	    (compressed)</h2>
+	</section>
+
+	<section><h1>Data needs to be versioned</h1>
+	  <h2 class='fragment'>Traceability from (training) data to
+	    results</h2>
+	</section>
+
+	<section><h1>Poor person's version: git tags</h1>
+	  <pre><code>git tag -a data-2022-07-11 -m "Today's fresh
+	      data"</code></pre>
+
+	  <aside class='notes'>A tag is an alias for a commit; it's
+	  like a label you slap on a commit, which is a situation for
+	    the repository at a certain point in time.</aside>
+	</section>
+	<section><h1>💼 Activity</h1>
+	    <h3 class='fragment'>Decide on which data format is the
+	      best for you</h3>
+	    <h3 class='fragment'>Add functions to your module (and
+	      targets to task manager) that transform data</h3>
+	    <h3 class='fragment'>Tag data *manually* every time it changes</h3>
+	  </section>
+
+	</section>
+	
+	</div>
+      </div>
+
+      <script src="dist/reveal.js"></script>
+      <script src="plugin/notes/notes.js"></script>
+      <script src="plugin/markdown/markdown.js"></script>
+      <script src="plugin/highlight/highlight.js"></script>
+      <script>Reveal.initialize({
 	     hash: true,
-             width: "95%",
+             width: "99%",
              height: '100%',
              controls: true,
              progress: true,
              backgroundTransition: 'convex',
-	     // Learn about plugins: https://revealjs.com/plugins/
 	     plugins: [ RevealHighlight, RevealNotes ]
 	 });
 	</script>
