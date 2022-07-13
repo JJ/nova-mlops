@@ -136,6 +136,16 @@ def test_download(page):
 	    <h2 class='fragment'>DOM or regular expression</h2>
 	    <h3 class='fragment'>Often, a combination of both</h3>
 	  </section>
+
+	  <section><h1>Regular expression is a powerful language for describing regularities in text</h1>
+	    <aside class='notes'>Possibly a bit outside the scope of
+	      this course</aside>
+	  </section>
+
+	  <section><h1>Don't even try to process some format
+	      yourself</h1>
+	    <h2 class='fragment'>There's probably a module for that</h2>
+	  </section>
 	  
 	  <section><h1>Also... have a plan B</h1>
 	    <h2 class='fragment'>Nothing is guaranteed to work</h2>
@@ -149,8 +159,39 @@ def test_download(page):
 	      defeated.
 	    </aside>
 	  </section>
-        </section>
 
+	  <section><h1>Test your data!</h1>
+	    <pre><code  data-line-numbers='3,6,9|3-11'>subtest "Data is OK", {
+    my @dates = $war-data.dates();
+    my %prev = $war-data.data{@dates.shift};
+    for @dates -> $date {
+        for &lt;tanks personnel> -> $k {
+            cmp-ok $war-data.data{$date}{$k}&lt;total>, ">=", %prev{$k}Ç&lt;total>,
+                    "$k for $date: {$war-data.data{$date}{$k}&lt;total>} ≥ {%prev{$k}&lt;total>}";
+        }
+        %prev = $war-data.data{$date};
+    }
+	    </code></pre>
+
+	    <aside class='notes'>In this case, the total number of
+	    losses needs to be monotonically increasing. No space for
+	      other options</aside>
+	  </section>
+
+	  <section><h1>Difficult decision: what to do if data fails
+	      test</h1>
+	    <h2 class='fragment'>Not automatically, that's for
+	      sure</h2>
+	  </section>
+
+	  <section><h1>💼 Activity</h1>
+	    <h3 class='fragment'>Create an issue that discusses what
+	    are the inherent characteristics of your data (range,
+	    possible changes from one instance to next, type of data,
+	      and so on and solver it with a PR that creates the test</h3>
+	  </section>
+
+	</section>
 	    </div>
 	</div>
 
