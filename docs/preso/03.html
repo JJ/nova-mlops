@@ -31,10 +31,64 @@
 	      MVP/milestone?</h3>
 	  </section>
 
-	  	<section>
+	  <section> <!-- Learn about dependency managers -->
+
+	  <section><h1>MLOps is about <em>repeatable</em> worlflows</h1>
+	    <h2 class='fragment'>There should be a single way of describing dependencies</h2>
+	    <h3 class='fragment'>And also language version</h3>
+	  </section>
+
+	  <section><h1>Use best practices dependency management</h1>
+	    <h2 class='fragment'>Use <code>poetry</code></h2>
+	  </section>
+
+	  <section><h1>Poetry for my data</h1>
+	    <pre><code data-line-numbers='1,8|1-6|8-14|9'>[tool.poetry]
+name = "nova_mlops"
+version = "0.1.0"
+description = "Example for NOVA MLOps course"
+authors = ["JJ Merelo &lt;jjmerelo@gmail.com>"]
+license = "GPL 3.0"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+neptune-client = "^0.16.2"
+python-dotenv = "^0.20.0"
+mlflow = "^1.27.0"
+numpy = "^1.23.0"</code></pre>
+	  </section>
+
+	  <section><h1>Dependency managers become task managers</h1>
+	    <h2 class='fragment'>Tasks managed for you</h2>
+	  </section>
+
+	  <section><h1>Tasks managers manage your workflows</h1>
+	    <h2 class='fragment'>So that you need not do it</h2>
+	  </section>
+
+	  <section><h1>Poetry in motion</h1>
+	    <pre><code>[tool.poetry.scripts]
+train = 'nova_mlops.__init__:go'
+	    </code></pre>
+
+	    <pre class='fragment'><code>poetry run train</code></pre>
+	  </section>
+
+	  <section><h3>💼 Activity</h3>
+	    <h3>Start a module in the chosen language</h3>
+	    <ul>
+	      <li>Look for the proper directory layout and naming conventions</li>
+	      <li>Declare dependencies, and install them</li>
+	      <li>Choose a task manager, and create a simple running task</li>
+	    </ul>
+	    <aside class='notes'>Working witht the previous downloader</aside>
+	  </section>
+	</section>
+
+	<section>
 	  <section><h1>And now... the tests</h1>
 	    <h2 class='fragment'>Tests are essential in DevOps/MLOps</h2>
-	  </section>
+	    </section>
 
 	  <section><h1>Unit tests ensure that every pipeline step works</h1>
 	    <h2 class='fragment'>Thus delivering value to client</h2>
@@ -77,7 +131,7 @@ def test_download(page):
 
 	</section>
 
-		<section>
+	<section>
 	  <section><h1>Extract data</h1>
 	    <h2 class='fragment'>DOM or regular expression</h2>
 	    <h3 class='fragment'>Often, a combination of both</h3>
