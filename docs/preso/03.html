@@ -197,6 +197,18 @@ def test_download(page):
 	      change.</aside>
 	  </section>
 
+	  <section><h1>"Cleaning" data</h1>
+	    <pre><code data-line-numbers='1|2|3|5-7|8'>data.delta &lt;- subset( data, select=-c(Total))
+data.delta$Date &lt;- as.Date( paste0("2022.",data.delta$Date), format="%Y.%d.%m")
+delta.shaped &lt;- dcast(data.delta, Date ~ Item )
+delta.clean &lt;- delta.shaped
+delta.clean$` cruise missiles` &lt;- NULL
+delta.clean$` warships / boats` &lt;- NULL
+delta.clean &lt;- delta.clean %>% slice(2:n())
+delta.clean$Losses &lt;- c((delta.clean %>% slice(2:n()))$` personnel`,0)
+	    </code></pre>
+	    <aside class='notes'>Those two columns were not very
+	      useful, they did not change a lot</aside></section>
 	  <section><h1>💼 Activity</h1>
 	    <h3 class='fragment'>Create an issue that discusses what
 	    are the inherent characteristics of your data (range,
