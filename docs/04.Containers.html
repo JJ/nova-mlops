@@ -29,7 +29,42 @@
 <h2 id="acceptance-criteria">Acceptance criteria</h2>
 <p>Several data and active containers have been created and integrated into the publishing schedule as well as different workflows.</p>
 <h2 id="containers">Containers</h2>
-<p>Containers were one of the factors that brought the DevOps (quasi) revolution to the development world. The fact that they allowed to isolate the execution of some programs or services, that they could be packaged and stored, but also that they included a language that allowed very easily to describe how to create them, was a real stunner.</p>
+<p>Containers were one of the factors that brought the DevOps (quasi) revolution to the software engineering world. The fact that they allowed to isolate the execution of some programs or services, that they could be packaged and stored, but also that they included a language that allowed very easily to describe how to create them, was a real stunner.</p>
+<p>Essentially, those are the three factors that make them useful also for data science: you can isolate an application from the rest of the system, in such a way that it is very easy to deploy it anywhere; that isolation comes at the price of precisely describing the infrastructure that will be needed for running that application. But the prize is that once that is done, you can deploy your application, be it a MLOps stage, or even data, wherever you want.</p>
+<p>Let’s check out the concepts that go together with containers, or Docker containers as they are called, since that was the company that created and released the framework for using them in the first place.</p>
+<p>First and foremost, what containers do is to <em>isolate</em> applications, not virtualize services. The applications will still use the services of the host operating system, mainly related to that isolation. Which services does not matter too much, what matters is that the operating system must have support for them, and so far only Linux, Windows and some other IBM operating systems do. Also, they do not virtualize the processor instruction set, they run executables on the host processor. That implies that you will need a specific combination of operating system and processor architecture in the host to run a container (and the other way round).</p>
+<p>However, containers are a standard (from OCI, open container initiative) and attempt to create a system that any developer can use and that can be then deployed anywhere. How does that work? The software you download on the operating system has two parts:</p>
+<ul>
+<li>The command line, or graphical front end, which obviously works on your machine as a native program. This is used mainly for management.</li>
+<li>The service or daemon, which runs with privileges, and which connects to the client through a socket. This means that the service can, in principle, run anywhere, as long as you connect to it. This service also acts as <em>registry</em>, holding a list of your containers. This can be a virtual machine, and it is how it works on Macs (whose operating system has no support for isolation) and in Windows (where you will very probably create containers for Linux anyway).</li>
+</ul>
+<p>Let’s see different states a container can be in.</p>
+<ul>
+<li>You create a container usually through a Dockerfile, at least in this context (it can be created interactively, but except for prototyping, it’s not really advised to do so). This Dockerfile has specific commands to copy files, run scripts, and define what will be run when the image is invoked.</li>
+<li>From the Dockerfile, you build an <em>image</em>; this process is similar to compiling to a runnable file, and it creates a file that can be downloaded and run using any Docker client you have.</li>
+<li>Finally, a <em>container</em> is the equivalent of a running executable. It receives commands, or runs and exits.</li>
+</ul>
+<p>The general best practice is to use Dockerfiles in your project to create images, that are stored in registries (Docker Hub, GitHub Container Registry, Quay.io)</p>
+<p>Good thing about containers is that you have a wide array of them to be used directly. All containers are built from a base, and these bases are published in registries, so you can just look for one and start executing it.</p>
+<blockquote>
+<p>At this point, you should have an installation of Docker in your machine. Please follow instructions for your specific platform. In general we will working with Linux/Intel containers, so if your platform offer several options, use the one that is able to work with this kind of containers.</p>
+</blockquote>
+<p>For instance, we can start running a Jupyter Hub just by doing this:</p>
+<pre><code>docker run --rm opendatacube/jupyterhub  jupyterhub --ip=&quot;*&quot;</code></pre>
+<blockquote>
+<p>There’s probably a GUI option to do more or less the same.</p>
+</blockquote>
+<p>The first part, <code>docker run</code>, is what effectively tells the service we are going to run a container; this will also check if the container is already in our machine, and download it if it is not. You will see that it will show a message about pulling, and several hexadecimal hashes that represents the different layers that compose the image. It does not really matter a lot right now, but best practices advise to minimize the amount of layers you use.</p>
+<p>The rest of the command line is as follows</p>
+<ul>
+<li><code>--rm</code> will delete the container when you’ve finished running it. This is a very convenient way to not have lots of stopped containers in your local hard disk, and it’s the usual way to do this. It will still keep the <em>image</em> so that you will not have to download it again (in fact, it will store the <em>layers</em>, so it will speed up downloading for images that <em>depend</em> on this one).</li>
+<li><code>opendatacube/jupyterhub</code> this is the name of the image, usually composed by a namespace (or publishers) and a specific name for the image; it can be followed by a tag in the shape <code>:tag</code>.</li>
+<li><code>jupyterhub --ip='*'</code> is a command you issue, or an argument you give the “executable” contained there.</li>
+</ul>
+<p>Jupyter <a href="https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-datascience-notebook">releases a number of notebooks</a> you can readily use, that already have preinstalled a series of modules used in data science. For instance, this one:</p>
+<pre><code>docker run --rm jupyter/scipy-notebook</code></pre>
+<p>will directly run a notebook with <code>scipy</code> preinstalled.</p>
+<p>In most cases, containers are not created to be used directly; they will be the <em>base</em> for other applications that will add more <em>layers</em> to them, including the files and other dependencies your application will need. We will see how to build these images ourselves right next.</p>
 <h2 id="see-also">See also</h2>
 <p>The book Docker for Data Science is a good reference (Cook 2017)</p>
 <h2 id="references">References</h2>
