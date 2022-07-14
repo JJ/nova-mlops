@@ -62,8 +62,8 @@
 <li><code>jupyterhub --ip='*'</code> is a command you issue, or an argument you give the “executable” contained there.</li>
 </ul>
 <p>Jupyter <a href="https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-datascience-notebook">releases a number of notebooks</a> you can readily use, that already have preinstalled a series of modules used in data science. For instance, this one:</p>
-<pre><code>docker run --rm jupyter/scipy-notebook</code></pre>
-<p>will directly run a notebook with <code>scipy</code> preinstalled.</p>
+<pre><code>docker run --rm -p8888:8888 jupyter/scipy-notebook</code></pre>
+<p>will directly run a notebook with <code>scipy</code> preinstalled; the lab will be accessible in the 8888 port, which you have mapped to an internal port via the command <code>-p</code>.</p>
 <p>In most cases, containers are not created to be used directly; they will be the <em>base</em> for other applications that will add more <em>layers</em> to them, including the files and other dependencies your application will need. We will see how to build these images ourselves right next.</p>
 <h2 id="see-also">See also</h2>
 <p>The book Docker for Data Science is a good reference (Cook 2017)</p>
