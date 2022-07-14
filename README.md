@@ -38,7 +38,10 @@ introduction to the course](text/00.Intro.md) |
 5. [Automation infrastructure using GitHub actions](text/05.Infra.md) |
    [Web](https://jj.github.io/nova-mlops/05.Infra.html).
 6. [MLOps tools](text/06.MLOps-tools.md).
-7. [Open science: creation and deployment of machine learning
+
+This will most probably not be included
+
+1. [Open science: creation and deployment of machine learning
    projects](text/07.Papers.Rmd) |
    [Web](https://jj.github.io/nova-mlops/07.Papers.html).
 
