@@ -55,7 +55,7 @@ projects with spell-checking workflows.
 
 Updated data will be available in [this repo](https://github.com/JJ/nova-mlops);
 you can also explore data at [this
-notebook](http://localhost:8888/notebooks/explore-data.ipynb).
+notebook](https://colab.research.google.com/github/JJ/nova-mlops/blob/main/data/explore-data.ipynb).
 
 Session objectives and material are as follows:
 
