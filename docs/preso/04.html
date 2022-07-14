@@ -24,17 +24,127 @@
                     <h3>JJ Merelo, <a href="https://twitter.com/jjmerelo"><code>@jjmerelo</code></a></h3>
                 </section>
 
-		<section><h1>What did you learn yesterday</h1>
-		  <h2 class='fragment'>Is there some left over work
-		    from yesterday's sprint</h2>
-		  <h3 class='fragment'>Ready to start next
-		    MVP/milestone?</h3>
-		</section>
+	<section>
+	  <section><h1>Extract data</h1>
+	    <h2 class='fragment'>DOM or regular expression</h2>
+	    <h3 class='fragment'>Often, a combination of both</h3>
+	  </section>
 
-		<section><h1>Activity</h1>
-		    <h2></h2>
-		    <h3></h3>
-		</section>
+	  <section><h1>Regular expression</h1>
+	    <h2>is a powerful language for describing regularities in text</h2>
+	    <aside class='notes'>Possibly a bit outside the scope of
+	      this course</aside>
+	  </section>
+
+	  <section><h1>Don't even try to process some format
+	      yourself</h1>
+	    <h2 class='fragment'>There's probably a module for that</h2>
+	  </section>
+	  
+	  <section><h1>Also... have a plan B</h1>
+	    <h2 class='fragment'>Nothing is guaranteed to work</h2>
+	    <h3 class='fragment'>And nothing is guaranteed to work <em>for ever</em></h3>
+	    <aside class='notes'>After working for a
+	      month or more, the Ukr MoD site started to
+	      request a captcha, which is impossible to
+	      overcome. At the end of the day, it's a fight
+	      human vs technology and human vs. human; you
+	      need to invest yourself in the fight... or be
+	      defeated.
+	    </aside>
+	  </section>
+
+	  <section><h1>Test your data!</h1>
+	    <pre><code  data-line-numbers='3,6,9|3-11'>subtest "Data is OK", {
+    my @dates = $war-data.dates();
+    my %prev = $war-data.data{@dates.shift};
+    for @dates -> $date {
+        for &lt;tanks personnel> -> $k {
+            cmp-ok $war-data.data{$date}{$k}&lt;total>, ">=", %prev{$k}Ç&lt;total>,
+                    "$k for $date: {$war-data.data{$date}{$k}&lt;total>} ≥ {%prev{$k}&lt;total>}";
+        }
+        %prev = $war-data.data{$date};
+    }
+	    </code></pre>
+
+	    <aside class='notes'>In this case, the total number of
+	    losses needs to be monotonically increasing. No space for
+	      other options</aside>
+	  </section>
+
+	  <section><h1>Difficult decision: what to do if data fails
+	      test</h1>
+	    <h2 class='fragment'>Not automatically, that's for
+	      sure</h2>
+	  </section>
+
+	  <section><h1>Data transformation: "T" in "ETL"</h1>
+	    <h2 class='fragment'>Fixes, missing data, simple extensions or enrichment of data</h2>
+	    <aside class='notes'>In the case of the Ukraine data,
+	    it was published only every two days; since it includes
+	    totals and change, you could use change to compute last
+	      day's totals, and then previous totals to compute
+	      change.</aside>
+	  </section>
+
+	  <section><h1>"Cleaning" data</h1>
+	    <pre><code data-line-numbers='1|2|3|5-7|8'>data.delta &lt;- subset( data, select=-c(Total))
+data.delta$Date &lt;- as.Date( paste0("2022.",data.delta$Date), format="%Y.%d.%m")
+delta.shaped &lt;- dcast(data.delta, Date ~ Item )
+delta.clean &lt;- delta.shaped
+delta.clean$` cruise missiles` &lt;- NULL
+delta.clean$` warships / boats` &lt;- NULL
+delta.clean &lt;- delta.clean %>% slice(2:n())
+delta.clean$Losses &lt;- c((delta.clean %>% slice(2:n()))$` personnel`,0)
+	    </code></pre>
+	    <aside class='notes'>Those two columns were not very
+	      useful, they did not change a lot</aside></section>
+	  <section><h1>💼 Activity</h1>
+	    <h3 class='fragment'>Create an issue that discusses what
+	    are the inherent characteristics of your data (range,
+	    possible changes from one instance to next, type of data,
+	      and so on and solver it with a PR that creates the test</h3>
+	  </section>
+
+	</section>
+
+	<section>
+	<section><h1>Data can be stored in many different formats</h1>
+	  <h2 class='fragment'>Feather, Parquet, much more lightweight
+	    (compressed)</h2>
+	</section>
+
+	<section><h1>Parquetize/featherize</h1>
+	  <pre><code>library(arrow)
+
+write.csv(delta.clean, "resources/ukr-mod-deltas.csv")
+write_parquet(delta.clean, "resources/ukr-mod-deltas.parquet")
+write_feather(delta.clean, "resources/ukr-mod-deltas.feather")
+	  </code></pre>
+	</section>
+
+	<section><h1>Data needs to be versioned</h1>
+	  <h2 class='fragment'>Traceability from (training) data to
+	    results</h2>
+	</section>
+
+	<section><h1>Poor person's version: git tags</h1>
+	  <pre><code>git tag -a data-2022-07-11 -m "Today's fresh
+	      data"</code></pre>
+
+	  <aside class='notes'>A tag is an alias for a commit; it's
+	  like a label you slap on a commit, which is a situation for
+	    the repository at a certain point in time.</aside>
+	</section>
+	<section><h1>💼 Activity</h1>
+	    <h3 class='fragment'>Decide on which data format is the
+	      best for you</h3>
+	    <h3 class='fragment'>Add functions to your module (and
+	      targets to task manager) that transform data</h3>
+	    <h3 class='fragment'>Tag data <em>manually</em> every time it changes</h3>
+	  </section>
+
+	</section>
 
 	    </div>
 	</div>
