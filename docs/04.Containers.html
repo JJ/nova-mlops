@@ -65,6 +65,32 @@
 <pre><code>docker run --rm -p8888:8888 jupyter/scipy-notebook</code></pre>
 <p>will directly run a notebook with <code>scipy</code> preinstalled; the lab will be accessible in the 8888 port, which you have mapped to an internal port via the command <code>-p</code>.</p>
 <p>In most cases, containers are not created to be used directly; they will be the <em>base</em> for other applications that will add more <em>layers</em> to them, including the files and other dependencies your application will need. We will see how to build these images ourselves right next.</p>
+<h2 id="creating-our-own-containers">Creating our own containers</h2>
+<p>We can create our own containers for multitude of purposes. One of the simplest one we can create is to hold data. There are three parts on what we need to do to design and build a container</p>
+<ul>
+<li>Decide on base container. Base containers will have the basic tools we need: the language, for instance. In some cases, we will use tools that include the base “operating system”; which is not a complete operating system, because it will use the kernel, or core, of the host operating system. Since you want your container to have the minimum amount of layers, you need the operating system to be as lightweight as possible; this is why some Linux distributions publish their own lightweight versions, like Debian Slim. Some, like Alpine, are specifically designed to be lightweight. In case you choose a higher-level image, like one that is officially created for a language, look for those tagged <code>alpine</code> or <code>slim</code>. Deciding on this base container will imply choices when installing other tools on it and how to do it. At any rate, the choice of base image has <em>nothing</em> to do with your preferences or what you use on your machine. Main criteria is functionality and weight.</li>
+<li>Decide which files will go into the image. This is usually easy, although it sometimes has two phases: copying into the yet-to-be-built image some files, and then performing some processing (compilation or other) to generate the files that <em>actually</em> go into the image; you can then proceed to delete or eliminate those files. This will imply also creating a filesystem structure that we will need for several purposes, mainly the application’s own purposes, as well as interacting through a shared directory with the host or other containers.</li>
+<li>Find out the command that the container is going to run when invoked with <code>docker run</code>. You have a single chance (there’s only a command than can be invoked) so choose wisely.</li>
+</ul>
+<p>For instance, this (relatively simple) container has been created to hold the data from the ministry of Defense in the war of Ukraine.</p>
+<pre><code>FROM denoland/deno:latest
+
+LABEL version=&quot;1.0.0&quot; maintainer=&quot;JJMerelo@GMail.com&quot;
+
+WORKDIR /app
+COPY tools/serve-data.ts .
+RUN mkdir resources
+COPY resources/*.csv resources/
+
+EXPOSE 31415
+VOLUME resources
+
+CMD [&quot;run&quot;, &quot;--allow-net&quot;, &quot;--allow-read&quot;,  &quot;serve-data.ts&quot;]</code></pre>
+<p>Besides the data, it contains a script in Deno that serves the data via a web server; this explains why we use a container for Deno in the <code>FROM</code> statement.</p>
+<p><code>LABEL</code> is mainly for metadata, not really functional; the next 4 sentences decide where the application is going to be run (<code>WORKDIR</code>), copy the Deno script that serves the data, and then creates a subdirectory for resources and copies them from the host (first argument) to the container (<code>resources/</code>, the director will be already created).</p>
+<p>Next two sentences are also metadata: it tells you what is the name of the shared directory you should use, and the port the server is going to use (prize if you recognize the number).</p>
+<p>Finally, the last part is what you are going to run: using Deno, it runs the server that will serve the data. This image is published in the <a href="https://github.com/JJ/raku-ukr-mod-data/pkgs/container/ukr-mod-data">Github registry</a>, and you can use it directly like this:</p>
+<pre><code>docker pull -p31415:31415 ghcr.io/jj/ukr-mod-data:latest</code></pre>
 <h2 id="see-also">See also</h2>
 <p>The book Docker for Data Science is a good reference (Cook 2017)</p>
 <h2 id="references">References</h2>
