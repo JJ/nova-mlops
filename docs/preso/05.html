@@ -94,7 +94,34 @@ ENTRYPOINT cat Export_test.csv
 	   </section>
 	</section>
 
-	
+	<section>
+
+	  <section><h1>Ship your application using containers</h1>
+	    <pre><code data-line-numbers='6|8|10-11|13|15'>FROM python:latest
+LABEL version=0.0.1 maintainer="jjmerelo@gmail.com"
+RUN useradd -ms /bin/bash novamlops
+USER novamlops
+WORKDIR /home/novamlops
+ENV PATH=~"/home/novamlops/.poetry/bin:/home/novamlops/.local/bin:${PATH}"
+COPY --chown=novamlops pyproject.toml poetry.lock .
+RUN mkdir colares_project && mkdir data
+COPY --chown=novamlops colares_project/ colares_project/
+RUN pip install poetry \
+    && poetry install
+
+VOLUME /home/mlops/data
+
+ENTRYPOINT ["poetry", "run", "testcsv"]
+	    </code></pre>
+	    <aside class='notes'>Volume, entrypoint, and some other important changes.</aside>
+	  </section>
+	  
+	  <section><h1>💼 Activity</h1>
+	     <h3 class='fragment'>Adapt the container so that it outputs the processed file in Parquet/Feather format</h3>
+	     <h3 class='fragment'>Upload the resulting image to the registry</h3>
+	   </section>
+
+	</section>
 	    </div>
 	</div>
 
