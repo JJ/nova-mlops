@@ -826,33 +826,26 @@ files = [
 
 [[package]]
 name = "dash"
-version = "2.15.0"
+version = "2.9.3"
 description = "A Python framework for building reactive web-apps. Developed by Plotly."
 optional = false
 python-versions = ">=3.6"
 groups = ["main"]
 files = [
-    {file = "dash-2.15.0-py3-none-any.whl", hash = "sha256:df1882bbf613e4ca4372281c8facbeb68e97d76720336b051bf84c75d2de8588"},
-    {file = "dash-2.15.0.tar.gz", hash = "sha256:d38891337fc855d5673f75e5346354daa063c4ff45a8a6a21f25e858fcae41c2"},
+    {file = "dash-2.9.3-py3-none-any.whl", hash = "sha256:a749ae1ea9de3fe7b785353a818ec9b629d39c6b7e02462954203bd1e296fd0e"},
+    {file = "dash-2.9.3.tar.gz", hash = "sha256:47392f8d6455dc989a697407eb5941f3bad80604df985ab1ac9d4244568ffb34"},
 ]
 
 [package.dependencies]
 dash-core-components = "2.0.0"
 dash-html-components = "2.0.0"
 dash-table = "5.0.0"
-Flask = ">=1.0.4,<3.1"
-importlib-metadata = {version = "*", markers = "python_version >= \"3.7\""}
-nest-asyncio = "*"
+Flask = ">=1.0.4"
 plotly = ">=5.0.0"
-requests = "*"
-retrying = "*"
-setuptools = "*"
-typing-extensions = ">=4.1.1"
-Werkzeug = "<3.1"
 
 [package.extras]
 celery = ["celery[redis] (>=5.1.2)", "importlib-metadata (<5) ; python_version < \"3.8\"", "redis (>=3.5.3)"]
-ci = ["black (==21.6b0) ; python_version < \"3.7\"", "black (==22.3.0) ; python_version >= \"3.7\"", "dash-dangerously-set-inner-html", "dash-flow-example (==0.0.5)", "flake8 (==3.9.2)", "flaky (==3.7.0)", "flask-talisman (==1.0.0)", "isort (==4.3.21) ; python_version < \"3.7\"", "jupyterlab (<4.0.0)", "mimesis (<=11.1.0)", "mock (==4.0.3)", "numpy (<=1.25.2)", "openpyxl ; python_version >= \"3.8\"", "orjson (==3.5.4) ; python_version < \"3.7\"", "orjson (==3.6.7) ; python_version >= \"3.7\"", "pandas (==1.1.5) ; python_version < \"3.8\"", "pandas (>=1.4.0) ; python_version >= \"3.8\"", "preconditions", "pyarrow (<3) ; python_version < \"3.7\"", "pyarrow ; python_version >= \"3.7\"", "pylint (==2.13.5)", "pytest-mock", "pytest-rerunfailures", "pytest-sugar (==0.9.6)", "xlrd (<2) ; python_version < \"3.8\"", "xlrd (>=2.0.1) ; python_version >= \"3.8\""]
+ci = ["black (==21.6b0) ; python_version < \"3.7\"", "black (==22.3.0) ; python_version >= \"3.7\"", "dash-dangerously-set-inner-html", "dash-flow-example (==0.0.5)", "flake8 (==3.9.2)", "flaky (==3.7.0)", "flask-talisman (==1.0.0)", "isort (==4.3.21) ; python_version < \"3.7\"", "mimesis", "mock (==4.0.3)", "numpy", "openpyxl ; python_version >= \"3.8\"", "orjson (==3.5.4) ; python_version < \"3.7\"", "orjson (==3.6.7) ; python_version >= \"3.7\"", "pandas (==1.1.5) ; python_version < \"3.8\"", "pandas (>=1.4.0) ; python_version >= \"3.8\"", "preconditions", "pyarrow (<3) ; python_version < \"3.7\"", "pyarrow ; python_version >= \"3.7\"", "pylint (==2.13.5)", "pytest-mock", "pytest-rerunfailures", "pytest-sugar (==0.9.6)", "xlrd (<2) ; python_version < \"3.8\"", "xlrd (>=2.0.1) ; python_version >= \"3.8\""]
 compress = ["flask-compress"]
 dev = ["PyYAML (>=5.4.1)", "coloredlogs (>=15.0.1)", "fire (>=0.4.0)"]
 diskcache = ["diskcache (>=5.2.1)", "multiprocess (>=0.70.12)", "psutil (>=5.8.0)"]
@@ -5007,18 +5000,18 @@ test = ["websockets"]
 
 [[package]]
 name = "werkzeug"
-version = "3.0.6"
+version = "3.1.4"
 description = "The comprehensive WSGI web application library."
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "werkzeug-3.0.6-py3-none-any.whl", hash = "sha256:1bc0c2310d2fbb07b1dd1105eba2f7af72f322e1e455f2f93c993bee8c8a5f17"},
-    {file = "werkzeug-3.0.6.tar.gz", hash = "sha256:a8dd59d4de28ca70471a34cba79bed5f7ef2e036a76b3ab0835474246eb41f8d"},
+    {file = "werkzeug-3.1.4-py3-none-any.whl", hash = "sha256:2ad50fb9ed09cc3af22c54698351027ace879a0b60a3b5edf5730b2f7d876905"},
+    {file = "werkzeug-3.1.4.tar.gz", hash = "sha256:cd3cd98b1b92dc3b7b3995038826c68097dcb16f9baa63abe35f20eafeb9fe5e"},
 ]
 
 [package.dependencies]
-MarkupSafe = ">=2.1.1"
+markupsafe = ">=2.1.1"
 
 [package.extras]
 watchdog = ["watchdog (>=2.3)"]
